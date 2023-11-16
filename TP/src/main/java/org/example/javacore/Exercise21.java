@@ -12,13 +12,14 @@ public class Exercise21 {
        Integer result = nbr * nbr;
 
        System.out.println("Voici votre resultat: " + result);
-
+        sc.close();
    }
 
     public static void dialogue() {
         System.out.print("Quel est votre prénom ? ");
         String prenom = sc.nextLine();
         System.out.println("Bonjour, " + prenom + " !");
+        sc.close();
    }
 
     public static void calTVA() {
@@ -27,10 +28,10 @@ public class Exercise21 {
         System.out.print("Le nombre d'artcile est: ");
         Integer nbr = sc.nextInt();
         System.out.print("Le taux de TVA est: ");
-        Double taux = sc.nextDouble();
+        float taux = sc.nextFloat();
         double prixTTC = prixHT * (1 + taux/100) * nbr;
         System.out.println("Le prix total TTC correspond est: " + prixTTC);
-
+        sc.close();
     }
 
     public static void isNombre() {
@@ -43,7 +44,7 @@ public class Exercise21 {
         } else {
             System.out.println(" Vous nombre est Zéro");
         }
-
+        sc.close();
 
     }
 
@@ -63,7 +64,7 @@ public class Exercise21 {
 
         }
 
-
+        sc.close();
     }
 
     public static void ordreNom() {
@@ -79,7 +80,7 @@ public class Exercise21 {
             System.out.println("ils ne sont rangés pas dans l’ordre alphabétique.");
         }
 
-
+        sc.close();
     }
 
 
