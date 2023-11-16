@@ -20,6 +20,14 @@ public class Main {
         //Exo3.prixPayer();
         //Exo5.isMyNumber();
         //Exo5.isJustPrice();
-        Exo5.next10Numbers();
+        //Exo5.next10Numbers();
+        //Exo5.next10NumbersWhile();
+        //Exo5.multiplicationTable();
+        //Exo5.sumOfNumber();
+        //Exo5.maxNumber();
+        //Exo5.maxNumberPosition();
+        //Exo5.factorOfNumber();
+         //   Exo5.maxUnknownNumberPosition();
+
         }
     }
