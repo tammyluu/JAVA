@@ -141,5 +141,33 @@ public  class ArrayBasic {
 
     }
 
+    public static void exoTab52() {
+
+
+    }
+    public static void exoTab53() {
+
+    }
+     public static void exoTab54() {
+         int n = 0;
+         int [] tab = new int[n];
+         int count = 0;
+         System.out.print("Saisissez nombre de'éléments : ");
+         n = sc.nextInt();
+         for (int i = 0; i < n  ; i++) {
+             System.out.print("Saisir votre " + i + " elément: ");
+             tab[i] = sc.nextInt();
+         }
+         System.out.println("Entrez un nombre aléatoir");
+         int  num = sc.nextInt();
+         for (int i = 0; i < n ; i++) {
+             if (tab[i] == num) {
+                 count++;
+
+             }
+         }
+         System.out.println("le nombre d’occurrences d’une valeur " + num + " entière dans un tableau est: " + count );
+
+     }
 
 }
