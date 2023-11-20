@@ -10,19 +10,18 @@ public class Function {
             if ( n % i  == 0)
                 return  false;
 
-        return true;
+        return true; // kg chia het cho ai het
+
+
     }
+    // in cac so nguyen to
     public static void printPrimeList(){
         System.out.println(" the list of primes from 1 ...1000 is : ");
         for (int i = 1; i <= 1000; i++)
-            if (isPrime(i) == true)
+            if (isPrime(i))
             System.out.print(i + " "  );
     }
     public static void print100FirstPrimes(){
-        int count = 0;
-        for (int i = 1;i <= 1000;i++)
-            count = i++;
-            if (isPrime(i) && count <= 100)
-                System.out.print( i + " ");
+
     }
 }

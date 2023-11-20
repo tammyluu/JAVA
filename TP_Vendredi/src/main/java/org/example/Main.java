@@ -10,7 +10,10 @@ public class Main {
         //ArrayBasic.exercice4();
         //ArrayBasic.exercice5();
         //ArrayBasic.exercice6();
-        ArrayBasic.exercice7();
+        //ArrayBasic.exercice7();
+        //ArrayBasic.exoTab52();
+        //ArrayBasic.exoTab53();
+        ArrayBasic.exoTab54();
 
     }
 }
