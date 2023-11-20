@@ -87,7 +87,7 @@ public class ArrayBasic {
         Random rand = new Random();
         for (int i = 0; i < 10; i++) {
 
-            tab[i] = rand.nextInt(100);
+            tab[i] = rand.nextInt(100)+1;
         }
         for (int i = 0; i < 10; i++) {
             System.out.print(tab[i] + " ");
@@ -103,7 +103,7 @@ public class ArrayBasic {
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
 
-            tab1[i] = rand.nextInt(100);
+            tab1[i] = rand.nextInt(100) +1;
             System.out.print(tab1[i] + " ");
             sum += tab1[i];
         }
@@ -111,7 +111,7 @@ public class ArrayBasic {
         System.out.println("\tla somme des éléments de 1er tableau est: " + sum);
         for (int i = 0; i < 5; i++) {
 
-            tab2[i] = rand.nextInt(100);
+            tab2[i] = rand.nextInt(100)+1;
             System.out.print(tab2[i] + " ");
             sum += tab2[i];
         }
@@ -215,17 +215,29 @@ public class ArrayBasic {
         int[] tableau = {1, 2, 3, 4, 5};
 
         // Afficher le tableau avant le décalage
-        System.out.println("Avant le décalage vers la droite : " + java.util.Arrays.toString(tableau));
+        System.out.println("Avant le décalage  : " + java.util.Arrays.toString(tableau));
 
         // Effectuer le décalage vers la droite
-        int temporaire = tableau[tableau.length - 1];
+        int temp = tableau[tableau.length - 1];
         for (int i = tableau.length - 1; i > 0; i--) {
             tableau[i] = tableau[i - 1];
         }
-        tableau[0] = temporaire;
+        tableau[0] = temp;
 
         // Afficher le tableau après le décalage
-        System.out.println("Après le décalage vers la droite : " + java.util.Arrays.toString(tableau));
+       System.out.println("Après le décalage vers la droite : " + java.util.Arrays.toString(tableau));
+
+
+       // Effectuer le décalage vers la gauche
+        int temp2 = tableau[tableau.length - 1];
+        for (int i = 1; i > tableau.length +1; i++) {
+            tableau[i] = tableau[0];
+        }
+        tableau[tableau.length-1] = temp2;
+
+            // Afficher le tableau après le décalage
+           System.out.println("Après le décalage vers la gauche : " + java.util.Arrays.toString(tableau));
+
 
     }
 // Écrire un algorithme qui inverse l’ordre des éléments d’un tableau de taille N.
@@ -251,7 +263,7 @@ public class ArrayBasic {
         int n;
         int element;
         int[] newTab;
-        for (int ai : tab2){
+       /* for (int ai : tab2){
             insertElements(ai, tab1, m);
             m++;
         }
@@ -262,7 +274,7 @@ public class ArrayBasic {
                isElementfound = true;
         }
 
-        }
+        }*/
 
 
     }
