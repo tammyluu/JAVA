@@ -228,15 +228,22 @@ public class ArrayBasic {
        System.out.println("Après le décalage vers la droite : " + java.util.Arrays.toString(tableau));
 
 
-       // Effectuer le décalage vers la gauche
-        int temp2 = tableau[tableau.length - 1];
-        for (int i = 1; i > tableau.length +1; i++) {
-            tableau[i] = tableau[0];
+    }
+
+    public static void exoTab54DecalageGauche() {
+        int[] tableau = {1, 2, 3, 4, 5};
+        // Afficher le tableau avant le décalage
+        System.out.println("Avant le décalage  : " + java.util.Arrays.toString(tableau));
+        // Effectuer le décalage vers la gauche
+        int temp2 = tableau[0];
+        for (int i = 0; i < tableau.length -1; i++) {
+            tableau[i] = tableau[i+1];
         }
         tableau[tableau.length-1] = temp2;
 
-            // Afficher le tableau après le décalage
-           System.out.println("Après le décalage vers la gauche : " + java.util.Arrays.toString(tableau));
+        // Afficher le tableau après le décalage
+        System.out.println("Après le décalage vers la gauche : " + java.util.Arrays.toString(tableau));
+
 
 
     }

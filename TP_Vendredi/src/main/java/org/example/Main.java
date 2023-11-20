@@ -13,7 +13,8 @@ public class Main {
         //ArrayBasic.exercice7();
         //ArrayBasic.exoTab52();
         //ArrayBasic.exoTab53();
-        ArrayBasic.exoTab54();
+        //ArrayBasic.exoTab54();
+        ArrayBasic.exoTab54DecalageGauche();
 
     }
 }
