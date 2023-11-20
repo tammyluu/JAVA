@@ -14,7 +14,9 @@ public class Main {
         //ArrayBasic.exoTab52();
         //ArrayBasic.exoTab53();
         //ArrayBasic.exoTab54();
-        ArrayBasic.exoTab54DecalageGauche();
-
+        //ArrayBasic.exoTab54DecalageGauche();
+        //ArrayBasic.exoTab55();
+        //ArrayBasic.exoTab56();
+        ArrayBasic.exoTab57_BubbleSort();
     }
 }

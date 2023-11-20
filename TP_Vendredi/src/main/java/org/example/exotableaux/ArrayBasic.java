@@ -1,5 +1,6 @@
 package org.example.exotableaux;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -251,14 +252,100 @@ public class ArrayBasic {
 // Écrire un algorithme qui inverse l’ordre des éléments d’un tableau de taille N.
     public static void exoTab55() {
 
+        System.out.print("Saisir la longuer de tableau: ");
+        int n = sc.nextInt();
+        int[] tab = new int[n];
+        Random rand = new Random();
+        int start = 0;
+        int end = tab.length -1;
+
+
+
+        for (int i = 0; i < n; i++) {
+            tab[i] = rand.nextInt(100)+1;
+         }
+        System.out.print("Tableau initial: "+Arrays.toString(tab));
+        while (start < end){
+            int temp = tab[start];
+            tab[start] = tab[end];
+            tab[end]= temp;
+            start++;
+            end--;
+        }
+        //inverse
+        System.out.println("\nl’ordre des éléments d’un tableau de taille N a été inversé: ");
+        System.out.println(Arrays.toString(tab));
+
+
+
+
     }
     //Écrire l'algorithme du tri à sélection en supposant qu'il est appliqué sur un  tableau d'entiers déjà rempli de taille N donnée.
-    public static void exoTab56() {
+    public static void exoTab56_SortSelection() {
+        System.out.print("Saisir la longuer de tableau: ");
+        int n = sc.nextInt();
+        int[] tab = new int[n];
+
+        Random rand = new Random();
+        for (int i = 0; i < n; i++) {
+            tab[i] = rand.nextInt(100)+1;
+        }
+        System.out.println("Tableau initial: "+Arrays.toString(tab));
+        for (int i = 0; i < n-1 ; i++) {
+            int min = i;
+            for (int j = i+1; j < n ; j++) {
+                if (tab[j] < tab[min]){
+                    min = j;
+                }
+
+            }
+         int temp = tab[min];
+            tab[min] = tab[i];
+            tab[i] = temp;
+
+        }
+        System.out.println("Tri à sélection sur un  tableau d'entiers déjà rempli de taille N donnée: ");
+        for (int i = 0; i <n ; i++) {
+            //System.out.print(tab[i] + " ");
+        }
+        System.out.println(Arrays.toString(tab));
+
 
     }
     // Écrire l'algorithme du tri à bulles en supposant qu'il est appliqué sur un tableau d'entiers déjà rempli de taille N donnée.
-    public static void exoTab57() {
+    public static void exoTab57_BubbleSort() {
+        System.out.print("Saisir la longuer de tableau: ");
+        int n = sc.nextInt();
+        int[] tab = new int[n];
+        int temp;
+        boolean swapped = false;
+        Random rand = new Random();
+        for (int i = 0; i < n; i++) {
+            tab[i] = rand.nextInt(100)+1;
+        }
+        System.out.println("Tableau initial: "+Arrays.toString(tab));
 
+        for (int i = 0; i < tab.length-1; i++) {
+            swapped = false;
+            for (int j = 0; j < tab.length-1-i; j++) {
+                System.out.print("Comparer entre 2 elémént: [" + tab[j] + ", " + tab[j + 1] + "]");
+                if (tab[j] > tab[j+1]) {
+                    temp = tab[j];
+                    tab[j] = tab[j+1];
+                    tab[j+1] = temp;
+                    swapped = true;
+
+                    System.out.println(" => échange  leur places [ "+ tab[j] + ", " + tab[j+1] + " ]");
+                }else {
+                    System.out.println(" => N'a pas besoins d'échanger leur place!!!");
+                }
+            }
+            if (!swapped){
+                break;
+            }
+
+        }
+        System.out.println("Tableau après trier : " + Arrays.toString(tab));
     }
     //Écrire un algorithme qui s’assure que les tableaux t1 et t2 sont réguliers et de mêmes dimensions et fournit dans ce cas leur somme en résultat.
     public static void exoTab58() {
