@@ -177,11 +177,6 @@ public class ArrayBasic {
     }
 /*- Comment déterminer si un tableau d’entiers à une dimension est trié par ordre croissant ? Ecrire l'algorithme.*/
     public static void exoTab52() {
-
-    }
-/*Écrire un algorithme qui calcule le plus grand écart
-     dans un tableau (l’écart est la valeur absolue de la différence de deux éléments).*/
-    public static void exoTab53() {
         int[] tab = new int[10];
         int temp = tab[0];
         Random rand = new Random();
@@ -210,6 +205,11 @@ public class ArrayBasic {
             System.out.print(tab[i] + " ");
         }
     }
+/*Écrire un algorithme qui calcule le plus grand écart
+     dans un tableau (l’écart est la valeur absolue de la différence de deux éléments).*/
+    public static void exoTab53() {
+
+    }
     /* Écrire l’algorithme effectuant le décalage des  éléments d’un tableau.*/
     public static void exoTab54() {
         int[] tableau = {1, 2, 3, 4, 5};
@@ -221,23 +221,24 @@ public class ArrayBasic {
         int temp = tableau[tableau.length - 1];
         for (int i = tableau.length - 1; i > 0; i--) {
             tableau[i] = tableau[i - 1];
+            System.out.println(tableau[i]);
         }
         tableau[0] = temp;
 
         // Afficher le tableau après le décalage
        System.out.println("Après le décalage vers la droite : " + java.util.Arrays.toString(tableau));
 
-
     }
 
     public static void exoTab54DecalageGauche() {
-        int[] tableau = {1, 2, 3, 4, 5};
+        char[] tableau = {'D','E','C','A','L','A','G','E'};
         // Afficher le tableau avant le décalage
         System.out.println("Avant le décalage  : " + java.util.Arrays.toString(tableau));
         // Effectuer le décalage vers la gauche
-        int temp2 = tableau[0];
+        char temp2 = tableau[0];
         for (int i = 0; i < tableau.length -1; i++) {
             tableau[i] = tableau[i+1];
+            System.out.println(tableau[i]);
         }
         tableau[tableau.length-1] = temp2;
 
