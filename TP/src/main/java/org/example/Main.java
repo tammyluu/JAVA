@@ -3,6 +3,7 @@ package org.example;
 import org.example.exo3.Exo3;
 import org.example.exo5.Exo5;
 import org.example.javacore.Exercise21;
+import org.example.string.ExoString;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -28,6 +29,10 @@ public class Main {
         //Exo5.maxNumberPosition();
         //Exo5.factorOfNumber();
          //   Exo5.maxUnknownNumberPosition();
+        //ExoString.comptageMot();
+       //ExoString.comptageOccurrence();
+        ExoString.Anagramme();
+
 
         }
     }

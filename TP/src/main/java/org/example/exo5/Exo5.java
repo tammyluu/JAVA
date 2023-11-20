@@ -188,7 +188,7 @@ public class Exo5 {
             sc.close();
         }
 
-        public static void amountForBill() {
+        /*public static void amountForBill() {
 
             int prix = 0;
             int sum = 0;
@@ -212,9 +212,9 @@ public class Exo5 {
 
         }
 
+    }*/
     }
 }
-
 
 
 

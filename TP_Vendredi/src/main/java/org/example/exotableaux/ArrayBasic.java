@@ -327,6 +327,7 @@ public class ArrayBasic {
 
         for (int i = 0; i < tab.length-1; i++) {
             swapped = false;
+            // j < tab.length-1-i: éviter parcourrir la table jusqu'à la fin
             for (int j = 0; j < tab.length-1-i; j++) {
                 System.out.print("Comparer entre 2 elémént: [" + tab[j] + ", " + tab[j + 1] + "]");
                 if (tab[j] > tab[j+1]) {
