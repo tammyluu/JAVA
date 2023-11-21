@@ -31,7 +31,9 @@ public class Main {
          //   Exo5.maxUnknownNumberPosition();
         //ExoString.comptageMot();
        //ExoString.comptageOccurrence();
-        ExoString.Anagramme();
+        //ExoString.Anagramme();
+        //ExoString.palindrome();
+        ExoString.pyramide();
 
 
         }
