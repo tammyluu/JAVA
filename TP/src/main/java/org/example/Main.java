@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.array.Matrix;
 import org.example.exo3.Exo3;
 import org.example.exo5.Exo5;
+import org.example.function.TPFunction;
 import org.example.javacore.Exercise21;
 import org.example.string.ExoString;
 
@@ -33,8 +35,12 @@ public class Main {
        //ExoString.comptageOccurrence();
         //ExoString.Anagramme();
         //ExoString.palindrome();
-        ExoString.pyramide();
-
+        //ExoString.pyramide();
+        //Matrix.exo8_1();
+        //Matrix.exo8_2();
+        //Matrix.exo8_3();
+        //TPFunction.exercice1();
+        TPFunction.exo2();
 
         }
     }

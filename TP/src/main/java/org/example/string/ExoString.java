@@ -53,10 +53,14 @@ public class ExoString {
     public static void Anagramme() {
         String first;
         String second;
+
         System.out.print("Entrez votre premier mot : ");
         first = sc.nextLine();
+        first = first.toLowerCase();
+
         System.out.print("Entrez votre deuxième mot : ");
         second = sc.nextLine();
+        second= second.toLowerCase();
         boolean isAnagramme = true;
         // 1st method
         if (first == null || second == null) {
@@ -84,7 +88,7 @@ public class ExoString {
         System.out.print("Entrez votre deuxième mot : ");
         second = sc.nextLine();
         boolean isAnagramme = true;
-        // 1st method
+        // 2nd method
         if (first == null || second == null) {
             System.out.println(!isAnagramme);
         }
@@ -94,14 +98,14 @@ public class ExoString {
         //String Builder with reverse()
         StringBuilder builder = new StringBuilder(second);
         System.out.println(first.equals(builder.reverse().toString()));
-        ;
+
     }
 
     //Créer une fonction qui va vous permettre de vérifier qu’un mot (chaîne de
     //caractère est un palindrome).
     //Là aussi, on pourra tester votre fonction de manière dynamique.
-    public static void palindrome() {
-        String word = "rassasser";
+    public static void palindrome(String word) {
+        word = "rassasser";
         word = word.toLowerCase();
 
         System.out.println(" Votre mot est: " + word);
@@ -110,6 +114,7 @@ public class ExoString {
             // Compare the current character with its counterpart from the other end
             if (word.charAt(i) != word.charAt(word.length() - 1 - i)) {
                 System.out.println("Le mot n'est  pas un palindrome.");
+
             }
 
         }
