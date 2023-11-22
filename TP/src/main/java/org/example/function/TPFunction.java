@@ -148,25 +148,19 @@ public class TPFunction {
 
        sc.close();
     }
+
     //Greatest Common Divisor
     // recursive implementatio
-    /*public  static  int splitNumber(int[] arraySplit, int idx){
-        if (idx == arraySplit.length-1) {
-            return arraySplit[idx];
-        }
-        int firstNumber = arraySplit[idx];
-        int secondNumber = splitNumber(arraySplit, idx+1);
-        // __gcd(a,b) is inbuilt library function
-        return gcdRecursive(firstNumber,secondNumber);
-    }*/
     public static int gcdRecursive(int firstNumber, int secondNumber) {
+        //version 1
         int gcd = 1;
         for (int i = 1; i <= firstNumber && i<= secondNumber ; i++) {
-            if (firstNumber%i == 0 && secondNumber%i ==0) {
+            if (firstNumber % i == 0 && secondNumber % i ==0) {
                  gcd = i;
             }
         }
         System.out.printf("le plus grand diviseur commun  %d và %d  est : %d", firstNumber, secondNumber, gcd);
+        //version 2
         while (firstNumber != secondNumber) {
             if(firstNumber > secondNumber)
                 firstNumber = firstNumber - secondNumber;
@@ -175,6 +169,22 @@ public class TPFunction {
                secondNumber = secondNumber - firstNumber;
         }
       return  secondNumber;
+    }
+    public static  long getfactorial (int n){
+        if (n == 0) {
+            return 1;
+        }
+        long factorial =  n * getfactorial(n-1);
+
+        return factorial;
+    }
+
+
+    public static void factorial() {
+        System.out.print("entrez- vous un nombre : ");
+        int n = sc.nextInt();
+        long result = getfactorial(n);
+        System.out.println("Factorial of " + n + " is: "+ result);
     }
 }
 

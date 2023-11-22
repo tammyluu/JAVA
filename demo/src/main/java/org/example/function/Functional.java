@@ -47,11 +47,16 @@ public class Functional {
         }
         return result;
     }
-    public static List<Maison> sum(Maison[] val) {
-        List<Maison> maisons = new ArrayList<>();
-      // interface = class
-        return maisons;
+    public static int multiplication(int n, int m) {
+
+        if(m == 0){
+            return 0;
+        }
+        int produit =  n + multiplication(n,m-1);
+        System.out.println(produit);
+        return produit;
     }
+
 }
 
 

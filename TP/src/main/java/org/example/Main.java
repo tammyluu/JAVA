@@ -41,8 +41,9 @@ public class Main {
         //Matrix.exo8_3();
         //TPFunction.exercice1();
         //TPFunction.exo2(9);
-           // TPFunction.exo3();
-        TPFunction.exo4();
+           //TPFunction.exo3();
+        //TPFunction.exo4();
         //TPFunction.exo6();
+        TPFunction.factorial();
         }
     }

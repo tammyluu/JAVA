@@ -21,6 +21,7 @@ public class Main {
         //ChaineCharactere.formatString();
         //ArrayMatrix.getMatrix();
         //ArrayMatrix.getMatrix2();
-        Functional.getFunction();
+        //Functional.getFunction();
+
         }
     }
