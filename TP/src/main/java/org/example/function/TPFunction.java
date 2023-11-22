@@ -185,6 +185,7 @@ public class TPFunction {
         int n = sc.nextInt();
         long result = getfactorial(n);
         System.out.println("Factorial of " + n + " is: "+ result);
+        System.out.printf(" Your factorial of %d is %d", n,result);
     }
 }
 
