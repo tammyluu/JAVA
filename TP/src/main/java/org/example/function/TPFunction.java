@@ -96,42 +96,61 @@ public class TPFunction {
         }
         return words.length;
     }
-   /* public static void exo4() {
+    public static void exo4() {
         System.out.print("Entrez-vous des mots aléatoires séparés par un espace: ");
-        String mots = sc.next();
+        String input = sc.nextLine();
         System.out.print("Saisissez la longueur minimale de la chaîne pour filtrer les mots qui ont été saisis: ");
         int minLength = sc.nextInt();
-        String[] array = new String[mots.length()];
-        filterWordsByLenght(minLength,mots);
+
+        // Créer un tableau d'objets à partir des mots saisis
+        String[] mots = input.split(" ");
+
+        // Appeler la méthode pour filtrer les mots par longueur
+        String[] motsFiltres = filterWordsByLenght(minLength, mots);
+
+        // Afficher les mots filtrés
+        System.out.println("Mots avec une longueur supérieure ou égale à " + minLength + " :");
+        for (String mot : motsFiltres) {
+            System.out.println(mot);
+        }
     }
     public static String[] filterWordsByLenght(int minLength, String[] mots) {
-        for (int i = 0; i < mots.length ; i++) {
-            if ( mots[i]>= minLength) {
-                return new String[]{mots[i]};
+        // Compter le nombre de mots qui satisfont la condition
+        int count = 0;
+        for (String mot : mots) {
+            if (mot.length() >= minLength) {
+                count++;
             }
         }
-        return mots;
+        // Créer un tableau de la bonne taille
+        String[] motsFiltres = new String[count];
+
+        // Remplir le tableau avec les mots filtrés
+        int index = 0;
+        for (String mot : mots) {
+            if (mot.length() >= minLength) {
+                motsFiltres[index] = mot;
+                index++;
+            }
+        }
+        // Renvoyer le tableau
+        return motsFiltres;
     }
-*/
+
 
     public static void exo6() {
         System.out.print("entrez- vous 2 chiffres séparés par un espace: ");
-        String numbers = sc.next();
-       /* System.out.print("entrez- vous votre 1er  chiffre : ");
         int firstNumber = sc.nextInt();
-        System.out.print("entrez- vous votre 2ème  chiffre : ");
-        int secondNumber = sc.nextInt();*/
-       String [] arraySplit = numbers.trim().split(" ");
+        int secondNumber = sc.nextInt();
 
 
+       System.out.println("\nLe plus grand diviseur commun est : " + gcdRecursive(firstNumber,secondNumber)+"!!!!\n" );
 
-        System.out.println("le plus grand diviseur commun est : " + splitNumber(splitNumber(arraySplit,0))+"\n" );
-       // System.out.println("le plus grand diviseur commun est : " + gcdRecursive(firstNumber,secondNumber)+"\n" );
-        //System.out.printf("le plus grand diviseur commun  %d và %d  est : %d", firstNumber, firstNumber, gcd);
+       sc.close();
     }
     //Greatest Common Divisor
     // recursive implementatio
-    public  static  int splitNumber(int[] arraySplit, int idx){
+    /*public  static  int splitNumber(int[] arraySplit, int idx){
         if (idx == arraySplit.length-1) {
             return arraySplit[idx];
         }
@@ -139,18 +158,19 @@ public class TPFunction {
         int secondNumber = splitNumber(arraySplit, idx+1);
         // __gcd(a,b) is inbuilt library function
         return gcdRecursive(firstNumber,secondNumber);
-    }
+    }*/
     public static int gcdRecursive(int firstNumber, int secondNumber) {
-        /*int gcd = 1;
+        int gcd = 1;
         for (int i = 1; i <= firstNumber && i<= secondNumber ; i++) {
             if (firstNumber%i == 0 && secondNumber%i ==0) {
                  gcd = i;
             }
-        }*/
-
+        }
+        System.out.printf("le plus grand diviseur commun  %d và %d  est : %d", firstNumber, secondNumber, gcd);
         while (firstNumber != secondNumber) {
             if(firstNumber > secondNumber)
                 firstNumber = firstNumber - secondNumber;
+
             else
                secondNumber = secondNumber - firstNumber;
         }
