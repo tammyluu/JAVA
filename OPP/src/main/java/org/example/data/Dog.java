@@ -19,5 +19,17 @@ public class Dog {
          System.out.println("My weight is: " + weight);*/
         System.out.printf("|Gaugau|%-8s|%4d|%4.1f|\n", name, yearOfBirth, weight);
     }
+    public int getYearOfBirth(){
+        return  yearOfBirth;
+    }
+    public double getWeight(){
+        return weight;
+    }
+
+    //modify old info = new info
+    public void setWeight(double newWeight){
+       weight = newWeight;
+
+    }
 
 }

@@ -115,18 +115,30 @@ public class TPFunction {
 */
 
     public static void exo6() {
-       /* System.out.print("entrez- vous 2 chiffres séparés par un espace: ");
-       String numbers = sc.next();*/
-        System.out.print("entrez- vous votre 1er  chiffre : ");
+        System.out.print("entrez- vous 2 chiffres séparés par un espace: ");
+        String numbers = sc.next();
+       /* System.out.print("entrez- vous votre 1er  chiffre : ");
         int firstNumber = sc.nextInt();
         System.out.print("entrez- vous votre 2ème  chiffre : ");
-        int secondNumber = sc.nextInt();
-       //String [] arraySplit = numbers.trim().split(" ");
+        int secondNumber = sc.nextInt();*/
+       String [] arraySplit = numbers.trim().split(" ");
 
 
-        gcdRecursive(firstNumber,secondNumber);
-        System.out.println("le plus grand diviseur commun est : " + gcdRecursive(firstNumber,secondNumber) );
+
+        System.out.println("le plus grand diviseur commun est : " + splitNumber(splitNumber(arraySplit,0))+"\n" );
+       // System.out.println("le plus grand diviseur commun est : " + gcdRecursive(firstNumber,secondNumber)+"\n" );
         //System.out.printf("le plus grand diviseur commun  %d và %d  est : %d", firstNumber, firstNumber, gcd);
+    }
+    //Greatest Common Divisor
+    // recursive implementatio
+    public  static  int splitNumber(int[] arraySplit, int idx){
+        if (idx == arraySplit.length-1) {
+            return arraySplit[idx];
+        }
+        int firstNumber = arraySplit[idx];
+        int secondNumber = splitNumber(arraySplit, idx+1);
+        // __gcd(a,b) is inbuilt library function
+        return gcdRecursive(firstNumber,secondNumber);
     }
     public static int gcdRecursive(int firstNumber, int secondNumber) {
         /*int gcd = 1;
