@@ -26,12 +26,10 @@ public class Demo {
             case B:
                 System.out.println(typeMessage.getPriority().getPriority());
                 break;
-            case C:
+            case C,D:
                 System.out.println(typeMessage.getPriority().getPriority());
                 break;
-            case D:
-                System.out.println(typeMessage.getPriority().getPriority());
-                break;
+
             default:
                 System.out.println("Unknown Priority");
                 System.out.print("Veuillez de saisir à nouveau le type de message: ");
