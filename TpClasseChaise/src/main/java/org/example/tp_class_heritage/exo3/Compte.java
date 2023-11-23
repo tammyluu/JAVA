@@ -13,7 +13,7 @@ public class Compte {
 
     public Compte() {
 
-        this.code = cpt++;
+        this.code = ++cpt;
     }
 
     public Compte(double sold, boolean decouvertAutorise, String typeCompte) {
@@ -24,14 +24,17 @@ public class Compte {
     }
 
     public static int getCpt() {
+
         return cpt;
     }
 
     public static void setCpt(int cpt) {
+
         Compte.cpt = cpt;
     }
 
     public int getCode() {
+
         return code;
     }
 
@@ -40,6 +43,7 @@ public class Compte {
     }
 
     public double getSold() {
+
         return sold;
     }
 
@@ -63,12 +67,11 @@ public class Compte {
         this.typeCompte = typeCompte;
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "|\t" + StringHelpers.leftPad(code + "", 11, "0") + "\t|\t" + typeCompte + "\t|\t"
                 + sold + "\t|\t" + decouvertAutorise + "\t|\t" +  "\t|\t";
 
-    }
-
+    }*/
 
 }

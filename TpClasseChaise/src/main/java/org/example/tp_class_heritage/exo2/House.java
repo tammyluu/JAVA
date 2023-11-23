@@ -2,12 +2,18 @@ package org.example.tp_class_heritage.exo2;
 
 public class House extends  Person{
     protected double surface;
+    protected  Door door;
 
     public House() {
     }
 
     public House(double surface) {
         this.surface = surface;
+       // door = new Door();
+    }
+
+    public void setDoor(Door door) {
+        this.door = door;
     }
 
     public double getSurface() {

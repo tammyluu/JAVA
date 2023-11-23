@@ -3,6 +3,9 @@ package org.example.tp_class_heritage.exo2;
 public class Door extends House {
     protected String color;
 
+    public Door() {
+    }
+
     public Door(String color) {
         this.color = color;
     }
@@ -17,7 +20,7 @@ public class Door extends House {
 
     @Override
     public String toString() {
-        return "Je suis une porte, ma couleur est " + color;
+        return "Je suis une porte, ma couleur est " + color+".";
 
     }
 }

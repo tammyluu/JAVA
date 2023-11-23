@@ -16,6 +16,7 @@ public class Chaises {
 
     @Override
     public String toString() {
+
         return "Je suis une chaise avec " +
                  + nbPieds + " pieds en " + matetial + " et de couleur "+
                 couleur + "\n"

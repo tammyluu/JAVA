@@ -1,10 +1,17 @@
 package org.example.poo;
 
+import org.example.poo.enums.Priority;
+
 public class Phone  extends  Product{
     int prix;
+    Priority priority;
 
     public Phone() {
 
+    }
+
+    public void setPriority(String priority) {
+        this.priority = Priority.valueOf(priority);
     }
 
     public Phone(int id, String name, int prix) {
