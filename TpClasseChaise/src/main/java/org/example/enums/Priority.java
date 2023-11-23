@@ -5,13 +5,13 @@ public enum Priority {
     MEDIUM("MEDIUM Priority"),
     LOW("Low Priority");
 
-    private final String label;
+    private final String priority;
 
-    Priority(String label) {
-        this.label = label;
+    Priority(String priority) {
+        this.priority = priority;
     }
 
-    public String getLabel() {
-        return label;
+    public String getPriority() {
+        return priority;
     }
 }

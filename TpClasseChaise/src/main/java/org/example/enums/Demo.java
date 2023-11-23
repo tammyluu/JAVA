@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Demo {
     public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.print("Saisir un lettre :  " );
+        System.out.print("Saisir un lettre entre {A,B,C,D}: ") ;
         String lettre = sc.next();
          String l = lettre.toUpperCase();
          /*String[] lettres = {"A", "B", "C", "D"};
@@ -21,16 +21,16 @@ public class Demo {
         TypeMessage typeMessage = TypeMessage.valueOf(l);
         switch (typeMessage) {
             case A:
-                System.out.println(typeMessage.getPriority().getLabel());
+                System.out.println(typeMessage.getPriority().getPriority());
                 break;
             case B:
-                System.out.println(typeMessage.getPriority().getLabel());
+                System.out.println(typeMessage.getPriority().getPriority());
                 break;
             case C:
-                System.out.println(typeMessage.getPriority().getLabel());
+                System.out.println(typeMessage.getPriority().getPriority());
                 break;
             case D:
-                System.out.println(typeMessage.getPriority().getLabel());
+                System.out.println(typeMessage.getPriority().getPriority());
                 break;
             default:
                 System.out.println("Unknown Priority");
