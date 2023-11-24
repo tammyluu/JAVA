@@ -5,19 +5,19 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Book {
-    protected  int id;
-    protected String name;
-    protected Author[] author;
-    protected  Publisher publisher;
-    protected int yearPublishing;
-    protected  int amountOfPages;
-    protected BigDecimal price;
-    protected  CoverType coverType;
+     int id;
+     String name;
+     Author[] author;
+     Publisher publisher;
+     int yearPublishing;
+      int amountOfPages;
+     BigDecimal price;
+     CoverType coverType;
 
-    public static int count = 0;
+   // public static int count = 0;
 
     public Book() {
-        this.id = ++count;
+
     }
 
     public Book(int id, String name, Author[] author, Publisher publisher, int yearPublishing, int amountOfPages, BigDecimal price, CoverType coverType) {
@@ -31,17 +31,41 @@ public class Book {
         this.coverType = coverType;
     }
 
+    public Author[] getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author[] author) {
+        this.author = author;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public int getYearPublishing() {
+        return yearPublishing;
+    }
+
+    public void setYearPublishing(int yearPublishing) {
+        this.yearPublishing = yearPublishing;
+    }
+
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", author=" + Arrays.toString(author) +
-                ", publisher=" + publisher +
-                ", yearPublishing=" + yearPublishing +
-                ", amountOfPages=" + amountOfPages +
-                ", price=" + price +
-                ", coverType=" + coverType +
+        return "Book : {" +
+                " id=" + id +
+                " || name='" + name + '\'' +
+                " ||  author= " + Arrays.toString(author) +
+                " ||  publisher= " + publisher +
+                " ||  yearPublishing= " + yearPublishing +
+                " ||  amountOfPages= " + amountOfPages +
+                " ||  price= " + price + " || " +
+                " || coverType= " + coverType +
                 '}';
     }
 }
