@@ -13,8 +13,8 @@ public class IHM {
         Random ran = new Random();
         Client[] client = new Client[]{
                 new Client(1, "Tommy", "Hilfiger", "001 234 567"),
-                new Client(1, "Julia", "Robert", "001 789 567"),
-                new Client(1, "Tom", "Cruise", "001 234 396")
+                new Client(2, "Julia", "Robert", "001 789 567"),
+                new Client(3, "Tom", "Cruise", "001 234 396")
         };
         String choose;
         while (true) {
@@ -27,7 +27,7 @@ public class IHM {
             System.out.println("6-	Afficher la liste des réservations");
             System.out.println("Q-  Quitter");
             System.out.println("----------------------------------------------------------------");
-            System.out.println("Voulez vous quitter ( Q ) ? ");
+            System.out.print("Voulez vous quitter ( Q ) ? ");
             choose = sc.next();
             if ( choose.equalsIgnoreCase("Q")) {
                 break;
@@ -52,7 +52,7 @@ public class IHM {
             System.out.println("Appuyez sur une touche pour continuer");
             sc.nextLine();
         }
-        System.out.println("Aurevoir");
+        System.out.println("A bientôt !!!");
     }
 
 
