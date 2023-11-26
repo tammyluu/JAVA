@@ -2,6 +2,7 @@ package org.example.hotel;
 
 import org.example.book.Book;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class IHM {
                 new Client(2, "Julia", "Robert", "001 789 567"),
                 new Client(3, "Tom", "Cruise", "001 234 396")
         };
+
         String choose;
         while (true) {
             System.out.println("-------------------   * MENU HOTEL CDA JAVA *  -----------------");
@@ -33,7 +35,7 @@ public class IHM {
                 break;
 
             }else if (choose.equals ("1")) {
-                Client.addClient();
+               client.addClient();
             }else if (choose.equals ("2")) {
                 Client.listClient();
             }else if (choose.equals ("3")) {
@@ -54,6 +56,25 @@ public class IHM {
         }
         System.out.println("A bientôt !!!");
     }
+    public void addClient() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Client> clients = new ArrayList<>();
+        Client client = new Client();
+        System.out.print("\tSaisissez  client's firstname: ");
+        String firstName = sc.nextLine();
+        client.setFirstName(firstName);
+        System.out.print("\tSaisissez client's lastname: ");
+        String lastName = sc.nextLine();
+        client.setLastName(lastName);
+        System.out.print("\tSaisissez client's phone number: ");
+        String phone = sc.nextLine();
+        client.setPhone(phone);
+        clients.add(client);
+        System.out.println("\tCette client a été ajouté:\t" + client);
+
+
+    }
+
 
 
 

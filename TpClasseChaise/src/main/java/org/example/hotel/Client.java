@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class Client {
     public static int count = 0;
-    protected static int id;
-    protected static String firstName;
-    protected static String lastName;
-    protected static String phone;
-    protected static ArrayList<Client> clients = new ArrayList<>();
+    protected int id;
+    protected  String firstName;
+    protected  String lastName;
+    protected  String phone;
+    protected  ArrayList<Client> clients = new ArrayList<>();
     public Client() {
         this.id = ++count;
 
@@ -17,12 +17,12 @@ public class Client {
 
     public Client(int id, String firstName, String lastName, String phone) {
 
-        Client.firstName = firstName;
-        Client.lastName = lastName;
-        Client.phone = phone;
+       this.firstName = firstName;
+        this.lastName = lastName;
+       this.phone = phone;
     }
 
-    public static void addClient() {
+    public void addClient() {
         Scanner sc = new Scanner(System.in);
 
         Client client = new Client();
@@ -42,7 +42,7 @@ public class Client {
     }
 
     public static void listClient() {
-
+        ArrayList<Client> clients = new ArrayList<>();
         System.out.println("Liste des Clients : ");
         System.out.printf("%-5s %-20s %-15s %-15s \n", "Id ", " Prénom ", " Nom", "Numéro Téléphone");
         for (Client c : clients
