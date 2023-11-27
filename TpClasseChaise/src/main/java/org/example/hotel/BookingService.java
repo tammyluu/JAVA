@@ -30,7 +30,7 @@ public class BookingService {
             }
 
         }
-    }
+
        public  boolean delayBookingForOneClient(Booking booking) {
 
         return this.bookingsList.remove(booking);

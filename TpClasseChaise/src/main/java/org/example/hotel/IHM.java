@@ -11,7 +11,6 @@ public class IHM {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Random ran = new Random();
         ClientList clientList = new ClientList();
         BookingService bookingService = new BookingService();
 
@@ -45,11 +44,21 @@ public class IHM {
                 clientList.addClient(client);
 
             }else if (choose.equals ("2")) {
-              clientList.listClient();
+                clientList.listClient();
             }else if (choose.equals ("3")) {
                 bookingService.bookingList();
             }else if (choose.equals ("4")) {
-              //bookingService.addBookingForOne();
+                System.out.print("\tSaisissez  statut de chambre: ");
+                boolean isValid = sc.nextBoolean();
+
+                System.out.print("\tSaisissez client's Name: ");
+                Client client = new Client();
+
+                System.out.print("\tSaisissez client's phone number: ");
+                Room room =new Room();
+                Booking booking = new Booking(isValid,client,room );
+
+                bookingService.addBookingForOne(booking);
             }else if (choose.equals ("5")) {
                 //delayBookingofOneClient();
             }else if (choose.equals("6")) {
