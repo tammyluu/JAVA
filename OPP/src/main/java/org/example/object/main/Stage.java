@@ -12,5 +12,8 @@ public class Stage {
         //                                                  3. refactory address memory of new area, take this address for whom to be save
         //                                                  is a obj who has this address
         student.showProfile();
+        student = new Student("SN666999", "Newtoto Newtata", 2000, 9.8);
+        student.showProfile();
+        new Student("SN777343", "Current Tata", 2005, 7.7).showProfile();
     }
 }

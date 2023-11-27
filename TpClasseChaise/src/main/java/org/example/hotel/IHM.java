@@ -12,11 +12,8 @@ public class IHM {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random ran = new Random();
-        Client[] client = new Client[]{
-                new Client(1, "Tommy", "Hilfiger", "001 234 567"),
-                new Client(2, "Julia", "Robert", "001 789 567"),
-                new Client(3, "Tom", "Cruise", "001 234 396")
-        };
+        ClientList clientList = new ClientList();
+
 
         String choose;
         while (true) {
@@ -31,13 +28,24 @@ public class IHM {
             System.out.println("----------------------------------------------------------------");
             System.out.print("Voulez vous quitter ( Q ) ? ");
             choose = sc.next();
+            sc.nextLine();
             if ( choose.equalsIgnoreCase("Q")) {
                 break;
 
             }else if (choose.equals ("1")) {
-               client.addClient();
+                System.out.print("\tSaisissez  client's firstname: ");
+                String firstName = sc.nextLine();
+
+                System.out.print("\tSaisissez client's lastname: ");
+                String lastName = sc.nextLine();
+
+                System.out.print("\tSaisissez client's phone number: ");
+                String phone = sc.nextLine();
+                Client client = new Client( firstName,lastName,phone);
+                clientList.addClient(client);
+
             }else if (choose.equals ("2")) {
-                Client.listClient();
+              clientList.listClient();
             }else if (choose.equals ("3")) {
                // Client.bookingInfo();
             }else if (choose.equals ("4")) {
@@ -56,24 +64,8 @@ public class IHM {
         }
         System.out.println("A bientôt !!!");
     }
-    public void addClient() {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Client> clients = new ArrayList<>();
-        Client client = new Client();
-        System.out.print("\tSaisissez  client's firstname: ");
-        String firstName = sc.nextLine();
-        client.setFirstName(firstName);
-        System.out.print("\tSaisissez client's lastname: ");
-        String lastName = sc.nextLine();
-        client.setLastName(lastName);
-        System.out.print("\tSaisissez client's phone number: ");
-        String phone = sc.nextLine();
-        client.setPhone(phone);
-        clients.add(client);
-        System.out.println("\tCette client a été ajouté:\t" + client);
 
 
-    }
 
 
 

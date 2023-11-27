@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Hotel {
     protected String name;
-    Room[] rooms;
-    Booking[] bookings;
-    Client[] clients;
+    private Room[] rooms;
+    private  Booking[] bookings;
+     private Client[] clients;
 
     public Hotel() {
     }

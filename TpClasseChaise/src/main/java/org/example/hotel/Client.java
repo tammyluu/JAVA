@@ -3,53 +3,28 @@ package org.example.hotel;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Client {
+public class Client implements Comparable<Client>{
     public static int count = 0;
     protected int id;
     protected  String firstName;
     protected  String lastName;
     protected  String phone;
-    protected  ArrayList<Client> clients = new ArrayList<>();
-    public Client() {
+
+    {
         this.id = ++count;
+    }
+    public Client() {
+
 
     }
 
-    public Client(int id, String firstName, String lastName, String phone) {
+    public Client(String firstName, String lastName, String phone) {
 
        this.firstName = firstName;
         this.lastName = lastName;
        this.phone = phone;
     }
 
-    public void addClient() {
-        Scanner sc = new Scanner(System.in);
-
-        Client client = new Client();
-        System.out.print("\tSaisissez  client's firstname: ");
-        firstName = sc.nextLine();
-        client.setFirstName(firstName);
-        System.out.print("\tSaisissez client's lastname: ");
-        lastName = sc.nextLine();
-        client.setLastName(lastName);
-        System.out.print("\tSaisissez client's phone number: ");
-        phone = sc.nextLine();
-        client.setPhone(phone);
-        clients.add(client);
-        System.out.println("\tCette client a été ajouté:\t" + client);
-
-
-    }
-
-    public static void listClient() {
-        ArrayList<Client> clients = new ArrayList<>();
-        System.out.println("Liste des Clients : ");
-        System.out.printf("%-5s %-20s %-15s %-15s \n", "Id ", " Prénom ", " Nom", "Numéro Téléphone");
-        for (Client c : clients
-        ) {
-            System.out.println(c.toString());
-        }
-    }
 
     public void bookingInfo() {
     }
@@ -106,6 +81,11 @@ public class Client {
     /*public  static void displayClient(Client client){
         System.out.printf("%-5d %-20s %-15s %-15s \n", id,firstName,lastName,phone);
     }*/
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.id;
     }
 }
 
