@@ -62,7 +62,17 @@ public class Client implements Comparable<Client>{
         this.phone = phone;
     }
 
-    public void addCLient(Scanner sc) {
+    public void infoCLient() {
+        Scanner sc = new Scanner(System.in);
+        Client client = new Client();
+        System.out.print("\tSaisissez  client's firstname: ");
+        String firstName = sc.nextLine();
+
+        System.out.print("\tSaisissez client's lastname: ");
+        String lastName = sc.nextLine();
+
+        System.out.print("\tSaisissez client's phone number: ");
+        String phone = sc.nextLine();
 
     }
 

@@ -2,10 +2,10 @@ package org.example.hotel;
 
 public class Booking {
     public static int count = 0;
-   private int id;
-    private boolean isValid = true;
-    private Client client;
-    private Room room;
+   protected int id;
+    protected boolean isValid = true;
+    protected Client client;
+    protected Room room;
 
     public Booking() {
         this.id= ++count;

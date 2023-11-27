@@ -13,7 +13,7 @@ public class IHM {
         Scanner sc = new Scanner(System.in);
         Random ran = new Random();
         ClientList clientList = new ClientList();
-
+        BookingService bookingService = new BookingService();
 
         String choose;
         while (true) {
@@ -47,13 +47,13 @@ public class IHM {
             }else if (choose.equals ("2")) {
               clientList.listClient();
             }else if (choose.equals ("3")) {
-               // Client.bookingInfo();
+                bookingService.bookingList();
             }else if (choose.equals ("4")) {
-                BookingService.addBookingofOneClient();
+              //bookingService.addBookingForOne();
             }else if (choose.equals ("5")) {
-                BookingService.delayBookingofOneClient();
+                //delayBookingofOneClient();
             }else if (choose.equals("6")) {
-                BookingService.bookingList();
+                //bookingList();
             }else  {
                 System.out.println("Merci de faire un choix valide");
             }
@@ -64,7 +64,12 @@ public class IHM {
         }
         System.out.println("A bientôt !!!");
     }
+    public void inputInfoManagement(){
+        Scanner sc = new Scanner(System.in);
+        Client client = new Client();
 
+
+    }
 
 
 

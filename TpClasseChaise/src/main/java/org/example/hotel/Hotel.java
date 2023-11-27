@@ -1,6 +1,7 @@
 package org.example.hotel;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Hotel {
     protected String name;
@@ -48,6 +49,14 @@ public class Hotel {
 
     public void setClients(Client[] clients) {
         this.clients = clients;
+    }
+    public void inputInfoManagement(){
+        Scanner sc = new Scanner(System.in);
+        Client client = new Client();
+        client.infoCLient();
+
+
+
     }
 
     @Override

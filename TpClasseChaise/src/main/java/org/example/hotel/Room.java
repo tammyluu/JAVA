@@ -1,5 +1,8 @@
 package org.example.hotel;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Room {
     protected String roomNumber;
     protected boolean isOccupied = false;
@@ -31,6 +34,12 @@ public class Room {
     public int getCapacityOf() {
         return capacityOf;
     }
+    public void infoRoom(){
+        Scanner sc = new Scanner(System.in);
+        Room room = new Room();
+
+    }
+
 
     @Override
     public String toString() {
