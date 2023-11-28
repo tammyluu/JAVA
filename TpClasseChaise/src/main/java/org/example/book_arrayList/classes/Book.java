@@ -1,4 +1,4 @@
-package org.example.book_arrayList;
+package org.example.book_arrayList.classes;
 
 import java.util.Objects;
 
@@ -6,13 +6,17 @@ public class Book {
     public static int count = 0;
     private int id;
     private String title;
+    private String author;
 
     public Book() {
     }
 
-    public Book(int id, String title) {
+
+
+    public Book(String title, String author) {
         this.id = ++count;
         this.title = title;
+        this.author = author;
     }
 
     public int getId() {
@@ -33,9 +37,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book: " +
+        return "Book : " +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                '.';
+                ", author='" + author + '\'' ;
+
     }
 }

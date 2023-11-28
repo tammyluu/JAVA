@@ -1,20 +1,21 @@
-package org.example.book_arrayList;
+package org.example.book_arrayList.classes;
 
 public class PaperBook extends  Book{
     private int nPage;
     private  String publishing;
 
-    public PaperBook(int id, String title, int nPage, String publishing) {
-        super(id, title);
+
+    public PaperBook(String title, String author, int nPage, String publishing) {
+        super(title, author);
         this.nPage = nPage;
         this.publishing = publishing;
     }
 
-    public int getnPage() {
+    public int getNPage() {
         return nPage;
     }
 
-    public void setnPage(int nPage) {
+    public void setNPage(int nPage) {
         this.nPage = nPage;
     }
 
@@ -28,7 +29,8 @@ public class PaperBook extends  Book{
 
     @Override
     public String toString() {
-        return "PaperBook: " +
+       // String strParents = super.toString;
+        return  super.toString()+ "PaperBook : " +
                 "nPage=" + nPage +
                 ", publishing='" + publishing + '\'' +
                 '.';

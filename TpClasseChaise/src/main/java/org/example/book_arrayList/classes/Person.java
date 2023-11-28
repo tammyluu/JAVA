@@ -1,4 +1,4 @@
-package org.example.book_arrayList;
+package org.example.book_arrayList.classes;
 
 public class Person {
     private String lastName;
@@ -16,23 +16,14 @@ public class Person {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     @Override
     public String toString() {
         return "Person: " +
                 "lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                '.';
+                ", firstName='" + firstName + '\'' ;
     }
 }
