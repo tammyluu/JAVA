@@ -23,6 +23,10 @@ public class Library {
 
     }
 
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
     private Loan findLoanBook(int iID) {
         Loan loan = null;
         for (Loan l : loans
@@ -48,8 +52,7 @@ public class Library {
 
     public boolean deleteBookById(int iID) {
         Book book = findBookByID(iID);
-        System.out.println("Entrer un id de livre: ");
-        iID = sc.nextInt();
+
         if ( book != null){
             return books.remove(book);
         }
@@ -88,6 +91,17 @@ public class Library {
             result = true;
 ;        }
         return result;
+    }
+    public boolean returnABook(int idBook){
+        boolean result = false;
+        Loan isLoanExisted = findLoanBook(idBook);
+        // when the book is not existed and return date is null => book has not already return
+        if (isLoanExisted != null && isLoanExisted.getReturnDate() == null) {
+            isLoanExisted.setReturnDate(LocalDate.now());
+            result =true;
+        }
+
+        return  result;
     }
 
 

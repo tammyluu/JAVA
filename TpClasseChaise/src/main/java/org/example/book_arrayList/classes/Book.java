@@ -19,6 +19,10 @@ public class Book {
         this.author = author;
     }
 
+    public Book(String toto, String titi, int i, String laMaisoonDeToto) {
+    }
+
+
     public int getId() {
         return id;
     }
