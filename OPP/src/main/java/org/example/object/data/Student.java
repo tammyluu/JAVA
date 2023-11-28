@@ -50,10 +50,10 @@ public class Student {
         this.gpa = gpa;
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return String.format("|%8s|%-20s|%4d|%4.1f|", id, name, yob,gpa);
-    }
+    }*/
     public void  showProfile(){
         System.out.printf("|%8s|%-20s|%4d|%4.1f|\n", id, name, yob,gpa);
 
