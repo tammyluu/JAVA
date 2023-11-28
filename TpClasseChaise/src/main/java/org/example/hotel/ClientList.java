@@ -11,6 +11,7 @@ public class ClientList {
     }
 
     public ClientList(ArrayList<Client> clientsList) {
+
         this.clientsList = clientsList;
     }
     public void addClient(Client client) {
