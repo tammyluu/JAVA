@@ -5,9 +5,9 @@ import org.example.book_arrayList.classes.*;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        library.addBook(new Book("toto", "titi", 45,"la maisoon de toto"));
-        library.addBook(new Ebook("tata", "tutui", "epub",45L));
         library.addBook(new PaperBook("toto", "titi", 45,"la maisoon de toto"));
+        library.addBook(new Ebook("tata", "tutui", "epub",45L));
+        library.addBook(new Ebook("harry poster", "titi", "pdf",89L));
 
         System.out.println(library.findBooksByAuthor("t").size());
         library.deleteBookById(3);

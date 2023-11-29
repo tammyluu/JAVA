@@ -10,22 +10,22 @@ public class Library {
     private List<Book> books;
     private List<Loan> loans;
 
-    public static Scanner sc = new Scanner(System.in);
+
 
     public Library() {
         books = new ArrayList<>();
         loans = new ArrayList<>();
     }
 
-
+    public List<Loan> getLoans() {
+        return loans;
+    }
     public boolean addBook(Book book) {
         return books.add(book);
 
     }
 
-    public List<Loan> getLoans() {
-        return loans;
-    }
+
 
     private Loan findLoanBook(int iID) {
         Loan loan = null;

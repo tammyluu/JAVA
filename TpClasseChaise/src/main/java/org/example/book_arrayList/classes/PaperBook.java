@@ -11,21 +11,7 @@ public class PaperBook extends  Book{
         this.publishing = publishing;
     }
 
-    public int getNPage() {
-        return nPage;
-    }
 
-    public void setNPage(int nPage) {
-        this.nPage = nPage;
-    }
-
-    public String getPublishing() {
-        return publishing;
-    }
-
-    public void setPublishing(String publishing) {
-        this.publishing = publishing;
-    }
 
     @Override
     public String toString() {

@@ -7,7 +7,12 @@ public class Stage {
         //checkObjectV1();
         //checkObjectV2();
         //checkObjectV3();
-        checkObjectV4();
+        //checkObjectV4();
+       // checkObjectV5();
+        Student x = checkObjectV7();
+        x.setName("I want to check again");
+        x.showProfile();
+        checkObjectV7().showProfile();
     }
     // to check "new" which is the same data => what will happen?
     public static  void checkObjectV1 (){
@@ -70,6 +75,26 @@ public class Stage {
         s2.showProfile();
         s1.showProfile();
 
+    }
+    //  anonymous object = object no name
+    public static  void checkObjectV5 (){
+        //Student s1 = new Student("SN666789", "Toto Tata", 1999, 8.9);
+        new Student("SN666789", "Toto Tata", 1999, 8.9).showProfile();
+        // no have a pointer, is called one time so garbage collector remove
+
+    }
+    // declarer un  variable avant affecter une veleur
+    public static  void checkObjectV6 (){
+        Student s1;
+         s1 = new Student("SN666789", "Toto Tata", 1999, 8.9);
+         s1.showProfile();
+    }
+    //function return an object, no primitive type
+    // this function was returned reference of object which is "new"
+    public static  Student checkObjectV7 (){
+
+        Student s1 = new Student("SN666789", "checkObjectV7", 1999, 8.9);
+        return  s1;
     }
     public static void checkObject() {
         Student student = new Student("SN666789", "Toto Tata", 1999, 8.9);
