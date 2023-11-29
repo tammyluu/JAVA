@@ -2,7 +2,7 @@ package org.example.papeterie_hashMap.classes;
 
 import org.example.papeterie_hashMap.classes.enums.Couleur;
 
-public class Stylo  extends ArticleUnitaire{
+public class Stylo  extends Article{
  private Couleur couleur;
 
 

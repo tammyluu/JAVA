@@ -21,7 +21,7 @@ public class ArticleUnitaire  extends Article{
 
     @Override
     public String toString() {
-        return "Article par Unitaire : " +
+        return  super.toString() + "Article par Unitaire : " +
                 "nom = '" + nom + '\'' +
                 ", prix = " + prix ;
 
