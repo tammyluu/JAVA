@@ -9,7 +9,8 @@ public class Ligne {
         this.quantite = quantite;
     }
     public void afficheToi(){
-        System.out.printf("%7d | %6s | %22s | %.2f | %.2f %n", quantite,article.getRef(), article.getNom(),article.getPU());
+        System.out.printf("%8s  | %6s | %22s  | %13s | %10.2f %n",
+                quantite,article.getRef(), article.getNom(),article.getPU(),prixTotal());
     }
     public double prixTotal (){
         return  article.getPU()* quantite;
@@ -18,7 +19,5 @@ public class Ligne {
     @Override
     public String toString() {
         return  article + " "  + quantite ;
-
-
     }
 }

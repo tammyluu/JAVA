@@ -14,11 +14,22 @@ public class Main {
         Ramette ram1 = new Ramette("r2","Ram2", 5.9,15);
         Ramette ram2 = new Ramette("r3","Ram3", 4.5,3);
 
-        Lot lotStylo = new Lot("AB001","s2",10,10);
-        Lot lotStylo2 = new Lot("AB001","s3",20,15);
-        Lot lotRam1 = new Lot("AB001","r1",15,25);
+        Lot lotstylo = new Lot("l1","s2",55,10);
 
+        System.out.println();
         System.out.println("Afficher un Stylo  " + Article.getArticle("s2") );
+        System.out.println(Article.getArticle("s1"));
+        System.out.println("\nAffiche un lot: ");
+        System.out.println(Article.getArticle("l1"));
+
+        Facture facture = new Facture("PAULINE", "12-11-2023", 2);
+        facture.ajouterLigne("l1",1);
+        facture.ajouterLigne("r2", 43);
+
+        System.out.println("\nAffiche une facture de 2 lignes: ");
+        facture.afficheToi();
+
+        System.out.println("Nombre d'article en BDD: "  +  Article.nbrArticleBDD());
 
 
     }

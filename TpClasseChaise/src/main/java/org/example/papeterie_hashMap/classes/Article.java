@@ -24,7 +24,7 @@ public  abstract class  Article {
     public static HashMap<String, Article> getBdd() {
         return bdd;
     }
-    public  static  int nbrArticleBDD(String ref){
+    public  static  int nbrArticleBDD(){
         return bdd.size();
     }
     public  static  Article getArticle(String ref){
