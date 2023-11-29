@@ -1,88 +1,46 @@
 package org.example.papeterie_hashMap.classes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
-public class Facture extends  Lot {
+public class Facture  {
 
-    public  static int count = 0;
-    private int idFacture;
+    private static  int NB_MAX_LiGNES = 10;
+    private static  int numeroCourant = 10;
+    private int idFacture = 0;
     private String nomClient;
     private String dateAchat;
-    private ArrayList<Integer> ligneQuantite;
-    private HashMap<String, Article> articles;
+    private Ligne[] lignes;
+    private int nbLignes = 0;
 
 
-    public Facture(int ref, int idFacture, String nomClient, String dateAchat, ArrayList<Integer> ligneQuantite, HashMap<String, Article> articles) {
-        super(ref);
-        this.idFacture = idFacture;
+    public Facture( String nomClient, String dateAchat, int nbLignes,int idFacture) {
         this.nomClient = nomClient;
         this.dateAchat = dateAchat;
-        this.ligneQuantite = new ArrayList<>(10);
-        this.articles = new HashMap<>();
+        this.lignes = new Ligne[nbLignes];
+        //  this.idFacture = ;
+    }
+    public  Facture (String nomClient, String dateAchat){
+        this(nomClient,dateAchat,NB_MAX_LiGNES); // new Facture  # appel le contructor aussus
     }
 
-    public int getIdFacture() {
-        return idFacture;
-    }
+    public void ajouterLigne (String refArticle, int quantite){
 
-    public void setIdFacture(int idFacture) {
-        this.idFacture = idFacture;
-    }
+        lignes[nbLignes++] = new Ligne(Article.getArticle(refArticle).quantite);
 
-    public String getNomClient() {
-        return nomClient;
-    }
-
-    public void setNomClient(String nomClient) {
-        this.nomClient = nomClient;
-    }
-
-    public String getDateAchat() {
-        return dateAchat;
-    }
-
-    public void setDateAchat(String dateAchat) {
-        this.dateAchat = dateAchat;
-    }
-
-    public ArrayList<Integer> getLigneQuantite() {
-        return ligneQuantite;
-    }
-
-    public void setLigneQuantite(ArrayList<Integer> ligneQuantite) {
-        this.ligneQuantite = ligneQuantite;
-    }
-
-    public void ajouterLigne (Article refArticle, int quantite){
-        if (ligneQuantite.size()<10) {
-            ligneQuantite.add(quantite);
-            System.out.printf("%-5s %-20s %-15s %-15s \n", "Id Facture ", " Quantité ");
-            System.out.println("La ligne ajoutée à la facture:  "+ idFacture + ": " + " Quantité "+quantite);
-        }else {
-            System.out.println("La facture est pleine, impossible d'ajouter une nouvelle ligne.");
-        }
     }
     public double getPrixTotal (){
         double prixTotal = 0;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Saisir le prix unitaire d'article: ");
-        float uPrix =sc.nextFloat() ;
-        for ( int quantite : ligneQuantite) {
-
-            prixTotal += quantite * uPrix;
+        for (int i = 0; i < nbLignes; i++) {
+            prixTotal += lignes[i].prixTotal();
         }
         return prixTotal;
     }
-    @Override
-    public String toString() {
-        return "Facture " +
-                "| idFacture = " + idFacture +
-                "| nomClient='" + nomClient + '\'' +
-                "| dateAchat='" + dateAchat + '\'' +
-                "| ligneQuantite=" + ligneQuantite ;
-
+    public void  afficheToi(){
+        System.out.printf("Facture numero %d; Client : %s; Date: %5 %n",
+                "Quantite", "Ref", "Nom" , "Prix Unitaire", "Prix Total");
+            for (int i = 0; i <nbLignes ; i++) {
+                lignes[i].afficheToi();
+            }
+            System.out.println("Prix ");
     }
 }

@@ -4,7 +4,7 @@ public class Ramette extends ArticleUnitaire {
     private int poidEnGramme;
 
 
-    public Ramette(int ref, String nom, double prix, int poidEnGramme) {
+    public Ramette(String ref, String nom, double prix, int poidEnGramme) {
         super(ref, nom, prix);
         this.poidEnGramme = poidEnGramme;
     }
@@ -15,8 +15,8 @@ public class Ramette extends ArticleUnitaire {
 
     @Override
     public String toString() {
-        return  super.toString() + "Ramette:[ " +
-                "poidEnGranmme = " + poidEnGramme +
-                ']';
+        return  super.toString() + "poid En Granmme = " + poidEnGramme ;
+
+
     }
 }

@@ -3,35 +3,43 @@ package org.example.papeterie_hashMap.classes;
 import java.util.HashMap;
 
 public  abstract class  Article {
-    public static int count = 0;
-    private int ref;
-    private static HashMap<Integer,Article> bdd =new HashMap<>();
+
+    private String  ref;
+    private static HashMap<String, Article> bdd =new HashMap<String, Article>();
+
+    // BDD est static
 
 
-
-    public Article(int ref) {
-       this.ref = ++count;
-       bdd.put(ref, this);
+    public Article(String ref) {
+        this.ref = ref;
+        // save database by HashMap
+        bdd.put(ref, this);
 
     }
 
-    public static int getCount() {
-        return count;
-    }
-
-    public int getRef() {
+    public String getRef() {
         return ref;
     }
 
-    public static HashMap<Integer, Article> getBdd() {
+    public static HashMap<String, Article> getBdd() {
         return bdd;
     }
+    public  static  int nbrArticleBDD(String ref){
+        return bdd.size();
+    }
+    public  static  Article getArticle(String ref){
+        return bdd.get(ref);
+    }
+    public  abstract String getNom();
+    public abstract  double getPU();
+
 
     @Override
     public String toString() {
-        return "Article " +
-                "ref =" + ref +
-                ", bdd =" + bdd ;
-
+        return " || Article " +
+                "ref =" + ref + '\''
+                ;
     }
+
+
 }

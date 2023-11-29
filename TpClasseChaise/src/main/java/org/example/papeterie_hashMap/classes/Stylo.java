@@ -5,12 +5,9 @@ import org.example.papeterie_hashMap.classes.enums.Couleur;
 public class Stylo  extends ArticleUnitaire{
  private Couleur couleur;
 
-    public Stylo(int ref, String nom, double prix) {
-        super(ref, nom, prix);
-    }
 
-    public Stylo(int ref, String nom, double prix, Couleur couleur) {
-        super(ref, nom, prix);
+    public Stylo(String ref, String nom, double pu, Couleur couleur) {
+        super(ref, nom,pu);
         this.couleur = couleur;
     }
 
@@ -20,8 +17,8 @@ public class Stylo  extends ArticleUnitaire{
 
     @Override
     public String toString() {
-        return  super.toString() + "Styl : " +
-                "couleur = " + couleur ;
+        return  super.toString() + "couleur = " + couleur ;
+
 
     }
 }

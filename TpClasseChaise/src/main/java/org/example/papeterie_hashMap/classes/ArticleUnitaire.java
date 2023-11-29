@@ -1,29 +1,32 @@
 package org.example.papeterie_hashMap.classes;
 
-public class ArticleUnitaire  extends Article{
+public  abstract class ArticleUnitaire  extends Article{
     private String nom;
-    private double prix;
+    private double pu;
 
 
-    public ArticleUnitaire(int ref, String nom, double prix) {
+    public ArticleUnitaire(String ref, String nom, double pu) {
         super(ref);
         this.nom = nom;
-        this.prix = prix;
+        this.pu = pu;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public double getPrix() {
-        return prix;
+    @Override
+    public double getPU() {
+        return pu;
     }
+
+
 
     @Override
     public String toString() {
         return  super.toString() + "Article par Unitaire : " +
                 "nom = '" + nom + '\'' +
-                ", prix = " + prix ;
+                ", prix = " + pu;
 
     }
 }
