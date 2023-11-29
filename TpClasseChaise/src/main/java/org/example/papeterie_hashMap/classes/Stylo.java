@@ -2,10 +2,12 @@ package org.example.papeterie_hashMap.classes;
 
 import org.example.papeterie_hashMap.classes.enums.Couleur;
 
-public class Stylo  extends Article{
+public class Stylo  extends ArticleUnitaire{
  private Couleur couleur;
 
-
+    public Stylo(int ref, String nom, double prix) {
+        super(ref, nom, prix);
+    }
 
     public Stylo(int ref, String nom, double prix, Couleur couleur) {
         super(ref, nom, prix);
