@@ -10,7 +10,7 @@ public class Dictionary {
         do {
             System.out.println("------------------------");
             System.out.println("         MENU           ");
-            System.out.println(""
+            System.out.println(" "
                    + "1. Ajouter un mot\n"
                    + "2. Ajouter un mot\n"
                    + "3. Ajouter un mot\n"
@@ -18,7 +18,7 @@ public class Dictionary {
                    + "5. Ajouter un mot\n"
                    + "6. Ajouter un mot\n"
 
-            "");
+            );
             choose = sc.nextInt();
             sc.nextLine();
             if (choose == 1) {

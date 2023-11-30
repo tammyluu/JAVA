@@ -9,7 +9,7 @@ public class Ligne {
         this.quantite = quantite;
     }
     public void afficheToi(){
-        System.out.printf("%8s  | %6s | %22s  | %13s | %10.2f %n",
+        System.out.printf("|%8s  | %6s | %22s  | %13s | %10.2f| %n",
                 quantite,article.getRef(), article.getNom(),article.getPU(),prixTotal());
     }
     public double prixTotal (){

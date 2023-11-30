@@ -38,13 +38,15 @@ public class Facture  {
     public void  afficheToi(){
         System.out.printf("Facture numero %d | Client : %s | Date : %s %n",
              idFacture,nomClient,dateAchat );
-        System.out.printf("%7s  | %6s | %22s  | %11s | %10s %n", //%n à la ligne
+        System.out.println("`\n__________________________________________________________________________");
+        System.out.printf("|%7s  | %6s | %22s  | %11s | %10s|%n", //%n à la ligne
                 "Quantite", "Ref", "Nom" , "Prix Unitaire", "Prix Total");
-        System.out.println("=========================================================================");
-
+        System.out.println("==========================================================================");
         for (int i = 0; i <nbLignes ; i++) {
                 lignes[i].afficheToi();
             }
-        System.out.println("Total de la facture : " + getPrixTotal());
+        System.out.println("__________________________________________________________________________");
+
+        System.out.println("`\nTotal de la facture : " + getPrixTotal());
     }
 }
