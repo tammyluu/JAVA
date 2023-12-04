@@ -53,9 +53,9 @@ public class BasicArray {
         }
     }
     public static void playWithPrimitiveArrayV3(){
-        int arr1[] = {5, 10, 15, 20, 25};
-        int arr2[] = new int[]{5,10,15,20,25};
-        int arr3[];
+        int[] arr1 = {5, 10, 15, 20, 25};
+        int[] arr2 = new int[]{5,10,15,20,25};
+        int[] arr3;
         arr3 = new int[5]; // default hết cho tất cả biến int thứ [i]
         int arr[] = new int[5]; //chuẩn nhất
         arr[0] = 0;
@@ -81,7 +81,7 @@ public class BasicArray {
     }
     public static void playWithObjectArray(){
         // Save 50 numbers Fibo, pair
-        int v[] = new int[50];
+        int[] v = new int[50];
         v[0] = 2;
         v[1] = 4;
         v[2] = 6;
