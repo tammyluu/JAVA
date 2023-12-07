@@ -9,13 +9,15 @@ import java.util.List;
 
 public class Product {
     private int stockLevel;
-    private List<Observer> observers =  new ArrayList<>();
+    private List<Observer> observers ;
     private String name;
 
-   /* public Product(){
+    public Product(){
+        //éviter null pointer
            this.observers = new ArrayList<>();
-    }*/
+    }
     public Product( String name ,int stockInitial) {
+        this();// éviter null pointer, on appelle le constructor au dessus
         this.stockLevel = stockInitial;
         this.name = name;
     }

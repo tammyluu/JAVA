@@ -8,11 +8,11 @@ public class Main {
         weatherStation.registerObserver(phone);
         weatherStation.registerObserver(tablet);
 
-        weatherStation.randomTemperature();
+        /*weatherStation.randomTemperature();
 
         weatherStation.randomTemperature();
         weatherStation.removeObserver(tablet);
-        weatherStation.randomTemperature();
+        weatherStation.randomTemperature();*/
 
     }
 }

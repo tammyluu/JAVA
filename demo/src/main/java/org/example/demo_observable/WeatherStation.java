@@ -30,8 +30,8 @@ public class WeatherStation implements ISubject{
     public void notifyObserver(Weather weather) {
         observers.forEach(o -> o.update(weather));
     }
-    public void randomTemperature()  {
+    /*public void randomTemperature()  {
        notifyObserver(new Weather(random.nextDouble(-10,50)));
-    }
+    }*/
 
 }
