@@ -6,7 +6,7 @@ public class RoadStrategy implements INavigationStrategy{
     private Random ran = new Random();
     @Override
     public boolean applyNavigate(String destination) {
-        System.out.println(" Déviation par les routières:  ");
+        System.out.println(" Déviation par les routières:  " + destination);
         return ran.nextBoolean();
     }
 }

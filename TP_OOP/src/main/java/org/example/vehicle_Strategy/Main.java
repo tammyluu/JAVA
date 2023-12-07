@@ -6,7 +6,12 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        NavigationSystem  navigationSystem = new NavigationSystem.NavigationSystemBuilder().navigation("Highway").build();
+        NavigationSystem navigationSystem = new NavigationSystem(new RoadStrategy());
+        navigationSystem.navigate("Tourcoing");
+        navigationSystem.setNavigationStrategy(new OffroadStrategy());
+        navigationSystem.navigate("Tourcoing");
+        navigationSystem.setNavigationStrategy(new EconomicStrategy());
+        navigationSystem.navigate("Tourcoing");
         String choice;
         do {
             System.out.println("1  RoadStrategy ");

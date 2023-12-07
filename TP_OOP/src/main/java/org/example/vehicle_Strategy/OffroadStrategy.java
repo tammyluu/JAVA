@@ -7,7 +7,7 @@ public class OffroadStrategy implements  INavigationStrategy{
 
     @Override
     public boolean applyNavigate(String destination) {
-        System.out.println("Déviation hors-route ");
+        System.out.println("Déviation hors-route: " + destination);
         return ran.nextBoolean();
     }
 }
