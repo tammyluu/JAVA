@@ -19,7 +19,7 @@ public class App {
     while (!fin){
         System.out.println("Donnez la stratégy classe name: ");
         String strategyClassName = sc.nextLine();
-        //instancie strategy pour connatre className d'Interface qu'on va uitliser
+        //instancie strategy pour connaître className d'Interface qu'on va uitliser
         IStrategy strategy = (IStrategy) Class.forName(strategyClassName).newInstance();
         System.out.println("-------------------------------");
         context.processStrategy();
