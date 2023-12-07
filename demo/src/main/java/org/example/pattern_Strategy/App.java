@@ -15,12 +15,13 @@ public class App {
         context.process(8);
         System.out.println("-------------------------------");*/
         Scanner sc = new Scanner(System.in);
-    boolean fin = false;
+        boolean fin = false;
     while (!fin){
-        System.out.println("Donnez la stratégy classe name: ");
+        System.out.print("Donnez la stratégy classe name: ");
         String strategyClassName = sc.nextLine();
         //instancie strategy pour connatre className d'Interface qu'on va uitliser
         IStrategy strategy = (IStrategy) Class.forName(strategyClassName).newInstance();
+        context.setStrategy(strategy);
         System.out.println("-------------------------------");
         context.processStrategy();
 
