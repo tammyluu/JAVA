@@ -4,8 +4,6 @@ public class PerformanceEvaluator implements EmployeeVisitor {
     @Override
     public void visit(Manager manager) {
         System.out.println("Evaluating performance for manager " + manager.getName());
-        int completedProjects = manager.getFullProject();
-        int clientSactifaction = manager.getClientSatisfaction();
         double scorePreformance = calculatePerformanceScore(manager.getFullProject(), manager.getClientSatisfaction());
         System.out.println("Manager performance score: " + scorePreformance);
     }
@@ -13,6 +11,7 @@ public class PerformanceEvaluator implements EmployeeVisitor {
     @Override
     public void visit(Developer developer) {
         System.out.println("Evaluating performance for developer " + developer.getName());
+
     }
 
     @Override
