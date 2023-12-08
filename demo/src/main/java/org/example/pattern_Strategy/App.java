@@ -1,5 +1,10 @@
 package org.example.pattern_Strategy;
 
+import org.example.pattern_Strategy.strategy.IStrategy;
+import org.example.pattern_Strategy.strategy.StrategyImpl1;
+import org.example.pattern_Strategy.strategy.StrategyImpl2;
+import org.example.pattern_Strategy.strategy.StrategyImpl3;
+
 import java.util.Scanner;
 
 public class App {

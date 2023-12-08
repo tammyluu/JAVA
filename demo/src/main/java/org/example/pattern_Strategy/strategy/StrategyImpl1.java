@@ -1,4 +1,4 @@
-package org.example.pattern_Strategy;
+package org.example.pattern_Strategy.strategy;
 
 public class StrategyImpl1 implements IStrategy{
 
