@@ -1,29 +1,52 @@
 package org.example.utils;
 
 import java.sql.*;
+import java.util.Date;
 import java.util.Scanner;
 
-public class Management {
-    Scanner sc = new Scanner(System.in);
-    Connection conn = null;
- public void  ajouterEtudiant() throws SQLException {
-     try {
-         conn = ConnectionUtils.getMySQLConnection();
-         System.out.println("Connection OK");
-         System.out.print("Merci de saisir le prénom: ");
-         String firstName = sc.nextLine();
-         System.out.print("Merci de saisir le nom: ");
-         String lastName = sc.nextLine();
-         System.out.print("Merci de saisir le nom de la classe : ");
-         String numClass = sc.nextLine();
-         System.out.print("Merci de saisir la date du diplome: ");
-         String dateDiplome = sc.nextLine();
+public class Etudiant {
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String numClass;
+    private Date dateDiplome;
+    public static int count = 0;
+    public Scanner sc = new Scanner(System.in);
+    public Connection conn = null;
 
-         String request = "INSERT INTO etudiant (first_Name, last_Name, num_class, date_diplome) VALUES ('"+firstName+"', '"+lastName+"' , '"+ numClass + "', '" + dateDiplome + "' )";
-      } catch (SQLException e) {
-         System.out.println(e.getMessage());
-     }
-    public void afficherTous() {
+    public Etudiant() {
+        this.id = ++count;
+    }
+
+    public Etudiant(String firstName, String lastName, String numClass, Date dateDiplome) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.numClass = numClass;
+        this.dateDiplome = dateDiplome;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Etudiant{" +
+                "id = " + id +
+                ", firstName = '" + firstName + '\'' +
+                ", lastName = '" + lastName + '\'' +
+                ", numClass = '" + numClass + '\'' +
+                ", dateDiplome = " + dateDiplome +
+                '}';
+    }
+
+    public void ajouterEtudiant() throws SQLException {
+        try {
+            conn = ConnectionUtils.getMySQLConnection();
+            String request = "INSERT INTO etudiant (first_Name, last_Name, num_class, date_diplome)" +
+                    " VALUES ('" + firstName + "', '" + lastName + "' , '" + numClass + "', '" + dateDiplome + "' )";
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public  void afficherTous () {
         try {
             conn = ConnectionUtils.getMySQLConnection();
             System.out.println("Connection OK");
@@ -54,8 +77,7 @@ public class Management {
             }
         }
     }
-
-    public void afficherEtudiantByClass() {
+    public void afficherEtudiantByClass () {
         try {
             System.out.print("Merci de saisir le nom de  classe: ");
             String numClass = sc.nextLine();
@@ -72,11 +94,8 @@ public class Management {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
-    public void deleteEtudiantByID() throws SQLException {
+    public void deleteEtudiantByID () {
         try {
             String request = "DELETE FROM etudiant WHERE id =?";
             PreparedStatement preparedStatement = conn.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
@@ -92,5 +111,4 @@ public class Management {
 
         }
     }
-
 }
