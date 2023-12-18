@@ -26,6 +26,14 @@ public class Etudiant {
 
     }
 
+    public String getNumClass() {
+        return numClass;
+    }
+
+    public void setNumClass(String numClass) {
+        this.numClass = numClass;
+    }
+
     @Override
     public String toString() {
         return "Etudiant{" +
@@ -56,10 +64,7 @@ public class Etudiant {
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("id") + " | " + resultSet.getString("first_Name") + "  " + resultSet.getString("last_Name")
                         + " | " + resultSet.getString("num_class") + " | " + resultSet.getDate("date_diplome"));
-                Statement st = conn.createStatement();
-                boolean res = statement.execute(request);
-                System.out.println("Requête executée");
-                System.out.println(res);
+
             }
             statement.close();
 
@@ -77,36 +82,47 @@ public class Etudiant {
             }
         }
     }
-    public void afficherEtudiantByClass () {
+    public void afficherEtudiantByClass() {
         try {
-            System.out.print("Merci de saisir le nom de  classe: ");
+            conn = ConnectionUtils.getMySQLConnection();
+            System.out.print("Merci de saisir le nom de classe : ");
             String numClass = sc.nextLine();
             String request = "SELECT * FROM etudiant WHERE num_class = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(request);
-            preparedStatement.setString(1, "numClass");
+            preparedStatement.setString(1, numClass);
             ResultSet resultSet = preparedStatement.executeQuery();
+
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " | " + resultSet.getString("first_Name") + "  " + resultSet.getString("last_Name")
-                        + " | " + resultSet.getString("num_class") + " | " + resultSet.getDate("date_diplome"));
+                System.out.println(resultSet.getInt("id") + " | " +
+                        resultSet.getString("first_Name") + "  " +
+                        resultSet.getString("last_Name") + " | " +
+                        resultSet.getString("num_class") + " | " +
+                        resultSet.getDate("date_diplome"));
             }
+
             preparedStatement.close();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
     public void deleteEtudiantByID () {
         try {
+            conn = ConnectionUtils.getMySQLConnection();
+            System.out.print("Merci de saisir id: ");
+            String id = sc.nextLine();
             String request = "DELETE FROM etudiant WHERE id =?";
             PreparedStatement preparedStatement = conn.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, "numClass");
+            preparedStatement.setString(1, id);
             int nbRowsDelete = preparedStatement.executeUpdate(); // retour int
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             System.out.println("Nombre de ligne: " + nbRowsDelete);
-            if (resultSet.next()) {
-                System.out.println(resultSet.getInt(1));
+            if (nbRowsDelete > 0) {
+                System.out.println("Étudiant supprimé avec succès.");
+            }else {
+                System.out.println("Aucun étudiant trouvé avec le nom spécifié.");
             }
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             System.out.println(e.getMessage());
 
         }

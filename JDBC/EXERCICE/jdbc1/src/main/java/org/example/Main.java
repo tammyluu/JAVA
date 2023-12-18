@@ -44,7 +44,7 @@ public class Main {
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
         }
-        public static void inputProfile () {
+       /* public static void inputProfile () {
             try {
                 System.out.print("Merci de saisir le prénom: ");
                 String firstName = sc.nextLine();
@@ -59,7 +59,7 @@ public class Main {
             }
 
 
-        }
+        }*/
 
     }
 }
