@@ -58,7 +58,7 @@ public class PersonDAO extends BaseDao<Person> {
         resultSet = statement.executeQuery();
         if (resultSet.next()){
             person = new Person(resultSet.getInt("id"),
-                    resultSet.getString("first_nam"),
+                    resultSet.getString("first_name"),
                     resultSet.getString("last_name"));
         }
         return person;
@@ -72,7 +72,7 @@ public class PersonDAO extends BaseDao<Person> {
         resultSet = statement.executeQuery();
        while (resultSet.next()){
             Person person = new Person(resultSet.getInt("id"),
-                    resultSet.getString("first_nam"),
+                    resultSet.getString("first_name"),
                     resultSet.getString("last_name"));
             result.add(person);
         }
