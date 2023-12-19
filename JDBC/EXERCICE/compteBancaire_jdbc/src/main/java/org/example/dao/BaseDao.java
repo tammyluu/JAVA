@@ -1,5 +1,7 @@
 package org.example.dao;
 
+import org.example.models.Operation;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,5 +20,8 @@ public  abstract class BaseDao <T>{
     public  abstract  boolean update(T element) throws SQLException ;
     public  abstract  boolean delete (T element) throws SQLException ;
     public  abstract  T get(int id) throws SQLException ;
+
+    public abstract Operation get(String numberOperation) throws SQLException;
+
     public  abstract List<T> get() throws SQLException ;
 }

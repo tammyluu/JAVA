@@ -80,7 +80,24 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
         return result;
     }
 
+    public void deposit(int accountId, double amount) throws SQLException {
+      request = "UPDATE account SET balance = balance + ? WHERE id_Account = ?";
+        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1,accountId);
+        resultSet = statement.executeQuery();
+        if (resultSet.next()){
+            statement.setDouble(1, amount);
+            statement.setInt(2, accountId);
 
+            int affectedRows = statement.executeUpdate();
+
+        if (affectedRows > 0) {
+                System.out.println("Deposit successful.");
+            } else {
+                System.out.println("Deposit failed. No rows were updated.");
+            }
+        }
+    }
 
 
 }
