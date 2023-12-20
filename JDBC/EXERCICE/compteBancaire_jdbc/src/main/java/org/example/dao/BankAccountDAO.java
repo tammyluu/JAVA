@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.example.models.BankAccount;
 
 import java.sql.Connection;
@@ -30,22 +31,17 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
 
     @Override
     public boolean update(BankAccount element) throws SQLException {
-        request = "UPDATE person SET id_Account = ?, balance = ?,  WHERE  id = ?";
-        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-        statement.setString(1,element.getIdAccount());
-        statement.setDouble(2,element.getBalance());
-        statement.setInt(3,element.getClient().getIdClient());
+        request = "UPDATE account SET  balance = ?,  WHERE  id = ?";
+        statement = _connection.prepareStatement(request);
+        statement.setDouble(1,element.getBalance());
+        statement.setInt(2,element.getClient().getIdClient());
         int nbRow = statement.executeUpdate();
         return nbRow == 1;
     }
-
+ // exception surveillé car  on n'a pas besoins de cette méthode pour cet application
     @Override
-    public boolean delete(BankAccount element) throws SQLException {
-        request = "DELETE  FROM account WHERE  id = ?";
-        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1,element.getClient().getIdClient());
-        int nbRow = statement.executeUpdate();
-        return nbRow == 1;
+    public boolean delete(BankAccount element) throws SQLException, ExecutionControl.NotImplementedException {
+        throw  new ExecutionControl.NotImplementedException("Méthode à implementé!!!");
     }
 
 
@@ -84,19 +80,21 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
     }
 
     @Override
-    public List<BankAccount> get() throws SQLException {
-        List<BankAccount> result = new ArrayList<>();
-        request = "SELECT *  FROM account ";
+    public List<BankAccount> get() throws SQLException, ExecutionControl.NotImplementedException {
+        throw  new ExecutionControl.NotImplementedException("Méthode à implementé!!!");
+    }
+    public List<BankAccount> get(String numberOperation) throws SQLException {
+        BankAccount account = null;
+        request = "SELECT *  FROM account  WHERE  id_Client = ?";
         statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1,numberOperation);
         resultSet = statement.executeQuery();
-        while (resultSet.next()){
-            BankAccount account = new BankAccount(
-                    resultSet.getString("id_Account"),
-                    resultSet.getDouble("balance"),
-                    resultSet.getInt("id_Client"));
-            result.add(account);
+        if (resultSet.next()){
+            account = new BankAccount(
+                    resultSet.getInt("id_Client")),
+                    resultSet.getDouble("balance");
         }
-        return result;
+        return account;
     }
 
     public void deposit(int accountId, double amount) throws SQLException {

@@ -10,9 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-class OperationDAO extends BaseDao<Operation> {
+public class OperationDAO extends BaseDao<Operation> {
 
-  protected OperationDAO(Connection connection) {
+  public OperationDAO(Connection connection) {
     super(connection);
   }
 
@@ -22,7 +22,7 @@ class OperationDAO extends BaseDao<Operation> {
     statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
     statement.setString(1,element.getOperationNum());
     statement.setDouble(2,element.getAmount());
-    statement.setString(3,element.getStatus().name());
+    statement.setInt(3,element.getStatus().ordinal());
 
     int nbRow = statement.executeUpdate();
     resultSet = statement.getGeneratedKeys();
@@ -48,18 +48,24 @@ class OperationDAO extends BaseDao<Operation> {
   }
 
   @Override
-  public Operation get(String numberOperation) throws SQLException {
-    Operation o = null;
+  public BankAccount get(String numberOperation) throws SQLException {
+    return null;
+  }
+
+  @Override
+  public List<Operation> getByIdAccount(String numberOperation) throws SQLException {
+     List<Operation>  operations = new ArrayList<>();
     request = "SELECT *  FROM operation  WHERE operation_Num = ?";
     statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
     statement.setString(1,numberOperation);
     resultSet = statement.executeQuery();
     if (resultSet.next()){
-     o = new Operation(resultSet.getString("operation_Num"),
+      Operation o = new Operation(resultSet.getString("operation_Num"),
               resultSet.getDouble("amount"),
-               Status.valueOf(resultSet.getString("status")));
+              resultSet.getString("id_account"));
+      operations.add(o);
     }
-    return o;
+    return operations;
 
   }
 
@@ -73,7 +79,7 @@ class OperationDAO extends BaseDao<Operation> {
         Operation operation = new Operation(
                 resultSet.getString("operation_Num"),
                 resultSet.getDouble("amount"),
-                Status.valueOf(resultSet.getString("status")));
+                resultSet.getString("status"));
 
         operations.add(operation);
       }

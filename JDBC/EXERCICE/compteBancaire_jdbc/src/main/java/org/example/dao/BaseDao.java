@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.example.models.BankAccount;
 
 import java.sql.Connection;
@@ -18,10 +19,10 @@ public  abstract class BaseDao <T>{
     }
     public  abstract  boolean save(T element) throws SQLException;
     public  abstract  boolean update(T element) throws SQLException ;
-    public  abstract  boolean delete (T element) throws SQLException ;
+    public  abstract  boolean delete (T element) throws Exception;
     public  abstract  T get(int id) throws SQLException ;
 
     public abstract BankAccount get(String numberOperation) throws SQLException;
 
-    public  abstract List<T> get() throws SQLException ;
+    public  abstract List<T> get() throws SQLException, ExecutionControl.NotImplementedException;
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Setter
@@ -14,13 +15,19 @@ public class Client {
     private String lastName;
     private List<BankAccount> accounts;
     private  String phoneNumber;
-
-    public Client(int idClient, String firstName, String lastName, String phoneNumber) {
-        this.idClient = idClient;
-        this.firstName =firstName;
+    public Client(String firstName, String lastName, String phoneNumber) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.accounts = new ArrayList<>();
     }
+
+    public Client(int idClient, String firstName, String lastName, String phoneNumber) {
+        this(firstName,lastName,phoneNumber); //appele du constructor aussus
+        this.idClient = idClient;
+
+    }
+
 
     public Client() {
 

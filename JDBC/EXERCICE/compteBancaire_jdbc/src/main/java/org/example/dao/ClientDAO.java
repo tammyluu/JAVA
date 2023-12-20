@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.example.models.BankAccount;
 import org.example.models.Client;
 
@@ -32,12 +33,8 @@ public class ClientDAO extends BaseDao<Client> {
 
 
     @Override
-    public boolean delete(Client element) throws SQLException {
-        request = "DELETE  FROM client  WHERE  id = ?";
-        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, element.getIdClient());
-        int nbRow = statement.executeUpdate();
-        return nbRow == 1;
+    public boolean delete(Client element) throws SQLException, ExecutionControl.NotImplementedException {
+       throw new ExecutionControl.NotImplementedException("Méthode à implemtée!!!");
     }
 
     @Override

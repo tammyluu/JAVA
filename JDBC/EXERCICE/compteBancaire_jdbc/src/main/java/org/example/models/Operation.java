@@ -11,7 +11,10 @@ public class Operation extends BankAccount {
     private String operationNum;
     private double amount;
     private Status status;
+    private int accountId;
 
+    public Operation(String operationNum, double amount, String idAccount) {
+    }
 
 
     @Override

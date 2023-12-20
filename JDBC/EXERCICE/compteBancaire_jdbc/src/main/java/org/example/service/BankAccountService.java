@@ -1,7 +1,9 @@
 package org.example.service;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.example.dao.BankAccountDAO;
 import org.example.dao.ClientDAO;
+import org.example.dao.OperationDAO;
 import org.example.models.BankAccount;
 import org.example.models.Client;
 import org.example.models.Operation;
@@ -11,13 +13,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BankAccountService {
+public class BankAccountService  implements IBankService{
     private BankAccountDAO accountDAO;
     private Connection connection;
+    private  ClientDAO clientDAO;
+    private OperationDAO operationDAO;
     public BankAccountService(){
         try {
             connection = new DataBaseManager().getConnection();
-            accountDAO= new BankAccountDAO(connection);
+            accountDAO = new BankAccountDAO(connection);
+            clientDAO = new ClientDAO(connection);
+            operationDAO = new OperationDAO(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -46,25 +52,51 @@ public class BankAccountService {
             throw new RuntimeException(e);
         }
     }
-    public boolean deleteOneAccount(int id){
-        BankAccount account = null;
-        try {
-           account = accountDAO.get(id);
-            if ( account != null){
-                return  accountDAO.delete(account);
-            }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-        return  false;
-    }
-    public  List<BankAccount> getAllAccounts(){
-        try {
-            return accountDAO.get();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
+
+
+    @Override
+    public Client createAndSaveClient(String firstName, String lastName, String phoneNumber) {
+        return null;
     }
 
+    @Override
+    public BankAccount createAndSaveAccount(int clientId) {
+        return null;
+    }
+
+    @Override
+    public List<BankAccount> getAccountsByIdClient(int id) {
+        return null;
+    }
+
+    @Override
+    public Client getClientById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Client> getAllClients() {
+        return null;
+    }
+
+    @Override
+    public BankAccount getAccount(String id) {
+        return null;
+    }
+
+    @Override
+    public List<Operation> getAllOperationsById(String operationNum) {
+        return null;
+    }
+
+    @Override
+    public boolean makeperationDepopsit(double amount, String idAccount) {
+        return false;
+    }
+
+    @Override
+    public boolean makeperationWithdrawal(double amount, String idAccount) {
+        return false;
+    }
 }
 
