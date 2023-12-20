@@ -7,7 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Operation {
+public class Operation extends BankAccount {
     private String operationNum;
     private double amount;
     private Status status;

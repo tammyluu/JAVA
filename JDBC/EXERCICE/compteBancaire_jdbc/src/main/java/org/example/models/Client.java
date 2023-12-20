@@ -28,8 +28,8 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client| " +
-                "| idClient" + idClient +
+        return "Client " +
+                "| " + idClient +
                 "| firstName = '" + firstName + '\'' +
                 "| lastName = '" + lastName + '\'' +
                 "| accounts = " + accounts +

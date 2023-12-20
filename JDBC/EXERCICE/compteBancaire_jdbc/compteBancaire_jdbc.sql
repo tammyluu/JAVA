@@ -2,12 +2,13 @@ CREATE DATABASE compteBancaire_jdbc;
 
 USE compteBancaire_jdbc;
 CREATE TABLE Client (
-    id_Client INT PRIMARY KEY,
+    id_Client INT  AUTO_INCREMENT PRIMARY KEY,
     first_Name VARCHAR(50),
     last_Name VARCHAR(50),
     phoneNumber VARCHAR(20)
     
 );
+
 CREATE TABLE Operation (
     operation_Num VARCHAR(50) PRIMARY KEY,
     amount DOUBLE,
@@ -31,3 +32,4 @@ FOREIGN KEY (id_Client) REFERENCES Client(id_Client)
     FOREIGN KEY (operation_Num) REFERENCES Operation(operation_Num)
 );*/
 
+select * from client;

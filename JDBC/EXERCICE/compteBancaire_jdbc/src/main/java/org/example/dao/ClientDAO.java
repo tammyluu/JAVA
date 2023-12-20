@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDAO extends BaseDao<Client> {
-    protected ClientDAO(Connection connection) {
+    public ClientDAO(Connection connection) {
         super(connection);
     }
 
@@ -56,7 +56,7 @@ public class ClientDAO extends BaseDao<Client> {
     @Override
     public Client get(int id) throws SQLException {
         Client client = null;
-        request = "SELECT *  FROM client  WHERE  id = ?";
+        request = "SELECT *  FROM client  WHERE  id_Client = ?";
         statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1, id);
         resultSet = statement.executeQuery();
@@ -69,15 +69,20 @@ public class ClientDAO extends BaseDao<Client> {
         return client;
     }
 
+    @Override
+    public BankAccount get(String numberOperation) throws SQLException {
+        return null;
+    }
+
 
     @Override
     public List<Client> get() throws SQLException {
         List<Client> result = new ArrayList<>();
-        request = "SELECT *  FROM person ";
+        request = "SELECT *  FROM client ";
         statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
         resultSet = statement.executeQuery();
         while (resultSet.next()){
-            Client client = new Client(resultSet.getInt("id"),
+            Client client = new Client(resultSet.getInt("id_client"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getString("phoneNumber"));

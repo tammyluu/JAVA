@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.example.models.BankAccount;
 import org.example.models.Operation;
 import org.example.models.Status;
 
@@ -59,6 +60,7 @@ class OperationDAO extends BaseDao<Operation> {
                Status.valueOf(resultSet.getString("status")));
     }
     return o;
+
   }
 
   @Override

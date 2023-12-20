@@ -11,6 +11,7 @@ import java.util.List;
 public class BankAccount {
     private String idAccount;
     private double balance;
+    @Getter
     private  Client client;
     private List<Operation> operations;
 
@@ -24,6 +25,10 @@ public class BankAccount {
 
     public BankAccount() {
 
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override

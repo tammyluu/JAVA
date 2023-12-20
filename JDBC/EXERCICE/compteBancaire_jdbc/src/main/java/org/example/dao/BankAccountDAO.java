@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankAccountDAO extends BaseDao<BankAccount>{
-    protected BankAccountDAO(Connection connection) {
+    public BankAccountDAO(Connection connection) {
         super(connection);
     }
 
@@ -48,6 +48,8 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
         return nbRow == 1;
     }
 
+
+
     @Override
     public BankAccount get(int id) throws SQLException {
         BankAccount account = null;
@@ -62,6 +64,23 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
                     resultSet.getInt("id_Client"));
         }
         return account;
+    }
+
+    @Override
+    public BankAccount get(String numberOperation) throws SQLException {
+        BankAccount account = null;
+        request = "SELECT *  FROM account  WHERE  numberOperation = ?";
+        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1,numberOperation);
+        resultSet = statement.executeQuery();
+        if (resultSet.next()){
+            account = new BankAccount(
+                    resultSet.getString("id_Account"),
+                    resultSet.getDouble("balance"),
+                    resultSet.getInt("id_Client"));
+        }
+        return account;
+
     }
 
     @Override
@@ -81,7 +100,7 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
     }
 
     public void deposit(int accountId, double amount) throws SQLException {
-      request = "UPDATE account SET balance = balance + ? WHERE id_Account = ?";
+      request = "UPDATE account SET balance = (balance + ?) WHERE id_Account = ?";
         statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1,accountId);
         resultSet = statement.executeQuery();
@@ -95,6 +114,24 @@ public class BankAccountDAO extends BaseDao<BankAccount>{
                 System.out.println("Deposit successful.");
             } else {
                 System.out.println("Deposit failed. No rows were updated.");
+            }
+        }
+    }
+    public void withdrawal(int accountId, double amount) throws SQLException {
+        request = "UPDATE account SET balance = (balance - ?) WHERE id_Account = ?";
+        statement = _connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1,accountId);
+        resultSet = statement.executeQuery();
+        if (resultSet.next()){
+            statement.setDouble(1, amount);
+            statement.setInt(2, accountId);
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Retrait successful.");
+            } else {
+                System.out.println("Retrait  failed. No rows were updated.");
             }
         }
     }
