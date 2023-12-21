@@ -10,5 +10,6 @@ last_name VARCHAR(200)
 
 -- toto
 
-DROP TABLE person;
+-- DROP TABLE person;
 
+select * from person;
