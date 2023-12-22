@@ -34,6 +34,30 @@ public class Etudiant {
         this.numClass = numClass;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDateDiplome() {
+        return dateDiplome;
+    }
+
+    public void setDateDiplome(Date dateDiplome) {
+        this.dateDiplome = dateDiplome;
+    }
+
     @Override
     public String toString() {
         return "Etudiant{" +
@@ -122,9 +146,11 @@ public class Etudiant {
             }else {
                 System.out.println("Aucun étudiant trouvé avec le nom spécifié.");
             }
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
 
         }
     }
+
+
 }

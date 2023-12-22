@@ -83,7 +83,7 @@ public class Student {
         statement.setString(1,getFirstName());
         statement.setString(2,getLastName());
         statement.setInt(3,getClassNumber());
-        statement.setDate(4,new java.sql.Date(getDateDegree().getTime()));
+        statement.setDate(4,new java.sql.Date(getDateDegree().getTime())); // date de SQL qui transforme en java util
         int rowNb = statement.executeUpdate();
         ResultSet resultSet = statement.getGeneratedKeys();
         if (resultSet.next()){
@@ -198,12 +198,12 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", classNumber=" + classNumber +
-                ", dateDegree=" + dateDegree +
-                '}';
+        return "Student |" +
+                "id " + id +
+                "| firstName = '" + firstName + '\'' +
+                "| lastName = '" + lastName + '\'' +
+                "| classNumber = " + classNumber +
+                "| dateDegree = " + dateDegree +
+                '|';
     }
 }

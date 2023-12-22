@@ -2,6 +2,7 @@ package org.example;
 
 
 import org.example.utils.DataBaseManager;
+import org.example.utils.IHM;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -24,6 +25,6 @@ public class Main {
         }
 
          */
-
+        new IHM().start();
     }
 }

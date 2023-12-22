@@ -13,12 +13,17 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Etudiant etudiant = new Etudiant();
         while (true) {
+            System.out.println("______________________________________");
+            System.out.println("********** Student - JDBC*************");
+            System.out.println("______________________________________");
             System.out.println("1. Ajouter un étudiant");
             System.out.println("2. Afficher tous les étudiants");
             System.out.println("3. Afficher les étudiants d'une classe");
+
             System.out.println("4. Supprimer un étudiant");
             System.out.println("0. Quitter");
             System.out.print("Choix : ");
+            System.out.println("______________________________________");
             int choice = sc.nextInt();
             sc.nextLine(); // Clear the newline character
 
@@ -44,22 +49,31 @@ public class Main {
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
         }
-       /* public static void inputProfile () {
+       public static void inputProfile () {
+            String firstName = null;
+            String lastName = null;
+            String numClass = null;
+            String dateDiplome = null;
             try {
                 System.out.print("Merci de saisir le prénom: ");
-                String firstName = sc.nextLine();
+                firstName = sc.nextLine();
                 System.out.print("Merci de saisir le nom: ");
-                String lastName = sc.nextLine();
+                lastName = sc.nextLine();
                 System.out.print("Merci de saisir le nom de la classe : ");
-                String numClass = sc.nextLine();
+                numClass = sc.nextLine();
                 System.out.print("Merci de saisir la date du diplome: ");
-                String dateDiplome = sc.nextLine();
+                dateDiplome = sc.nextLine();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            Etudiant e = new Etudiant();
+            etudiant.setFirstName(firstName);
+            etudiant.setLastName(lastName);
+            etudiant.setNumClass(numClass);
+            //etudiant.setDateDiplome(dateDiplome);
+            //etudiant.ajouterEtudiant(e);
 
-
-        }*/
+        }
 
     }
 }
