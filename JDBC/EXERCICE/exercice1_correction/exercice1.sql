@@ -9,3 +9,4 @@ CREATE TABLE student (
   class_number INT,
   date_degree DATE
 );
+select * from student;
