@@ -66,8 +66,12 @@ public class Demo2 {
             em.getTransaction().commit();
             System.out.println("Person is: " + person6.getId() + " " +person6.getNom());
         }
-
-
+        // native query . it's depend to option (join, ....specific)
+        System.out.println("-----native query ---------");
+        List<Person> list = em.createNativeQuery("SELECT * FROM  person", Person.class).getResultList();
+        for (Person p : list ) {
+            System.out.println("p : " + p);
+        }
         em.close();
         emf.close();
     }
