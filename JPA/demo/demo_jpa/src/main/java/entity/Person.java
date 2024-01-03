@@ -61,7 +61,7 @@ public class Person {
                 "id = " + id +
                 "| prenom = '" + prenom + '\'' +
                 "| nom = '" + nom + '\'' +
-                "| age = " + age +
+                //"| age = " + age +
                 '|';
     }
 }

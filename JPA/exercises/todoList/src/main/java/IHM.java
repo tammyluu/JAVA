@@ -14,7 +14,7 @@ public class IHM {
             System.out.println(" 2. Afficher toutes les tâches de la liste");
             System.out.println(" 3. Marquer une tâche comme terminée");
             System.out.println(" 4. Supprimer une tâche de la liste");
-           System.out.println(" 0. Quitter l'application");
+            System.out.println(" 0. Quitter l'application");
             System.out.println("---------------------------------------------\n");
             System.out.print("Choix : ");
 
@@ -55,6 +55,6 @@ public class IHM {
 
     private static void addTask() {
         System.out.println("************** choix 1 ************");
-        
+
     }
 }
