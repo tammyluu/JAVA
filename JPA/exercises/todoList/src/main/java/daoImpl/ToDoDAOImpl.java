@@ -3,10 +3,7 @@ package daoImpl;
 import dao.ITodoDAO;
 import entity.ToDo;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class ToDoDAOImpl implements ITodoDAO {
@@ -16,9 +13,9 @@ public class ToDoDAOImpl implements ITodoDAO {
     public EntityTransaction transac ;
 
 
-
+    List<ToDo> toDoList = null;
     @Override
-    public ToDo addAndSaveTask(String title, Boolean complexity) {
+    public boolean addAndSaveTask(String title, boolean status) {
         emf = Persistence.createEntityManagerFactory("todo_List");
         em = emf.createEntityManager();
         transac = em.getTransaction();
@@ -30,7 +27,7 @@ public class ToDoDAOImpl implements ITodoDAO {
         em.getTransaction().commit();
         em.close();
         emf.close();
-        return toDo;
+        return true;
     }
 
     @Override
@@ -38,7 +35,10 @@ public class ToDoDAOImpl implements ITodoDAO {
         em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        return null;
+        toDoList = em.createQuery("select  t from ToDo t ", ToDo.class).getResultList();
+        em.close();
+        emf.close();
+        return toDoList;
     }
 
     @Override
@@ -51,12 +51,27 @@ public class ToDoDAOImpl implements ITodoDAO {
     }
 
     @Override
-    public ToDo upDateATask() {
-        return null;
+    public ToDo upDateATask(int id, String title, boolean status) {
+       transac.begin();
+       ToDo updateToDo = em.find(ToDo.class, id);
+        updateToDo.setTitle(title);
+        updateToDo.setStatus(status);
+        return updateToDo;
     }
 
     @Override
     public boolean deleteATask(int id) {
+        transac.begin();
+        ToDo toDo = null;
+        try{
+           toDo = em.getReference(ToDo.class, id);
+
+        }catch (EntityNotFoundException e){
+            System.out.println("Task nit found: " + e.getMessage());
+        }
+        em.remove(toDo);
         return false;
     }
+
+
 }

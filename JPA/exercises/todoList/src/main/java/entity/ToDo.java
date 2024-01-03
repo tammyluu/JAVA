@@ -11,14 +11,14 @@ public class ToDo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
    private String title;
-   private boolean complexity;
+   private boolean status;
 
     public ToDo() {
     }
 
-    public ToDo(String title, boolean complexity) {
+    public ToDo(String title, boolean status) {
         this.title = title;
-        this.complexity = complexity;
+        this.status = status;
     }
 
     public int getId() {
@@ -33,16 +33,16 @@ public class ToDo {
         return title;
     }
 
-    public void settitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public boolean iscomplexity() {
-        return complexity;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setcomplexity(boolean complexity) {
-        this.complexity = complexity;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @Override
@@ -50,10 +50,10 @@ public class ToDo {
         return "ToDo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", complexity=" + complexity +
+                ", status=" + status +
                 '}';
     }
     public void showTasks(){
-        System.out.printf("|%5d|%25s|%15s|", id, title,complexity);
+        System.out.printf("|%5d|%25s|%15s|", id, title,status);
     }
 }
