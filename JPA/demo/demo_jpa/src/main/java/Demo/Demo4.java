@@ -1,8 +1,8 @@
 package Demo;
 
-import entity.Address;
-import entity.House;
-import entity.Type;
+import entity.OneToOne.Address;
+import entity.OneToOne.House;
+import entity.OneToOne.Type;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

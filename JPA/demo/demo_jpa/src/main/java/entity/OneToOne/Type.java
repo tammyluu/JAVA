@@ -1,4 +1,4 @@
-package entity;
+package entity.OneToOne;
 
 public enum Type {
     NEW,

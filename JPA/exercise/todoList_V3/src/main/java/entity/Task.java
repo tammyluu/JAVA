@@ -1,8 +1,6 @@
 package entity;
 
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -15,17 +13,18 @@ public class Task {
 
     private String title;
     private boolean completed;
-    @OneToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "id_info") // qui port FK
-    private Info info;
+
+    @OneToOne(mappedBy ="task", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
+    private TaskInfo taskInfo;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private  User user;
 
     public Task() {
     }
 
-    public Task(String title, boolean completed, Info info) {
+    public Task(String title) {
         this.title = title;
-        this.completed = completed;
-        this.info = info;
     }
 
     public Long getId() {
@@ -52,13 +51,28 @@ public class Task {
         this.completed = completed;
     }
 
+    public TaskInfo getTaskInfo() {
+        return taskInfo;
+    }
+
+    public void setTaskInfo(TaskInfo taskInfo) {
+        this.taskInfo = taskInfo;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "Task |" +
-                " id =" + id +
+        return "Task" +
+                " |id = " + id +
                 "| title = '" + title + '\'' +
                 "| completed = " + completed +
-                "| info = " + info +
                 '|';
     }
 }
