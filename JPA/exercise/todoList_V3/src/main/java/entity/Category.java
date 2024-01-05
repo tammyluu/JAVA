@@ -5,20 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
-public class User {
+
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nameCat;
+    @ManyToMany
+    @JoinTable(name = "category_task",
+                       joinColumns = @JoinColumn(name = "cat_id"),
+                        inverseJoinColumns = @JoinColumn(name = "task_id"))
+    private List<Task> taskList =new ArrayList<>();
 
-    private String name;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Task> taskList = new ArrayList<>();
-
-    public User(String userName) {
+    public Category() {
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -27,12 +28,12 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameCat() {
+        return nameCat;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameCat(String nameCat) {
+        this.nameCat = nameCat;
     }
 
     public List<Task> getTaskList() {
@@ -45,12 +46,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User " +
-                " | id = " + id +
-                "| name = '" + name + '\'' +
+        return "Category |" +
+                " id = " + id +
+                "| nameCat = '" + nameCat + '\'' +
                 "| taskList = " + taskList +
                 '|';
     }
-
-
 }

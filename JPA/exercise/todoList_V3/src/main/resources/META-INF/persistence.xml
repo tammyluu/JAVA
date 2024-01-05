@@ -9,6 +9,7 @@
     <class>entity.Task</class>
     <class>entity.TaskInfo</class>
     <class>entity.User</class>
+    <class>entity.Category</class>
 
 
     <properties>

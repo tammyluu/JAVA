@@ -2,6 +2,8 @@ package entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name= "tasks")
@@ -14,11 +16,13 @@ public class Task {
     private String title;
     private boolean completed;
 
-    @OneToOne(mappedBy ="task", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
+    @OneToOne(mappedBy ="task", cascade = CascadeType.ALL, orphanRemoval = true)
     private TaskInfo taskInfo;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private  User user;
+    @ManyToMany(mappedBy = "taskList")
+    private List<Category> categoryList = new ArrayList<>();
 
     public Task() {
     }
@@ -65,6 +69,14 @@ public class Task {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 
     @Override

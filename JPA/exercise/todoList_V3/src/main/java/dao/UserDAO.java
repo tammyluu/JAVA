@@ -5,11 +5,11 @@ import entity.User;
 
 import java.util.List;
 
-public interface UserDAO {
-    public  boolean addUser(User user);
-    public  User findUserByID(Long id);
+public interface UserDAO  {
+    public  void addUser(User user);
 
-    public  List<Task> getAllTasksByUser(Long userId);
+    public  void deleteUser(Long id);
 
-    public  boolean deleteOneUserAndTasks(Long userId, Long taskId);
+    public  List<User> getAllTasksByUser();
+
 }
