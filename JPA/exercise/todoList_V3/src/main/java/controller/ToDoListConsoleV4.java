@@ -35,19 +35,19 @@ public class ToDoListConsoleV4 {
         int choice;
         do {
             System.out.println("################ To Do List ###################");
-            System.out.println("1. Ajouter une personne");
-            System.out.println("2. Afficher les tâches d'une personne");
-            System.out.println("3. Ajouter une tâche à la liste");
-            System.out.println("4. Afficher toutes les tâches de la liste");
-            System.out.println("5. Marquer une tâche comme terminée");
-            System.out.println("6. Supprimer une personne et ses tâches associées");
-            System.out.println("7. Supprimer une tâche");
-            System.out.println("8. Ajouter une catégorie");
-            System.out.println("9. Supprimer une catégorie");
+            System.out.println(" 1. Ajouter une personne");
+            System.out.println(" 2. Afficher les tâches d'une personne");
+            System.out.println(" 3. Ajouter une tâche à la liste");
+            System.out.println(" 4. Afficher toutes les tâches de la liste");
+            System.out.println(" 5. Marquer une tâche comme terminée");
+            System.out.println(" 6. Supprimer une personne et ses tâches associées");
+            System.out.println(" 7. Supprimer une tâche");
+            System.out.println(" 8. Ajouter une catégorie");
+            System.out.println(" 9. Supprimer une catégorie");
             System.out.println("10. Afficher les tâches d'une catégorie");
             System.out.println("11. Ajouter une taches à une catégorie");
             System.out.println("12. Supprimer une taches à une catégorie");
-            System.out.println("0. Quitter l'application");
+            System.out.println(" 0. Quitter l'application");
             System.out.println("################ ************ ###################");
             System.out.print("Choix : ");
 
@@ -59,10 +59,10 @@ public class ToDoListConsoleV4 {
                     addUser(scanner);
                     break;
                 case 2:
-                    addTask(scanner);
+                    displayTasksUser(scanner);
                     break;
                 case 3:
-                    markTaskAsCompleted(scanner);
+                    addTask(scanner);
                     break;
                 case 4:
                     displayTasks();
@@ -264,7 +264,5 @@ public class ToDoListConsoleV4 {
 
     }
 
-    public static void setUserDAO(UserDAO userDAO) {
-        ToDoListConsoleV4.userDAO = userDAO;
-    }
+
 }
