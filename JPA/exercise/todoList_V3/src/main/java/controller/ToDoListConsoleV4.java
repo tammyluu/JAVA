@@ -2,7 +2,9 @@ package controller;
 
 
 
+import dao.TaskDAO;
 import dao.UserDAO;
+import entity.Category;
 import entity.Task;
 import entity.TaskInfo;
 import entity.User;
@@ -101,18 +103,58 @@ public class ToDoListConsoleV4 {
     }
 
     private static void deleteTaskByCategory(Scanner scanner) {
+
+        System.out.print("Entrez l'ID de la  categorie  : ");
+        Long catId  = scanner.nextLong();
+        System.out.print("Entrez l'ID de la tâche à supprimer : ");
+        Long taskId  = scanner.nextLong();
+        scanner.nextLine();
+        if (taskDAO.deleteTaskByCategoryId(catId,taskId)){
+            System.out.println("Suppression OK");
+        }else {
+            System.out.println("Erreur");
+        }
     }
 
     private static void addTaskByCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la categorie  : ");
+        Long catId  = scanner.nextLong();
+        scanner.nextLine();
+        Task task = new Task();
+        if(taskDAO.addTask(task,catId)){
+            System.out.println("Tâche ajoutée avec succès !");
+        }else {
+            System.out.println("Erreur");
+        }
     }
 
     private static void displayTasksCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la categorie  : ");
+        Long catId  = scanner.nextLong();
+        scanner.nextLine();
+        List<Task> tasks = taskDAO.getTasksByCategoryId(catId);
+        System.out.println("Tâches de la categorie avec l' ID : "+ catId + " : ");
+        for (Task t : tasks){
+            System.out.println(t.getId() + ". " + t.getTitle() + " (" + (t.isCompleted() ? "Terminée" : "En cours") + ")");
+        }
     }
 
     private static void deleteCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la catégorie à supprimer : ");
+        Long catId  = scanner.nextLong();
+        scanner.nextLine();
+        taskDAO.deleteCategory(catId);
+        System.out.println(" Cette catégorie supprimée");
     }
 
     private static void addCategory(Scanner scanner) {
+        System.out.println("Entrer le nom de la catégorie : ");
+        String catName = scanner.nextLine();
+        Category  category = new Category();
+        category.setNameCat(catName);
+        taskDAO.addCategory(category);
+        System.out.println("Une catégorie ajoutée");
+
     }
 
     private static void addTask(Scanner scanner){

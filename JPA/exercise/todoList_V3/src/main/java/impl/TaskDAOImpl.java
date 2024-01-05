@@ -182,7 +182,7 @@ public class TaskDAOImpl implements TaskDAO {
     return true;
   }
 
- 
+
   public boolean addTask(Task task,Long personId){
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
@@ -195,5 +195,34 @@ public class TaskDAOImpl implements TaskDAO {
     entityManager.close();
     return true;
   }
+  public boolean deleteTaskByCategoryId(Long catId, Long taskId){
+    EntityManager em = entityManagerFactory.createEntityManager();
+    EntityTransaction transaction = em.getTransaction();
+
+    try {
+      transaction.begin();
+
+      Task task = em.find(Task.class, taskId);
+      Category category = em.find(Category.class, catId);
+      category.getTaskList().remove(task);
+      em.merge(category);
+
+      transaction.commit();
+      System.out.println("La tâche a été supprimée de la catégorie avec succès");
+
+      return true;
+    } catch (Exception e) {
+      if (transaction.isActive()) {
+        transaction.rollback();
+      }
+      e.printStackTrace();
+      return false;
+    } finally {
+      if (em != null && em.isOpen()) {
+        em.close();
+      }
+    }
+  }
+
 
 }
