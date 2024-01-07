@@ -99,7 +99,7 @@ public class ToDoListConsoleV4 {
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
-        } while (choice != 7);
+        } while (choice != 0);
     }
 
     private static void deleteTaskByCategory(Scanner scanner) {
