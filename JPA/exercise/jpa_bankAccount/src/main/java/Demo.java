@@ -1,8 +1,10 @@
 import controller.IHM;
 
-public class Demo {
-    public static void main(String[] args) {
+import java.text.ParseException;
 
-        IHM.main();
+public class Demo {
+    public static void main(String[] args) throws ParseException {
+
+        IHM.Menu();
     }
 }

@@ -19,7 +19,7 @@ public class IHM {
     private static BranchDAO branchDAO;
     private static AccountDAO accountDAO;
     private static CustomerDAO customerDAO;
-    public static void main() throws ParseException {
+    public static void Menu()  {
         entityManagerFactory = Persistence.createEntityManagerFactory("banque_bdd");
         branchDAO = new BranchDAO(entityManagerFactory);
         customerDAO = new CustomerDAO(entityManagerFactory);
@@ -72,7 +72,7 @@ public class IHM {
                     entityManagerFactory.close();
                     break;
                 default:
-                    System.out.println("Choix invalide. Veuillez entrer une valeur numérique!.");
+                    System.out.println("\nChoix invalide. Veuillez entrer une valeur numérique!.");
             }
 
         }while (choice!= 0);
@@ -84,7 +84,7 @@ public class IHM {
         Long idCustomer = scanner.nextLong();
         scanner.nextLine();
         accountDAO.deleteById(idCustomer);
-        System.out.println("Ce client supprimé");
+        System.out.println("Ce client supprimé\n");
 
     }
 
@@ -93,7 +93,7 @@ public class IHM {
         Long idAcccount = scanner.nextLong();
         scanner.nextLine();
         accountDAO.deleteById(idAcccount);
-        System.out.println("Ce compte supprimé");
+        System.out.println("Ce compte supprimé\n");
 
     }
 
@@ -109,21 +109,25 @@ public class IHM {
         String iban = scanner.nextLine();
         Account account = new Account(label,iban,bank);
         accountDAO.createAndSave(account);
-        System.out.print("Un compte de banque créé");
+        System.out.print("Un compte de banque créé\n");
 
     }
 
-    private static void createCustomer(Scanner scanner) throws ParseException {
-            System.out.print("Entrer votre nom : ");
-            String lastName = scanner.next();
-            System.out.print("Entrer votre prenom : ");
-            String firstName = scanner.next();
-            System.out.print("Entrert votre date de naissance en format dd-MM-yyyy");
-            String date_string = scanner.next();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            Date date = formatter.parse(date_string);
-            Customer customer = new Customer(lastName,firstName,date);
-            customerDAO.createAndSave(customer);
+    private static void createCustomer(Scanner scanner) {
+           try {
+               System.out.print("Entrer votre nom : ");
+               String lastName = scanner.next();
+               System.out.print("Entrer votre prenom : ");
+               String firstName = scanner.next();
+               System.out.print("Entrert votre date de naissance en format dd-MM-yyyy");
+               String date_string = scanner.next();
+               SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+               Date date = formatter.parse(date_string);
+               Customer customer = new Customer(lastName,firstName,date);
+               customerDAO.createAndSave(customer);
+           }catch (ParseException e){
+               System.out.println(  e.getMessage());
+                        }
 
     }
 
@@ -133,7 +137,7 @@ public class IHM {
         BranchBank bank = new BranchBank();
         bank.setAddress(address);
         branchDAO.createAndSave(bank);
-        System.out.println("Une agence de banque créé");
+        System.out.println("Une agence de banque créé\n");
 
     }
 }
