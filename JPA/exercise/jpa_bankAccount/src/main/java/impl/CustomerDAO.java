@@ -84,9 +84,9 @@ public class CustomerDAO implements IBaseDAO <Customer> {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            Account account = entityManager.find(Account.class,id);
-            if(account != null){
-                entityManager.remove(account);
+           Customer customer = entityManager.find(Customer.class,id);
+            if(customer != null){
+                entityManager.remove(customer);
                 transaction.commit();
                 return true;
             } else {
