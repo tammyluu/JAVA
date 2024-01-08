@@ -20,6 +20,14 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
     private List<Account> accounts = new ArrayList<>();
 
+   /* public BranchBank getBranchBank() {
+        return branchBank;
+    }*/
+
+   /* public void setBranchBank(BranchBank branchBank) {
+        this.branchBank = branchBank;
+    }*/
+
     public Customer() {
     }
 
@@ -66,6 +74,7 @@ public class Customer {
         return id;
     }
 
+
     @Override
     public String toString() {
         return "Customer " +
@@ -75,4 +84,7 @@ public class Customer {
                 "| dateOfBirth = '" + dateOfBirth + '\'' +
                 '|';
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 package impl;
 
 import dao.IBaseDAO;
+import entity.Account;
 import entity.BranchBank;
 import entity.Customer;
 
@@ -18,8 +19,52 @@ public class CustomerDAO implements IBaseDAO <Customer> {
         this.entityManagerFactory = entityManagerFactory;
     }
     @Override
-    public boolean createAndSave(Customer element) {
-        return false;
+    public boolean createAndSave(Customer customer) {
+        entityManager = entityManagerFactory.createEntityManager();
+        transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(customer);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            entityManager.close();
+        }
+    }
+    private  boolean addCustomerByBranch(Customer customer, Long branchId){
+        entityManager = entityManagerFactory.createEntityManager();
+        transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            BranchBank branch = entityManager.find(BranchBank.class, branchId);
+            if ( branch != null){
+                // Ajouter le Customer à la liste des customers de la Branch
+              // branch.addCustomer(element);
+                entityManager.persist(customer);
+                transaction.commit();
+                return true;
+            }else {
+                // La branch associée à l'ID n'existe pas
+                System.out.println("La branche associée à l'ID " + branchId + " n'existe pas.");
+                transaction.rollback();
+                return false;
+            }
+
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            entityManager.close();
+        }
     }
 
     @Override
@@ -29,12 +74,33 @@ public class CustomerDAO implements IBaseDAO <Customer> {
 
     @Override
     public Customer getById(Long id) {
-        return null;
+       return null;
+
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Account account = entityManager.find(Account.class,id);
+            if(account != null){
+                entityManager.remove(account);
+                transaction.commit();
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            entityManager.close();
+        }
     }
 
     @Override

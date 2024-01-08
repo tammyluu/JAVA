@@ -22,6 +22,7 @@ public class Account {
     @ManyToMany (mappedBy = "accounts")
     private List<Customer> customers = new ArrayList<>();
 
+
     public Account() {
     }
 

@@ -2,6 +2,7 @@ package impl;
 
 import dao.IBaseDAO;
 import entity.BranchBank;
+import entity.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,12 +52,35 @@ public class BranchDAO implements IBaseDAO<BranchBank> {
 
     @Override
     public BranchBank getById(Long id) {
-        return null;
+        entityManager = entityManagerFactory.createEntityManager();
+        BranchBank bank = entityManager.find(BranchBank.class, id);
+        entityManager.close();
+        return bank;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            BranchBank bank = entityManager.find(BranchBank.class, id);
+            if (bank != null) {
+                entityManager.remove(bank);
+            }
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+
     }
 
     @Override

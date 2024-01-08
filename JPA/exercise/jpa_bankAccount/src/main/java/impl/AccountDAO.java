@@ -21,6 +21,11 @@ public class AccountDAO implements IBaseDAO<Account> {
 
     @Override
     public boolean createAndSave(Account element) {
+        if (element.getCodeIban() == null || element.getBalance() == null) {
+            // Gérer le cas où des propriétés obligatoires sont nulles
+            return false;
+        }
+
         entityManager = entityManagerFactory.createEntityManager();
         transaction = entityManager.getTransaction();
         try {
@@ -28,16 +33,17 @@ public class AccountDAO implements IBaseDAO<Account> {
             entityManager.persist(element);
             transaction.commit();
             return true;
-        }catch (Exception e){
-            if(transaction.isActive()){
+        } catch (Exception e) {
+            if (transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
             return false;
-        }finally {
+        } finally {
             entityManager.close();
         }
     }
+
 
     @Override
     public boolean update(Account element) {
@@ -51,7 +57,28 @@ public class AccountDAO implements IBaseDAO<Account> {
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+           Account account = entityManager.find(Account.class,id);
+            if(account != null){
+                entityManager.remove(account);
+                transaction.commit();
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            entityManager.close();
+        }
     }
 
     @Override

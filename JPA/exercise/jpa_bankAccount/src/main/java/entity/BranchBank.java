@@ -13,6 +13,8 @@ public class BranchBank {
     private String address;
     @OneToMany(mappedBy = "branch")
     private List<Account> accounts = new ArrayList<>();
+    @OneToMany(mappedBy = "branchBank")
+    private List<Customer> customers = new ArrayList<>();
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,6 +42,7 @@ public class BranchBank {
         this.accounts = accounts;
     }
 
+
     @Override
     public String toString() {
         return "BranchBank" +
@@ -48,4 +51,6 @@ public class BranchBank {
                 "| accounts = " + accounts +
                 '|';
     }
+
+
 }

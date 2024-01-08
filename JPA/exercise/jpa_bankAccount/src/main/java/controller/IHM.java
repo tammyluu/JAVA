@@ -9,6 +9,7 @@ import impl.CustomerDAO;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -18,20 +19,24 @@ public class IHM {
     private static BranchDAO branchDAO;
     private static AccountDAO accountDAO;
     private static CustomerDAO customerDAO;
-    public static void main(){
+    public static void main() throws ParseException {
         entityManagerFactory = Persistence.createEntityManagerFactory("banque_bdd");
         branchDAO = new BranchDAO(entityManagerFactory);
+        customerDAO = new CustomerDAO(entityManagerFactory);
+        accountDAO = new AccountDAO(entityManagerFactory);
 
         Scanner scanner = new Scanner(System.in);
         int choice;
         do{
-            System.out.println("################ Gestion de Banque ###################");
+            System.out.println("\n################ Gestion de Banque ###################");
             System.out.println(" 1. Créer une banque");
             System.out.println(" 2. Afficher les infos d'une banque");
             System.out.println(" 3. Créer un client");
             System.out.println(" 4. Afficher les infos d'un client");
             System.out.println(" 5. Créer un compte");
             System.out.println(" 6. Afficher les infos d'un compte");
+            System.out.println(" 7. Supprimer un compte");
+            System.out.println(" 8. Supprimer un client");
             System.out.println(" 0. Quitter l'application");
             System.out.println("#################### ************ ####################");
             System.out.print(" Votre Choix : ");
@@ -57,7 +62,10 @@ public class IHM {
 
                     break;
                 case 7:
-
+                    deleteAccount(scanner);
+                    break;
+                case 8:
+                    deleteCustomer(scanner);
                     break;
                 case 0:
                     System.out.println("Bye");
@@ -71,37 +79,51 @@ public class IHM {
 
     }
 
-    private static void createAccount(Scanner scanner) {
-        System.out.println("Veuillez indiquer à quelle agence vous souhaitez lier ce compte bancaire :");
-        Long id = scanner.nextLong();
-        BranchBank bank = branchDAO.getById(id);
-        System.out.println("À quel client désirez-vous associer ce compte ? :");
-        Long customerId = scanner.nextLong();
-        System.out.println("Quel est le libelle :");
-        String label = scanner.next();
-        System.out.println("Quel est l'IBAN (longueur maximale : 27 caractères)?");
-        String iban = scanner.next();
-        Account account = new Account(label,iban,bank);
-        accountDAO.createAndSave(account);
-        System.out.println("Un compte de banque créé");
+    private static void deleteCustomer(Scanner scanner) {
+        System.out.println("Veuillez indiquer l'id  à quelle  client supprimé:");
+        Long idCustomer = scanner.nextLong();
+        scanner.nextLine();
+        accountDAO.deleteById(idCustomer);
+        System.out.println("Ce client supprimé");
 
     }
 
-    private static void createCustomer(Scanner scanner) {
-        try {
-            System.out.println("Quel est votre nom :");
+    private static void deleteAccount(Scanner scanner) {
+        System.out.print("Indiquer l'id  à quelle  compte bancaire supprimé:");
+        Long idAcccount = scanner.nextLong();
+        scanner.nextLine();
+        accountDAO.deleteById(idAcccount);
+        System.out.println("Ce compte supprimé");
+
+    }
+
+    private static void createAccount(Scanner scanner) {
+        System.out.print("A quelle agence souhaitez- vous : ");
+        Long id = scanner.nextLong();
+        BranchBank bank = branchDAO.getById(id);
+        System.out.print("À quel client désirez-vous associer ce compte: ");
+        Long customerId = scanner.nextLong();
+        System.out.print("Quel est le libelle : ");
+        String label = scanner.nextLine();
+        System.out.print("Quel est l'IBAN (longueur maximale : 27 caractères): ");
+        String iban = scanner.nextLine();
+        Account account = new Account(label,iban,bank);
+        accountDAO.createAndSave(account);
+        System.out.print("Un compte de banque créé");
+
+    }
+
+    private static void createCustomer(Scanner scanner) throws ParseException {
+            System.out.print("Entrer votre nom : ");
             String lastName = scanner.next();
-            System.out.println("Quel est votre prenom :");
+            System.out.print("Entrer votre prenom : ");
             String firstName = scanner.next();
-            System.out.println("Quel est votre date de naissance (format dd-MM-yyyy)");
+            System.out.print("Entrert votre date de naissance en format dd-MM-yyyy");
             String date_string = scanner.next();
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date date = formatter.parse(date_string);
             Customer customer = new Customer(lastName,firstName,date);
             customerDAO.createAndSave(customer);
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
     }
 
