@@ -1,19 +1,23 @@
-package demo.models;
+package demo.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "personne")
-public class Person {
+@Table(name="personne")
+public class Personne {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
-    private  String nom;
-    private  String prenom;
-    private  int age;
 
-    public Person() {
+    private String nom;
+
+    private String prenom;
+
+    private int age;
+
+    public Personne() {
     }
 
     public Long getId() {
@@ -50,11 +54,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person" +
-                " |id=" + id +
+        return "Personne{" +
+                "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", age=" + age +
-                '|';
+                '}';
     }
 }

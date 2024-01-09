@@ -10,19 +10,27 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String marque;
-    @Column(name = "ref")
+
     private String reference;
+
+
     private LocalDate dateAchat;
+
     private double prix;
+
     private int stock;
 
     public Produit() {
     }
 
-    public Produit(String marque, String ref, LocalDate date, Double prix, Integer stock) {
+    public Produit(String marque, String reference, LocalDate dateAchat, double prix) {
+        this.marque = marque;
+        this.reference = reference;
+        this.dateAchat = dateAchat;
+        this.prix = prix;
     }
-
 
     public int getId() {
         return id;
