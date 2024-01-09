@@ -14,9 +14,10 @@ public class Produit {
     private String marque;
 
     private String reference;
+    @Temporal(TemporalType.DATE)
 
 
-    private LocalDate dateAchat;
+    private Date dateAchat;
 
     private double prix;
 
@@ -25,7 +26,7 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String marque, String reference, LocalDate dateAchat, double prix) {
+    public Produit(String marque, String reference, Date dateAchat, double prix) {
         this.marque = marque;
         this.reference = reference;
         this.dateAchat = dateAchat;
@@ -56,11 +57,12 @@ public class Produit {
         this.reference = reference;
     }
 
-    public LocalDate getDateAchat() {
+
+    public Date getDateAchat() {
         return dateAchat;
     }
 
-    public void setDateAchat(LocalDate dateAchat) {
+    public void setDateAchat(Date dateAchat) {
         this.dateAchat = dateAchat;
     }
 

@@ -1,4 +1,3 @@
-/*
 import models.Produit;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,11 +21,11 @@ public class Test {
 
         // Creation des produits
 
-        ps.addNew(new Produit("TOSHIBA","zzaa123",LocalDate.parse("08-12-2023"),6000));
-        ps.addNew(new Produit("HP","EER678",LocalDate.parse("2016/02/09"),2000));
-        ps.addNew(new Produit("SONY","AQWZSX",LocalDate.parse("2016/09/23"),6000));
-        ps.addNew(new Produit("DELL","AZERTY",LocalDate.parse("2016/02/12"),6000));
-        ps.addNew(new Produit("SONY","qsdERT",LocalDate.parse("2016/02/02"),6000));
+        ps.addNew(new Produit("TOSHIBA","zzaa123",new Date("2016/01/08"),6000));
+        ps.addNew(new Produit("HP","EER678",new Date("2016/02/09"),2000));
+        ps.addNew(new Produit("SONY","AQWZSX",new Date("2016/09/23"),6000));
+        ps.addNew(new Produit("DELL","AZERTY",new Date("2016/02/12"),6000));
+        ps.addNew(new Produit("SONY","qsdERT",new Date("2016/02/02"),6000));
 
         // Informations produit id = 2
 
@@ -42,9 +41,9 @@ public class Test {
         if(p != null){
             p.setMarque("HP");
             p.setReference("MMMMPPP");
-            p.setDateAchat(LocalDate.parse("2015/09/08"));
+            p.setDateAchat(new Date("2015/09/08"));
             p.setPrix(5000);
-            ps.update(p);
+            ps.update(p,1);
         }
 
 
@@ -84,4 +83,3 @@ public class Test {
 
     }
 }
-*/
