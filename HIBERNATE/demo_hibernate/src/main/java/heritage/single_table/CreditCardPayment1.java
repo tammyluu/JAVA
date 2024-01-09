@@ -1,20 +1,19 @@
 package heritage.single_table;
 
-
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("CB")
-
+@DiscriminatorValue("2")
 public class CreditCardPayment1 extends Payment1 {
-    private  String cardNumber;
-    private  String  expirationDate;
 
-   /* public CreditCardPayment() {
-        super();
-    }*/
+    private String cardNumber;
+
+    private String expirationDate;
+
+
 
     public String getCardNumber() {
         return cardNumber;
@@ -34,9 +33,9 @@ public class CreditCardPayment1 extends Payment1 {
 
     @Override
     public String toString() {
-        return "CreditCardPayment|" +
-                "| cardNumber='" + cardNumber + '\'' +
-                "| expirationDate='" + expirationDate + '\'' +
-                "| " + super.toString();
+        return "CreditCardPayment{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
+                "} " + super.toString();
     }
 }

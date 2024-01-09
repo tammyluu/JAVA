@@ -13,21 +13,21 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
-    <junit.version>5.9.2</junit.version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>5.6.14.Final</version>
-    </dependency>
-     <dependency>
+      <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>5.6.14.Final</version>
+      </dependency>
+      <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>8.0.33</version>
       </dependency>
-    </dependencies>
+</dependencies>
 
   <build>
     <plugins>

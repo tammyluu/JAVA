@@ -1,11 +1,12 @@
-package heritage.single_table;
-
+package heritage.joined_table;
 
 import javax.persistence.*;
 
+
 @Entity
-@DiscriminatorValue("PayPal")
-public class PaypalPayment1 extends Payment1 {
+@Table(name="paypal")
+@PrimaryKeyJoinColumn(name = "idPayment")
+public class PayPalPayment extends Payment{
 
     private String accountNumber;
 
@@ -19,10 +20,8 @@ public class PaypalPayment1 extends Payment1 {
 
     @Override
     public String toString() {
-        return "PaypalPayment|" +
-                "| accountNumber='" + accountNumber + '\'' +
-                "| " + super.toString();
+        return "PayPalPayment{" +
+                "accountNumber='" + accountNumber + '\'' +
+                "} " + super.toString();
     }
-
-
 }

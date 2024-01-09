@@ -1,21 +1,18 @@
-package heritage.joined_table;
+package heritage.table_per_class;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="credit_card")
-@PrimaryKeyJoinColumn(name = "idPayment")
-public class CreditCardPayment extends Payment {
+@Table(name="credit_payment2")
+public class CreditCardPayment2 extends Payment2 {
 
     private String cardNumber;
 
     private String expirationDate;
 
-   /* public CreditCardPayment() {
-        super();
-    }*/
+
 
     public String getCardNumber() {
         return cardNumber;
