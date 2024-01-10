@@ -200,7 +200,7 @@ public class ViewConsole {
             scanner.nextLine();
             Produit produit = produitInfosInput();
             produitService.update(produit,prodId );
-        } catch (Exception e) {
+            } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
