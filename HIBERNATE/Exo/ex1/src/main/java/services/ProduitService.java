@@ -14,6 +14,8 @@ import java.util.List;
 public class ProduitService extends BaseService  implements DAOInterface<Produit> {
     @Override
     public List<Produit> selectAll() {
+        session = sessionFactory.openSession();
+        session.beginTransaction();
         List<Produit> produitList = new ArrayList<>();
         Query<Produit> produitQuery = session.createQuery("from Produit");
         produitList = produitQuery.list();
@@ -23,8 +25,8 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     @Override
     public Produit selectById(int id) {
-        Session session = null;
-        begin();
+        session = sessionFactory.openSession();
+        session.beginTransaction();
         Produit produit = session.get(Produit.class, id);
         session.getTransaction().commit();
         end();
@@ -33,15 +35,17 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     @Override
     public boolean addNew(Produit produit) {
-
+        Session session = null;
         Transaction transaction = null;
         try {
-            begin();
-            session.beginTransaction();
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
             session.save(produit);
-            session.getTransaction().commit();
-            return true;
+            transaction.commit();
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
             if (session != null) {
@@ -97,7 +101,7 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     @Override
     public List<Produit> getByStock(int stock) {
-        Session session = null;
+
         try {
             begin();
             session.getTransaction().begin();
@@ -176,19 +180,29 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
     }
 
     public void  removeProductByBrand (String marque){
-        begin();
+       /* begin();
         List<Produit> produits = selectAllByBrand(marque);
         for (Produit p: produits ) {
             session.delete(p);
         }
         session.getTransaction().commit();
-        end();
+        end();*/
+
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+
+            Query<Produit> deleteQuery = session.createQuery("delete from Produit where marque = :marque");
+            deleteQuery.setParameter("marque",marque);
+            deleteQuery.executeUpdate();
+            end();
+
+
     }
 
     public void begin(){
 
         session = sessionFactory.openSession();
-        session.beginTransaction();
+
     }
 
     public void end(){

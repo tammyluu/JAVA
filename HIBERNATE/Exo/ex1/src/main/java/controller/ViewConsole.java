@@ -118,7 +118,7 @@ public class ViewConsole {
             List<Produit> produits = produitService.selectAllByBrand(marque);
             for (Produit p : produits
             ) {
-                System.out.println("List de produits que vous souhaitez afficher: " + p);
+                System.out.println("List de produits que vous souhaitez afficher: \n" + p);
             }
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -127,13 +127,14 @@ public class ViewConsole {
 
     private static void displayPriceAveragePriceProducts() {
         Double prixMoyen = produitService.calculPriceAverage();
-        System.out.println("Le prix moyen des produits est de " + prixMoyen);
+        System.out.print("Le prix moyen des produits est de " + prixMoyen);
     }
 
     private static void showProductsByStock() {
-            System.out.println("Entrer  pour afficher les produits dont le stock est inférieur : ");
+            System.out.print("Entrer  pour afficher les produits dont le stock est inférieur : ");
             int stock = scanner.nextInt();
-            for (Produit p : produitService.getByStock(stock)
+            List<Produit> produits = produitService.getByStock(stock);
+            for (Produit p : produits
             ) {
                 System.out.println("L'info  du stock de ce produit est:  " + p);
 
@@ -142,7 +143,7 @@ public class ViewConsole {
 
     private static void displayAmountOfStockByBrand() {
         try {
-            System.out.println("Entrer la marque pour afficher la valeur des stocks que vous désirez : ");
+            System.out.print("Entrer la marque pour afficher la valeur des stocks que vous désirez : ");
             String marque = scanner.next();
             List<Double> productList = produitService.amountOfStockByBrand(marque);
             int totalStock = 0;
@@ -159,18 +160,18 @@ public class ViewConsole {
 
     private static void showProductsByDate() {
         try {
-            System.out.println("Entrer la date au début(format dd-MM-yyyy) ? :");
+            System.out.print("Entrer la date au début(format dd-MM-yyyy) ? :");
             String startDate= scanner.next();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date  min = dateFormat.parse(startDate);
-            System.out.println("Entrer la date à la fin (format dd-MM-yyyy) ? :");
+            System.out.print("Entrer la date à la fin (format dd-MM-yyyy) ? :");
             String endDate = scanner.next();
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Date max = format.parse(endDate);
             List<Produit> productList = produitService.filterByDate(min, max);
             for (Produit p : productList
             ) {
-                System.out.println("Les produits dont l'achat est compris entre les date " + min + " et " + max + " sont " + p);
+                System.out.println("Les produits dont l'achat est compris entre les date " + min + " et " + max + " sont:\n " + p);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
