@@ -1,12 +1,15 @@
 package services;
 
 import dao.DAOInterface;
+import models.Comment;
+import models.Image;
 import models.Produit;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 public class ProduitService extends BaseService  implements DAOInterface<Produit> {
     @Override
     public List<Produit> selectAll() {
-        session = sessionFactory.openSession();
+        begin();
         session.beginTransaction();
         List<Produit> produitList = new ArrayList<>();
         Query<Produit> produitQuery = session.createQuery("from Produit");
@@ -25,7 +28,7 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     @Override
     public Produit selectById(int id) {
-        session = sessionFactory.openSession();
+        begin();
         session.beginTransaction();
         Produit produit = session.get(Produit.class, id);
         session.getTransaction().commit();
@@ -57,7 +60,6 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     @Override
     public void update(Produit produit, int id) {
-        Session session = null;
         begin();
         session.beginTransaction();
         Produit p = selectById(id);
@@ -68,8 +70,8 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         p.setStock(produit.getStock());
         session.update(produit);
         session.getTransaction().commit();
-        end();
-        System.out.println("Produit bien modifié");;
+        System.out.println("Produit bien modifié");
+        ;
     }
 
     @Override
@@ -77,7 +79,7 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         begin();
         session.beginTransaction();
         Produit p = session.get(Produit.class, id);
-        if (p != null){
+        if (p != null) {
             session.delete(p);
         }
 
@@ -96,7 +98,6 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         produits = produitQuery.list();
         return produits;
     }
-
 
 
     @Override
@@ -120,8 +121,8 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         return null;
     }
 
-    public List<Produit> filterByPrice(double min) throws Exception{
-        if (min >= 0){
+    public List<Produit> filterByPrice(double min) throws Exception {
+        if (min >= 0) {
             Query<Produit> produitQuery = session.createQuery("from Produit where prix >= :min");
 
             return produitQuery.list();
@@ -129,19 +130,19 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         throw new Exception("erreur valeur");
     }
 
-    public List<Produit> filterByDate(Date min, Date max) throws Exception{
-        if(min.before(max)){
+    public List<Produit> filterByDate(Date min, Date max) throws Exception {
+        if (min.before(max)) {
 
             Query<Produit> produitQuery = session.createQuery("from Produit where dateAchat >= :min and dateAchat <= :max ");
-            produitQuery.setParameter("min",min);
-            produitQuery.setParameter("max",max);
+            produitQuery.setParameter("min", min);
+            produitQuery.setParameter("max", max);
 
             return produitQuery.list();
         }
         throw new Exception("erreur date");
     }
 
-    public  List<Double> amountOfStockByBrand(String marque){
+    public List<Double> amountOfStockByBrand(String marque) {
         begin();
         session.beginTransaction();
         List<Double> stockList = new ArrayList<>();
@@ -153,7 +154,11 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
 
     }
 
-    public Double calculPriceAverage(){
+    private void begin() {
+        session = sessionFactory.openSession();
+    }
+
+    public Double calculPriceAverage() {
         //Session session = null;
         try {
             begin();
@@ -168,7 +173,8 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         }
         return null;
     }
-    public List<Produit> selectAllByBrand (String marque){
+
+    public List<Produit> selectAllByBrand(String marque) {
         begin();
         session.beginTransaction();
         List<Produit> produits = new ArrayList<>();
@@ -179,7 +185,7 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         return produits;
     }
 
-    public void  removeProductByBrand (String marque){
+    public void removeProductByBrand(String marque) {
        /* begin();
         List<Produit> produits = selectAllByBrand(marque);
         for (Produit p: produits ) {
@@ -188,26 +194,75 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
         session.getTransaction().commit();
         end();*/
 
-            session = sessionFactory.openSession();
-            session.beginTransaction();
+        begin();
+        session.beginTransaction();
 
-            Query<Produit> deleteQuery = session.createQuery("delete from Produit where marque = :marque");
-            deleteQuery.setParameter("marque",marque);
-            deleteQuery.executeUpdate();
-            end();
+        Query<Produit> deleteQuery = session.createQuery("delete from Produit where marque = :marque");
+        deleteQuery.setParameter("marque", marque);
+        deleteQuery.executeUpdate();
+        end();
 
-
-    }
-
-    public void begin(){
-
-        session = sessionFactory.openSession();
 
     }
 
-    public void end(){
-
+    private void end() {
         session.close();
     }
+    public void addImageByProduct(Image image, int id) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
 
+            Produit produit = session.get(Produit.class, id);
+
+            if (produit != null) {
+                image.setProduit(produit);
+                session.save(image);
+
+                transaction.commit();
+            } else {
+                System.out.println("Produit non trouvé avec l'ID : " + id);
+            }
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+    }
+    public  void addCommentsByProduit(Comment comment, int id){
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+
+            Produit produit = session.get(Produit.class, id);
+
+            if (produit != null) {
+                comment.setProduit(produit);
+                session.save(comment);
+
+                transaction.commit();
+            } else {
+                System.out.println("Produit non trouvé avec l'ID : " + id);
+            }
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 }

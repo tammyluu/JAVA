@@ -8,6 +8,8 @@
     <session-factory>
 
         <mapping class="models.Produit"/>
+        <mapping class="models.Comment"/>
+        <mapping class="models.Image"/>
 
 
     </session-factory>
