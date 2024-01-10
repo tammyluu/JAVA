@@ -17,6 +17,10 @@
         <mapping class="heritage.table_per_class.PayPalPayment2"/>
         <mapping class="heritage.table_per_class.CreditCardPayment2"/>
         <mapping class="demo.model.Personne"/>
+        <mapping class="demo.composeKey.Employee"/>
+        <mapping class="demo.composeKey.EmployeePK"/>
+        <mapping class="demo.embedded.Agence"/>
+        <mapping class="demo.embedded.AgenceID"/>
     </session-factory>
 
 </hibernate-configuration>

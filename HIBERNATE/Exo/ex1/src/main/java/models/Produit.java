@@ -1,8 +1,14 @@
 package models;
 
+import jdk.jfr.DataAmount;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
 @Table(name = "product")
@@ -10,18 +16,16 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String marque;
-
     private String reference;
+
     @Temporal(TemporalType.DATE)
-
-
     private Date dateAchat;
-
     private double prix;
-
     private int stock;
+
+    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
+    private List<Image> images = new ArrayList<>();
 
     public Produit() {
     }
@@ -80,6 +84,14 @@ public class Produit {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     @Override

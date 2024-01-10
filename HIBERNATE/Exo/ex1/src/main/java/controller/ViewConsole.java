@@ -1,11 +1,14 @@
 package controller;
 
+import models.Comment;
+import models.Image;
 import models.Produit;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import services.ImageService;
 import services.ProduitService;
 
 import java.text.ParseException;
@@ -20,6 +23,7 @@ import java.util.Scanner;
 public class ViewConsole {
     private static SessionFactory sessionFactory;
     private static ProduitService produitService;
+    private static ImageService imageService;
     private static Scanner scanner;
 
     public static void menu() {
@@ -28,6 +32,7 @@ public class ViewConsole {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         produitService = new ProduitService();
+        imageService = new ImageService();
 
         scanner = new Scanner(System.in);
         int choice;
@@ -45,7 +50,9 @@ public class ViewConsole {
             System.out.println("10. Afficher le prix moyen des produits");
             System.out.println("11. Afficher la liste des produits d'une marque choisie");
             System.out.println("12. Supprimer les produits d'une marque choisie");
-
+            System.out.println("13. Ajouter une image à un produit ");
+            System.out.println("14. Ajouter un commentaire à un produit. ");
+            System.out.println("15. Afficher les produits avec une note de 4 ou plus ");
             System.out.println(" 0. Quitter l'application");
             System.out.println("################ ************ ###################");
             System.out.print("Choix : ");
@@ -89,6 +96,14 @@ public class ViewConsole {
                 case 12:
                     deleteProductsByBrand();
                     break;
+                case 13:
+                    addImagesByProduct();
+                    break;
+                case 14:
+                    addCommentsByProduct();
+                    break;
+                case 15:
+                    showAllProductsByBestRange();
                 case 0:
                     System.out.println("Bye");
 
@@ -99,6 +114,50 @@ public class ViewConsole {
 
         } while (choice != 0);
 
+    }
+
+    private static void showAllProductsByBestRange() {
+        System.out.println("Afficher les produits avec une note de 4 ou plus: ");
+        for (:
+             ) {
+            
+        }
+    }
+
+    private static void addCommentsByProduct() {
+        try {
+                System.out.print("Entrer l'Id du produit que vour désirez ajouter les commentaires : ");
+                int idprod = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("Saisir vos commentaires : ");
+                String contenu = scanner.nextLine();
+                System.out.print("Donner leur notes : ");
+                int note = scanner.nextInt();
+                scanner.nextLine();
+                Comment comment = new Comment(contenu,new Date(),note);
+                produitService.addCommentsByProduit(comment,idprod);
+        }catch ( Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void addImagesByProduct() {
+        try {
+            System.out.print("Combiens images vous allez ajouter pour ce produit: ");
+            int nbr = scanner.nextInt();
+            for (int i = 0; i < nbr; i++) {
+                System.out.print("Entrer l'Id du produit que vour désirez ajouter les images : ");
+                int idprod = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print(" Entrer le lien de l'image: ");
+                String url = scanner.nextLine();
+                Image image = new Image(url);
+                produitService.addImageByProduct(image,idprod);
+            }
+
+        }catch ( Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void deleteProductsByBrand() {
@@ -118,7 +177,7 @@ public class ViewConsole {
             List<Produit> produits = produitService.selectAllByBrand(marque);
             for (Produit p : produits
             ) {
-                System.out.println("List de produits que vous souhaitez afficher: " + p);
+                System.out.println("List de produits que vous souhaitez afficher: \n" + p);
             }
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -127,13 +186,14 @@ public class ViewConsole {
 
     private static void displayPriceAveragePriceProducts() {
         Double prixMoyen = produitService.calculPriceAverage();
-        System.out.println("Le prix moyen des produits est de " + prixMoyen);
+        System.out.print("Le prix moyen des produits est de " + prixMoyen);
     }
 
     private static void showProductsByStock() {
-            System.out.println("Entrer  pour afficher les produits dont le stock est inférieur : ");
+            System.out.print("Entrer  pour afficher les produits dont le stock est inférieur : ");
             int stock = scanner.nextInt();
-            for (Produit p : produitService.getByStock(stock)
+            List<Produit> produits = produitService.getByStock(stock);
+            for (Produit p : produits
             ) {
                 System.out.println("L'info  du stock de ce produit est:  " + p);
 
@@ -142,7 +202,7 @@ public class ViewConsole {
 
     private static void displayAmountOfStockByBrand() {
         try {
-            System.out.println("Entrer la marque pour afficher la valeur des stocks que vous désirez : ");
+            System.out.print("Entrer la marque pour afficher la valeur des stocks que vous désirez : ");
             String marque = scanner.next();
             List<Double> productList = produitService.amountOfStockByBrand(marque);
             int totalStock = 0;
@@ -159,18 +219,18 @@ public class ViewConsole {
 
     private static void showProductsByDate() {
         try {
-            System.out.println("Entrer la date au début(format dd-MM-yyyy) ? :");
+            System.out.print("Entrer la date au début(format dd-MM-yyyy) ? :");
             String startDate= scanner.next();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date  min = dateFormat.parse(startDate);
-            System.out.println("Entrer la date à la fin (format dd-MM-yyyy) ? :");
+            System.out.print("Entrer la date à la fin (format dd-MM-yyyy) ? :");
             String endDate = scanner.next();
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Date max = format.parse(endDate);
             List<Produit> productList = produitService.filterByDate(min, max);
             for (Produit p : productList
             ) {
-                System.out.println("Les produits dont l'achat est compris entre les date " + min + " et " + max + " sont " + p);
+                System.out.println("Les produits dont l'achat est compris entre les date " + min + " et " + max + " sont:\n " + p);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
