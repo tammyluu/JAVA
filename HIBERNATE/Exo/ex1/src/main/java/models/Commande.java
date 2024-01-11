@@ -30,6 +30,10 @@ public class Commande {
     inverseJoinColumns = @JoinColumn(name = "id_prod"))
     private List<Produit> produits = new ArrayList<>();
 
+    public Commande(Double total, Date date, List<Produit> productList, Adresse adress) {
+    }
+
+
     @Override
     public String toString() {
         return "Commande " +

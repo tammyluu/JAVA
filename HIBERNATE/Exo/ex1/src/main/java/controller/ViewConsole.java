@@ -1,13 +1,12 @@
 package controller;
 
-import models.Comment;
-import models.Image;
-import models.Produit;
+import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import services.CommandeService;
 import services.ImageService;
 import services.ProduitService;
 
@@ -15,15 +14,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ViewConsole {
     private static SessionFactory sessionFactory;
     private static ProduitService produitService;
     private static ImageService imageService;
+    private  static CommandeService commandeService;
     private static Scanner scanner;
 
     public static void menu() {
@@ -33,6 +30,8 @@ public class ViewConsole {
         session.beginTransaction();
         produitService = new ProduitService();
         imageService = new ImageService();
+        commandeService = new CommandeService();
+
 
         scanner = new Scanner(System.in);
         int choice;
@@ -139,58 +138,61 @@ public class ViewConsole {
     }
 
     private static void showAllOrders() {
-        Date date = new Date();
 
-        try {
-            System.out.println("Combien de produits souhaitez vous ajouter à la commande ");
-            int nombreProduit = scanner.nextInt();
-            scanner.nextLine();
-            List<Product> productList = new ArrayList<>();
-            List<Orders> ordersList = new ArrayList<>();
-            Double total = 1.0;
-            for (int i = 0; i < nombreProduit; i++) {
-                System.out.println("Veuillez indiquer l'id des produits que vous souhaitez ajouter à la commande : ");
-                Long idProduct = scanner.nextLong();
-                System.out.println("Veuillez indiquer la quantité à ajouter : ");
-                int quantity = scanner.nextInt();
-                Product product = productService.getProductById(idProduct);
-                product.setStock(product.getStock()-quantity);
-                productService.updateProduct(idProduct,product);
-                Double price = product.getPrice();
-                productList.add(product);
-                total += quantity*price;
-            }
-            System.out.println("Adresse de la commande");
-            System.out.println("Veuillez saisir la ville de la commande");
-            String city = scanner.next();
-            System.out.println("Veuillez saisir la rue");
-            String street = scanner.nextLine();
-            scanner.nextLine();
-            System.out.println("Veuillez saisir le codePostal");
-            int codePostal = scanner.nextInt();
-            scanner.nextLine();
-            Adress adress1 = new Adress(street,city,codePostal);
-            adressService.createAdress(adress1);
-            Orders order = new Orders(date,adress1,productList,total);
-            order.setAdress(adress1);
-            ordersList.add(order);
-            ordersService.createOrders(order);
-            ordersService.updateOrder(order.getIdOrder(),order);
-            for (Product p: order.getProductList()
-            ) { p.setOrdersList(ordersList);
-                productService.updateProduct(p.getIdProduct(),p);
-            }
-            System.out.println(order);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     private static void showOrdersPerDay() {
     }
 
     private static void addProductsByOrder() {
+        Date date = new Date();
+
+        try {
+            System.out.println("Combien de produits souhaitez vous ajouter à la commande ");
+            int nombreProduit = scanner.nextInt();
+            scanner.nextLine();
+            List<Produit> productList = new ArrayList<>();
+            List<Commande> ordersList = new ArrayList<>();
+            Double total = 1.0;
+            for (int i = 0; i < nombreProduit; i++) {
+                System.out.println("Veuillez indiquer l'id des produits que vous souhaitez ajouter à la commande : ");
+                int idProduct = scanner.nextInt();
+                System.out.println("Veuillez indiquer la quantité à ajouter : ");
+                int quantity = scanner.nextInt();
+                Produit product = produitService.selectById(idProduct);
+                product.setStock(product.getStock()-quantity);
+                produitService.update(product, idProduct);
+                Double price = product.getPrix();
+                productList.add(product);
+                total += quantity*price;
+            }
+            System.out.println("Adresse de la commande");
+            System.out.println("Veuillez saisir la ville de la commande");
+            String ville = scanner.next();
+            System.out.println("Veuillez saisir le numéro");
+            int numero = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Veuillez saisir la rue");
+            String rue = scanner.nextLine();
+            System.out.println("Veuillez saisir le codePostal");
+            int codePostal = scanner.nextInt();
+            Adresse adress = new Adresse(numero,rue,ville,codePostal);
+            commandeService.ad();
+
+            Commande order = new Commande(total,new Date(),productList,adress);
+            order.setAdress(adress1);
+            ordersList.add(order);
+            commandeService.addNew(order);
+            commandeService.update(order,order.getId());
+            for (Produit p: order.getProduits()
+            ) { p.setOrdersList(ordersList);
+                produitService.update(p,p.getId());
+            }
+            System.out.println(order);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void showAllProductsByRanking() {

@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class CommandeDAO extends  BaseService implements DAOInterface<Commande> {
+public class CommandeService extends  BaseService implements DAOInterface<Commande> {
     @Override
     public List<Commande> selectAll() {
         return null;
