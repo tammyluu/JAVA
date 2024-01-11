@@ -53,6 +53,9 @@ public class ViewConsole {
             System.out.println("13. Ajouter une image à un produit ");
             System.out.println("14. Ajouter un commentaire à un produit. ");
             System.out.println("15. Afficher les produits avec une note de 4 ou plus ");
+            System.out.println("16. Ajouter une commande avec un ou plusieurs produits. ");
+            System.out.println("17. Afficher la totalité des commandes. ");
+            System.out.println("18. Afficher uniquement les commandes du jour. ");
             System.out.println(" 0. Quitter l'application");
             System.out.println("################ ************ ###################");
             System.out.print("Choix : ");
@@ -103,7 +106,26 @@ public class ViewConsole {
                     addCommentsByProduct();
                     break;
                 case 15:
-                    showAllProductsByBestRange();
+                    showAllProductsByRanking();
+                case 16:
+                    addProductsByOrder();
+                    break;
+                case 17:
+                    showAllOrders();
+                    break;
+                case 18:
+                     showOrdersPerDay();
+                    break;
+                case 19:
+
+                    break;
+                case 20:
+
+                    break;
+                case 21:
+
+                    break;
+
                 case 0:
                     System.out.println("Bye");
 
@@ -116,11 +138,66 @@ public class ViewConsole {
 
     }
 
-    private static void showAllProductsByBestRange() {
-        System.out.println("Afficher les produits avec une note de 4 ou plus: ");
-        for (:
-             ) {
-            
+    private static void showAllOrders() {
+        Date date = new Date();
+
+        try {
+            System.out.println("Combien de produits souhaitez vous ajouter à la commande ");
+            int nombreProduit = scanner.nextInt();
+            scanner.nextLine();
+            List<Product> productList = new ArrayList<>();
+            List<Orders> ordersList = new ArrayList<>();
+            Double total = 1.0;
+            for (int i = 0; i < nombreProduit; i++) {
+                System.out.println("Veuillez indiquer l'id des produits que vous souhaitez ajouter à la commande : ");
+                Long idProduct = scanner.nextLong();
+                System.out.println("Veuillez indiquer la quantité à ajouter : ");
+                int quantity = scanner.nextInt();
+                Product product = productService.getProductById(idProduct);
+                product.setStock(product.getStock()-quantity);
+                productService.updateProduct(idProduct,product);
+                Double price = product.getPrice();
+                productList.add(product);
+                total += quantity*price;
+            }
+            System.out.println("Adresse de la commande");
+            System.out.println("Veuillez saisir la ville de la commande");
+            String city = scanner.next();
+            System.out.println("Veuillez saisir la rue");
+            String street = scanner.nextLine();
+            scanner.nextLine();
+            System.out.println("Veuillez saisir le codePostal");
+            int codePostal = scanner.nextInt();
+            scanner.nextLine();
+            Adress adress1 = new Adress(street,city,codePostal);
+            adressService.createAdress(adress1);
+            Orders order = new Orders(date,adress1,productList,total);
+            order.setAdress(adress1);
+            ordersList.add(order);
+            ordersService.createOrders(order);
+            ordersService.updateOrder(order.getIdOrder(),order);
+            for (Product p: order.getProductList()
+            ) { p.setOrdersList(ordersList);
+                productService.updateProduct(p.getIdProduct(),p);
+            }
+            System.out.println(order);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void showOrdersPerDay() {
+    }
+
+    private static void addProductsByOrder() {
+    }
+
+    private static void showAllProductsByRanking() {
+        System.out.println("List des produits avec une note de 4 ou plus: ");
+        List<Produit> produits = produitService.selectProductByRanking();
+        for ( Produit p : produits ) {
+            System.out.println(p);
         }
     }
 

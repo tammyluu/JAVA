@@ -24,10 +24,13 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "id_prod")
     private Produit produit;
+    @OneToOne(mappedBy = "commande")
+    private Adresse adresse;
 
     public Comment(String contenu, Date dateCommentaire, int note) {
         this.contenu = contenu;
         this.dateCommentaire = dateCommentaire;
         this.note = note;
     }
+
 }

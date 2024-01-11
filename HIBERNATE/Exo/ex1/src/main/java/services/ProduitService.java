@@ -265,4 +265,20 @@ public class ProduitService extends BaseService  implements DAOInterface<Produit
             }
         }
     }
+    public List<Produit> selectProductByRanking(){
+        try {
+            begin();
+            Query<Produit> query = session.createQuery(
+                    "select distinct p from Produit p join p.comments c where c.note > 4"
+            );
+            List<Produit> produits = query.list();
+            return produits;
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }finally {
+            end();
+        }
+        return null;
+    }
 }
