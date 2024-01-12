@@ -219,13 +219,15 @@ FROM rédiger r ,corriger c, Examen e
 WHERE r.matricule_enseignant = c.matricule_enseignant AND r.id_examen = c.id_examen AND r.id_examen = e.id_examen;
 
  -- 10 - Montrer le dernier examen que chaque élève a passé, avec la date et la note :
+ --  WITH pour créer une vue temporaire appelée "ExamensEleve" en utilisant la fonction de fenêtrage ROW_NUMBER()
  WITH ExamensEleve AS (
     SELECT
         E.code_eleve,
         P.id_examen,
         P.date_passage,
-        E.note * EX.coefficient AS note_ponderee,
-        ROW_NUMBER() OVER (PARTITION BY E.code_eleve ORDER BY P.date_passage DESC) AS row_num
+        E.note * EX.coefficient AS note,
+        ROW_NUMBER() OVER (PARTITION BY E.code_eleve ORDER BY P.date_passage DESC) AS row_num 
+        -- à chaque ligne dans chaque partition d'élève, trié par date de passage décroissante.
     FROM Eleve E
     LEFT JOIN passer P ON E.code_eleve = P.code_eleve
     LEFT JOIN Examen EX ON P.id_examen = EX.id_examen
@@ -234,7 +236,7 @@ SELECT
     E.nom AS nom_eleve,
     EE.id_examen,
     EE.date_passage,
-    EE.note_ponderee
+    EE.note
 FROM Eleve E
 JOIN ExamensEleve EE ON E.code_eleve = EE.code_eleve
 WHERE EE.row_num = 1;
