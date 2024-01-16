@@ -37,7 +37,7 @@ use("user");
 // ● Nos juristes nous ont dit que nous ne pouvions plus garder les numéro de
 // téléphones de nos utilisateurs : supprimer le champ phone de tous les
 // enregistrements.
-//db.users.updateMany({}, { $unset: { phone: "" } });
+//db.users.updateMany({}, { $unset: { phone: 1 } });
 
 
 // //● Chuck Norris est venu nous dire que le temps ne marquait pas Chuck Norris,
@@ -46,5 +46,5 @@ use("user");
 //db.users.updateOne({name: "Chuck Norris"},{ $set: { age: Infinity } });
 
 //● Ajoutons un hobby à tous nos utilisateurs de plus de 50 ans : jardinage
-// db.users.updateMany({ age: { $gt: 50 } },{ $set: { hobbies: ["jardinage"] } }  );
-  
+// db.users.updateMany({ age: { $gt: 50 } },{ $push: { hobbies: "jardinage" } }  );
+  db.users.find({age: { $gt: 50}});

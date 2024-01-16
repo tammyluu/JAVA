@@ -30,17 +30,17 @@ use("hospital");
 // ]
 // );
 
-db.patient.find();
+//db.patient.find();
 
 // db.patient.find({firstname: "Julie"});
 // db.patient.updateOne({firstName: "Juile"}, {$set: {lastName: "Dupont", age: 18, history: [{desease: "depression", treatment: "pas de sommeil"}]}});
  
-//Trouver tous les patients qui ont un âge supérieur à 29 ans.
-// db.patient.find({age:{$gt : 29}});
+//--Trouver tous les patients qui ont un âge supérieur à 29 ans.
+ db.patient.find({age:{$gt : 29}});
 
 // --Supprimer tous les patients qui ont attrapé un rhume comme une maladie.
-// db.patient.findOneAndDelete({"history.desease": "rhume"});
-db.patient.findOneAndDelete({history.desease: "rhume"});
+// db.patient.deleteMany({"history.desease": "rhume"});
+
 // db.patient.deleteMany({"history.desease": "rhume"});
 
 // db.patient.insertOne(
