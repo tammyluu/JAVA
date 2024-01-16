@@ -69,16 +69,16 @@ use("info");
 
 // G. - Récupérer les produits dont le nom commence par Macbook
 
-// db.produits.find({ "nom": { $regex : "^macbook", $options:"i"} });
-// db.produits.find({ "nom": { $regex: /^Macbook/i } })
+// db.produits.find({ nom: { $regex : "^ Macbook", $options:"i"} });
+// db.produits.find({ "nom": { $regex: /^ Macbook/i } })
 
 
 // H. - Supprimer les deux produits dont le fabricant est Apple.
 // db.produits.deleteMany({fabriquant: "Apple"});
 
 
-// I. - Supprimer le Lenovo
-// db.produits.deleteOne({nom: "Lenevo"});
+// I. - Supprimer le Lenovo en utilisant uniquement son id.
+// db.produits.deleteOne({_id: ObjectId("65a69d363d2ab6bed3ff7c14")});
 
 
 

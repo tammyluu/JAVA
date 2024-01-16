@@ -7,7 +7,7 @@ use("livre");
 // db.livres.find({type: "Article", year:{$gte : 2011}});
 
 // • Liste des livres depuis 2014.
-db.livres.find({ type: "Book", year:{$gte: 2014}}).count();
+db.livres.find({ type: "Book", year:{$gte: 2014}});
 
 // • Liste des publications de l’auteur « Toru Ishida ».
 // db.livres.find({ authors: "Toru Ishida"});
