@@ -23,7 +23,7 @@ use("info");
 //     "Long life battery"
 //   ]
 // });
-// db.produits.find({});
+// db.produits.find({}).count();
 
 //-- Et enfin un dernier document:
 
