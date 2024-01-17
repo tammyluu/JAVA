@@ -85,5 +85,6 @@ public class EventService implements ITicketService<Event>{
     }
 
     public Event createAndSaveEvent(String iName, String iDate, int iPrice, int iTickeSoldNum, int iIDLocation) {
+        return null;
     }
 }

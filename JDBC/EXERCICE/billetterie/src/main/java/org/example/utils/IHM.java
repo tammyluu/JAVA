@@ -138,11 +138,11 @@ public class IHM {
         String iName = InputManagement.getString("Entrez le nom de l'evenement: ", "Nom de lieu est obligatoire!!");
 
         String iDate = InputManagement.getString("Entrez  la Date l'evenement en format (yyyy-MM-dd): ","Adresse de lieu est obligatoire!!");
-        int iPrice= InputManagement.getADouble("Entrez le prix d'un ticket: ","prix en bon format est obligatoire!!");
+        double iPrice= InputManagement.getADouble("Entrez le prix d'un ticket: ","prix en bon format est obligatoire!!");
         int iTickeSoldNum= InputManagement.getAnInteger("Entrez le nombre de tickets vendus: ","nombre de tickets vendus est obligatoire!!");
         int iIDLocation= InputManagement.getAnInteger("Entrez l'identifiant du lieu: ","l'identifiant du lieu est obligatoire!!");
 
-        Event event = eventService.createAndSaveEvent(iName,iDate,iPrice,iTickeSoldNum,iIDLocation);
+        Event event = eventService.createAndSaveEvent(iName,iDate, (int) iPrice,iTickeSoldNum,iIDLocation);
     }
 
 }
