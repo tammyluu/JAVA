@@ -4,4 +4,6 @@ import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet(name = "calcumate", value = "/calcul") // value = URL-partern
 public class Calculate {
+
+
 }

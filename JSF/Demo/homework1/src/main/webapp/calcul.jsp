@@ -15,7 +15,13 @@
 </form><form action="calcul" method="get">
     enter num1 : <input type="text"  name="num1"/><br/>
     enter num2 : <input type="text"  name="num2"/><br/>
-    <input type="submit" value="SUM"/>
+    <select name="op">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>:</option>
+    </select>
+    <input type="submit" value="Calculate"/>
 </form>
 <br/>
 <a href="calcul">Result</a>
