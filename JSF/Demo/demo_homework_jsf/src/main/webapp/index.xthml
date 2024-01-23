@@ -1,0 +1,22 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jfs/core">
+<head>
+    <title>JSP - Homepage</title>
+</head>
+<body>
+<h1><%= "Hello World!" %>
+</h1>
+<br/>
+<form>
+    <h:panelGrid columns="2">
+        <h:graphicImage name="check.jpg" height="50" library="image" />
+        <h3>TICKET INVENTAIRE</h3>
+
+    </h:panelGrid>
+</form>
+<a href="hello-servlet">Hello Servlet</a>
+</body>
+</html>

@@ -3,7 +3,7 @@ use("restau")
 
 // 1. Afficher la liste des restaurants mais limitez l’affichage à 10.
 // db.restaurants.find().limit(10)
- db.restaurants.aggregate({$limit: 10})
+//  db.restaurants.aggregate({$limit: 10})
 //vérifier
 // db.restaurants.aggregate([{$limit: 10},{ $group: {_id: null,count: { $sum: 1 }}}])
 
@@ -42,7 +42,7 @@ use("restau")
 // le nombre d’avis (grades) par restaurant.
 // db.restaurants.aggregate([
 //     {$limit: 10},
-//     {$project: {name :1 ,gradeCount:{$size : "$grades"}}},
+//     {$project: {name :1 ,grade:{$sum : 1}}},
 // ])
 
 // 7. Afficher la liste des 10 premiers restaurants avec un nouveau champ qui va afficher
@@ -65,20 +65,17 @@ use("restau")
 // db.restaurants.aggregate([
 //     { $limit: 10 },
 //     {$project: {
-//             _id: 0,                      
+                            
 //             capitalOfName: { $toUpper: "$name" }, 
 //             threeLetters: { $substr: ["$borough", 0, 3] } }
 //     }
 // ])
 
-
-
-
 // 10. On souhaite avoir le nombre total de restaurants toujours avec agrégation.
 // db.restaurants.aggregate([
 //     {$group: {
 //         _id: null,  
-//             totalRestaurants: { $sum: 1 }  
+//             count: { $sum: 1 }  
 //         }
 //     }
 // ])
@@ -87,7 +84,7 @@ use("restau")
 // db.restaurants.aggregate([
 //     {$group: {
 //         _id: "$borough",  
-//             totalRestaurants: { $sum: 1 }  
+//             count: { $sum: 1 }  
 //         }
 //     }
 // ])
