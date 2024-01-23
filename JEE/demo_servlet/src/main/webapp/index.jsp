@@ -5,11 +5,10 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "HelloTAM!" %></h1>
+<h1><%= "Welcome!" %></h1>
 <br/>
-<a href="hello-servlet">you're the one</a>
-<form>
-  <input name="name" value="fullname" >
-</form>
+<a href="personne-list.jsp">Liste de personne </a> <br>
+<a href="personne-form.jsp">Formulaire </a>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.example.demo_servlet;
+package com.example.demo_servlet.servlet;
 
 import java.io.*;
 import jakarta.servlet.http.*;
@@ -9,7 +9,7 @@ public class HelloServlet extends HttpServlet {
     private String message;
 
     public void init() {
-        message = "Hello World!";
+        message = "Welcome to JAVA!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -19,6 +19,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        out.println("path : " + request.getContextPath());
 
         out.println("</body></html>");
     }

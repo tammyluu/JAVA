@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3400a80-4638-485c-9a60-da2d3c8aad61" name="Changes" comment="" />
+    <list default="true" id="f3400a80-4638-485c-9a60-da2d3c8aad61" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/Servlet/Demo/demo_first_servlet/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JEE/demo_servlet/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../JEE/demo_servlet/src/main/webapp/index.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,11 +43,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/01_ENV/WorkSpace/JAVA/OPP",
+    "last_opened_file_path": "C:/Users/Administrateur/OneDrive - M2I/Bureau/JAVA/TpClasseChaise",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -126,6 +140,7 @@
       <workItem from="1701412768599" duration="8937000" />
       <workItem from="1701422185409" duration="1165000" />
       <workItem from="1701423374457" duration="5805000" />
+      <workItem from="1705996549354" duration="2000" />
     </task>
     <servers />
   </component>
