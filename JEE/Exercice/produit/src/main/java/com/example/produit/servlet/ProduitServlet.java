@@ -46,6 +46,8 @@ public class ProduitServlet extends HttpServlet {
         req.getRequestDispatcher("add-produit-form.jsp").forward(req, resp);
 
 
+        //return marque;
+        //return marque;
     }
 
     @Override
@@ -64,9 +66,11 @@ public class ProduitServlet extends HttpServlet {
         Integer id=  Integer.valueOf(req.getParameter("id"));
         Produit produit = produitService.findById(id);
         produitService.delete(produit);
-        req.setAttribute("message" ,"supprimé!!");
-        req.getRequestDispatcher("list-produits.jsp").forward(req,resp);
+        req.setAttribute("produit" ,produit);
+        resp.getWriter().println("supprimé !!");
+        resp.sendRedirect("list-produits.jsp");
+
+        }
 
 
-    }
 }

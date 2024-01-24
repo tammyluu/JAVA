@@ -9,7 +9,7 @@
 
 
         <mapping class="com.example.produit.entities.Produit"/>
-
+        <mapping class="com.example.produit.entities.User"/>
 
     </session-factory>
 

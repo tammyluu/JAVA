@@ -6,7 +6,7 @@
   Time: 17:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -17,13 +17,13 @@
 <h1>>>Detail d'un produit</h1>
 <form action="produitDetail">
     <label>Marque: </label>
-    <c:out value="${produit.getMarque()}"></c:out><br>
+   ${produit.getMarque()}<br>
     <label>Référence: </label>
-    <c:out value="${produit.getReference()}"></c:out><br>
+    ${produit.getReference()}<br>
     <label>Prix  </label>
-    <c:out value="${produit.getPrix()}"></c:out><br>
+    ${produit.getPrix()}<br>
     <label>Stock </label>
-    <c:out value="${produit.getStock()}"></c:out>
+   ${produit.getStock()}
 </form>
 
 

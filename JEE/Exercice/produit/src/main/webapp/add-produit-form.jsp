@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <h2>Formulaire de création d'un produit</h2>
-    <p style="color: blue">${message}</p>
+
     <form action="produit" method="post">
         <div class="mb-3">
             <label for="marque" class="form-label">Marque : </label>

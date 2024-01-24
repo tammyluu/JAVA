@@ -20,6 +20,7 @@
     <tr>
         <!-- On rows -->
 
+        <th scope="col">Image</th>
         <th scope="col">Marque</th>
         <th scope="col">Reference</th>
         <th scope="col">Prix</th>
@@ -31,16 +32,23 @@
     <tbody>
     <c:forEach items="${produits}" var="produit">
         <tr>
+            <td width="100"><img src="upload/photo" width="80" height="70">
+                <form method="post" action="upload" enctype="multipart/form-data">
+                    Select file to upload: <input type="file" name="image" size="60" /><br /><br />
+                    <button type="submit" class="btn btn-primary">Upload</button>
+
+                </form>
+            </td>
             <td>${produit.getMarque()}</td>
             <td>${produit.getReference()}</td>
             <td>${produit.getPrix()} €</td>
             <td>${produit.getStock()}</td>
             <td>
                 <button type="button" class="btn">
-                    <a href="produitDetail?marque=${produit.getId()}">Détails</a>
+                    <a href="produitDetail?id=${produit.getId()}">Détails</a>
                 </button>
                 <button type="button" class="btn ">
-                    <a href="produitDetail?marque=${produit.getId()}">Supprimer</a>
+                    <a href="delete?id=${produit.getId()}"  class="btn btn-delete">Supprimer</a>
                 </button>
             </td>
         </tr>
