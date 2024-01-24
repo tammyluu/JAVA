@@ -10,11 +10,13 @@
 <html>
 <head>
     <title>Ajouter un produit</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
     <h2>Formulaire de création d'un produit</h2>
+    <p style="color: blue">${message}</p>
     <form action="produit" method="post">
         <div class="mb-3">
             <label for="marque" class="form-label">Marque : </label>
@@ -33,7 +35,7 @@
             <input type="number" class="form-control" id="stock" name="stock">
         </div>
         <button type="submit" class="btn btn-primary">Créer</button><br>
-        <p style="color: blue">${erreurMessage}</p>
+
         <a href="produit">Liste de produits</a>
     </form>
 </div>

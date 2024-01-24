@@ -61,10 +61,12 @@ public class ProduitServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id= req.getParameter("id");
-        int idProd = Integer.parseInt(id);
-        Produit produit = produitService.findById(idProd);
+        Integer id=  Integer.valueOf(req.getParameter("id"));
+        Produit produit = produitService.findById(id);
         produitService.delete(produit);
+        req.setAttribute("message" ,"supprimé!!");
+        req.getRequestDispatcher("list-produits.jsp").forward(req,resp);
+
 
     }
 }

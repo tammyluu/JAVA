@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1> La liste de Produits</h1>
+<p style="color: blue">${message}</p>
 <button type="button" class="btn btn-info">
     <a href="add-produit-form.jsp">Ajouter</a>
 </button>

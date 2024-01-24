@@ -35,7 +35,7 @@ public class ProduitDetail extends HttpServlet {
             if (produitDetail != null) {
                 req.setAttribute("produit", produitDetail);
             } else {
-                req.setAttribute("erreurMessage", "Aucun produit trouvé pour l'ID spécifié");
+                req.setAttribute("message", "Aucun produit trouvé pour l'ID spécifié");
             }
         }
         // Rediriger vers la page JSP pour afficher les détails du produit
