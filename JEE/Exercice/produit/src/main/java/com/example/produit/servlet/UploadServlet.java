@@ -36,7 +36,7 @@ public class UploadServlet  extends HttpServlet {
 
         image.write( uploadPath + File.separator + fileName );
         try (PrintWriter out = resp.getWriter()){
-            out.print("<img src='images/" + fileName + "'+>");
+            out.print("<img src='images/" + fileName + "' width='100' height='100'>");
 
 
         }catch (Exception e){
