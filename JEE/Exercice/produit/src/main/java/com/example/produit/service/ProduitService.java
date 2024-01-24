@@ -84,7 +84,7 @@ public class ProduitService extends BaseService implements Repository<Produit> {
         throw new Exception("erreur valeur");
     }
 
-    public List<Produit> filterByDate(Date min, Date max) throws Exception {
+    /*public List<Produit> filterByDate(Date min, Date max) throws Exception {
         if (min.before(max)) {
             session = sessionFactory.openSession();
             Query<Produit> produitQuery = session.createQuery("from Produit where dateAchat >= :min and dateAchat <= :max ");
@@ -95,7 +95,7 @@ public class ProduitService extends BaseService implements Repository<Produit> {
             return produitList;
         }
         throw new Exception("erreur date");
-    }
+    }*/
 
     public List<Produit> filterByStockMax(int max) throws Exception {
         if (max >= 0) {

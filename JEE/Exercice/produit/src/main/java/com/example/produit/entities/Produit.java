@@ -41,6 +41,13 @@ public class Produit {
         this.stock = stock;
     }
 
+    public Produit(String marque, String reference, double prix, int stock) {
+        this.marque = marque;
+        this.reference = reference;
+        this.prix = prix;
+        this.stock = stock;
+    }
+
     /*public Produit(String marque, String ref, String dateAchat, double prix) {
         this.marque = marque;
         this.reference = reference;

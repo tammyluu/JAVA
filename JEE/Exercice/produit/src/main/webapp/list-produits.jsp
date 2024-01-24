@@ -6,10 +6,13 @@
 <html>
 <head>
     <title>Produits</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 <h1> La liste de Produits</h1>
+<button type="button" class="btn btn-info">
+    <a href="add-produit-form.jsp">Ajouter</a>
+</button>
 <!-- On tables -->
 <table class="table table-light table-striped mt-3">
     <thead>
@@ -36,32 +39,17 @@
                     <a href="produitDetail?marque=${produit.getId()}">Détails</a>
                 </button>
                 <button type="button" class="btn ">
-                    <a href="produitDetail?marque=${produit.getMarque()}">Supprimer</a>
+                    <a href="produitDetail?marque=${produit.getId()}">Supprimer</a>
                 </button>
             </td>
         </tr>
         <!-- Détails du produit -->
-        <tr>
-            <td colspan="5"> <!-- colspan="5" pour étendre sur toutes les colonnes -->
-                <c:if test="${not empty produit_detail}">
-                    <div>
-                        <p>Marque    : ${produit_detail.marque}</p>
-                        <p>Référence : ${produit_detail.reference}</p>
-                        <p>Prix      : ${produit_detail.prix}</p>
-                        <p>Stock     : ${produit_detail.stock}</p>
-                    </div>
-                </c:if>
 
-                <c:if test="${not empty erreurMessage}">
-                    <p>${erreurMessage}</p>
-                </c:if>
-            </td>
-        </tr>
     </c:forEach>
 
     </tbody>
 </table>
-
+<a href="index.jsp">Home Page</a>
 <!-- On tables -->
 
 <h2> Liste produits</h2>
@@ -75,29 +63,7 @@
 
                </div>
            </c:forEach>
-<h2>Afficher la liste des produits dont le prix est supérieur à 20 euros</h2>
-<c:forEach items="${produitFiltre}" var="prod">
-    <div>
-        Marque    : ${prod.getMarque()}
-        Référence : ${prod.getReference()}
-        Prix      : ${prod.getPrix()}
-        Stock     : ${prod.getStock()}
-    </div>
-</c:forEach>
-<h2>Détails du produit</h2>
 
-<c:if test="${not empty produit_detail}">
-    <div>
-        <p>Marque    : ${produit_detail.marque}</p>
-        <p>Référence : ${produit_detail.reference}</p>
-        <p>Prix      : ${produit_detail.prix}</p>
-        <p>Stock     : ${produit_detail.stock}</p>
-    </div>
-</c:if>
-
-<c:if test="${not empty erreurMessage}">
-    <p>${erreurMessage}</p>
-</c:if>
 
 
 </body>

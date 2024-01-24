@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 
@@ -20,20 +21,29 @@ public class ProduitServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         produitService = new ProduitService();
+        produitList = produitService.findAll();
 
     }
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String marque = req.getParameter("marque");
         String ref = req.getParameter("reference");
-        String dateAchat = req.getParameter("dateAchat");
-        double prix = Double.parseDouble(req.getParameter("prix"));
-       /* int stock = Integer.parseInt(req.getParameter("stock"));
-        Produit produit = new Produit(marque,ref,dateAchat,prix);
-        produitService.create(produit);*/
-        //pour dans personnses dans jsp
-        req.setAttribute("produits",produitList);
+        //String dateAchat = req.getParameter("dateAchat");
+        double prix = 0;
+        int stock = 0;
+        try {
+            prix = Double.parseDouble(req.getParameter("prix"));
+            stock = Integer.parseInt(req.getParameter("stock"));
+        } catch (ConstraintViolationException e) {
+            System.out.println(e.getMessage());
+        }
+
+        Produit produit = new Produit(marque, ref, prix, stock);
+        produitService.create(produit);
+        req.setAttribute("message", "Bien ajouté");
+
+        req.setAttribute("produits", produitList);
         // s'interesse une fois request, une fois reponse
-        req.getRequestDispatcher("add-produit-form.jsp").forward(req,resp);
+        req.getRequestDispatcher("add-produit-form.jsp").forward(req, resp);
 
 
     }
@@ -45,17 +55,16 @@ public class ProduitServlet extends HttpServlet {
         // s'interesse une fois request, une fois reponse
         req.getRequestDispatcher("list-produits.jsp").forward(req,resp);
 
-        //Afficher la liste des produits dont le prix est supérieur à 100 euros
-        try {
-            List<Produit> produitsFiltre = produitService.filterByPrice(20);
-            req.setAttribute("produitFiltre",produitsFiltre);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
-        // Forward vers la page JSP
-        req.getRequestDispatcher("list-produits.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id= req.getParameter("id");
+        int idProd = Integer.parseInt(id);
+        Produit produit = produitService.findById(idProd);
+        produitService.delete(produit);
 
     }
 }

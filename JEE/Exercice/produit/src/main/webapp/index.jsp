@@ -10,6 +10,7 @@
 </h1>
 <br/>
 <a href="produit">Liste de produits</a><br>
-<a href="add-produit-form.jsp">Ajouter un produit</a>
+<a href="add-produit-form.jsp">Ajouter un produit</a><br>
+<a href="by-price.jsp">Filtre produit > 20 €</a>
 </body>
 </html>

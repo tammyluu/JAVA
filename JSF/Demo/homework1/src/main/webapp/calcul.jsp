@@ -8,22 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Calcul</title>
+    <title>Math Form</title>
 </head>
 <body>
 
-</form><form action="calcul" method="get">
+<form action="calculate" method="get">
     enter num1 : <input type="text"  name="num1"/><br/>
     enter num2 : <input type="text"  name="num2"/><br/>
     <select name="op">
-        <option>+</option>
-        <option>-</option>
-        <option>*</option>
-        <option>:</option>
-    </select>
-    <input type="submit" value="Calculate"/>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select><br>
+    <input type="submit" value="CACULATE"/>
 </form>
 <br/>
-<a href="calcul">Result</a>
+
 </body>
 </html>

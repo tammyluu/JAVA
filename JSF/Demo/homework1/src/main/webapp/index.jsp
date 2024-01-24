@@ -5,17 +5,28 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
+<h1> Home Page</h1>
 <h1> Login Form</h1>
-<form action="cal" method="get">
+<form action="login" method="get">
     enter username : <input type="text"  name="user"/><br/>
     enter password : <input type="password"  name="pw"/><br/>
     <input type="submit" value="Login"/>
-</form><form action="toto" method="get">
+</form>
+<h1>Calculator</h1>
+<form action="calculate" method="get">
     enter num1 : <input type="text"  name="num1"/><br/>
     enter num2 : <input type="text"  name="num2"/><br/>
-    <input type="submit" value="SUM"/>
+    <select name="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="submit" value="Calculate"/>
 </form>
+
 <br/>
-<a href="toto">Hello Servlet</a>
+<a href="toto">Test</a><br>
+
 </body>
 </html>

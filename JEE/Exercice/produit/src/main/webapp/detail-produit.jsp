@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Administrateur
@@ -5,25 +6,28 @@
   Time: 17:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Detail de produit</title>
 </head>
 <body>
-<body>
+<h1>>>Detail d'un produit</h1>
+<label>Marque: </label>
+<c:out value="${produit.getMarque()}"></c:out><br>
+<label>Référence: </label>
+<c:out value="${produit.getReference()}"></c:out><br>
+<label>Prix  </label>
+<c:out value="${produit.getPrix()}"></c:out><br>
+<label>Stock </label>
+<c:out value="${produit.getStock()}"></c:out>
 
-<h2>Détails du produit</h2>
 
-<div>
-    <p>Marque    : ${produit_detail.marque}</p>
-    <p>Référence : ${produit_detail.reference}</p>
-    <p>Prix      : ${produit_detail.prix}</p>
-    <p>Stock     : ${produit_detail.stock}</p>
-</div>
 
-<p>${erreurMessage}</p>
+
+
 
 </body>
 </html>
