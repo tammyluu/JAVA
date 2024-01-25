@@ -32,13 +32,7 @@
     <tbody>
     <c:forEach items="${produits}" var="produit">
         <tr>
-            <td width="100"><img src="upload/photo" width="80" height="70">
-                <form method="post" action="upload" enctype="multipart/form-data">
-                    Select file to upload: <input type="file" name="image" size="60" /><br /><br />
-                    <button type="submit" class="btn btn-primary">Upload</button>
-
-                </form>
-            </td>
+            <td width="100"><img src="<c:url value="/images/${produit.image}"/>" width="80" height="70"/></td>
             <td>${produit.getMarque()}</td>
             <td>${produit.getReference()}</td>
             <td>${produit.getPrix()} €</td>
@@ -47,8 +41,11 @@
                 <button type="button" class="btn">
                     <a href="produitDetail?id=${produit.getId()}">Détails</a>
                 </button>
+                <button type="button" class="btn">
+                    <a href="edit?id=${produit.getId()}">Edit</a>
+                </button>
                 <button type="button" class="btn ">
-                    <a href="delete?id=${produit.getId()}"  class="btn btn-delete">Supprimer</a>
+                    <a href="produit?id=${produit.getId()}"  class="btn btn-delete">Supprimer</a>
                 </button>
             </td>
         </tr>

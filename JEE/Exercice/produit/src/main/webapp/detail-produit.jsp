@@ -16,12 +16,17 @@
 <body>
 <h1>>>Detail d'un produit</h1>
 <form action="produitDetail">
+    <label>Image: </label>
+    <c:if test="${Produit.image != null}">
+        <img src="<c:url value="/images/${Produit.image}"/>"width="80" height="70" >
+    </c:if>
+   ${produit.getImage()}<br>
     <label>Marque: </label>
    ${produit.getMarque()}<br>
     <label>Référence: </label>
     ${produit.getReference()}<br>
-    <label>Prix  </label>
-    ${produit.getPrix()}<br>
+    <label>Prix unitaire:  </label>
+    ${produit.getPrix()} €<br>
     <label>Stock </label>
    ${produit.getStock()}
 </form>

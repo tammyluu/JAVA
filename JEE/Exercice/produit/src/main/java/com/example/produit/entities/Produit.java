@@ -22,6 +22,7 @@ public class Produit {
     private double prix;
 
     private int stock;
+    private String image;
 
     public Produit() {
     }
@@ -41,11 +42,12 @@ public class Produit {
         this.stock = stock;
     }
 
-    public Produit(String marque, String reference, double prix, int stock) {
+    public Produit(String marque, String reference, double prix, int stock, String image) {
         this.marque = marque;
         this.reference = reference;
         this.prix = prix;
         this.stock = stock;
+        this.image = image;
     }
 
     /*public Produit(String marque, String ref, String dateAchat, double prix) {
@@ -55,6 +57,14 @@ public class Produit {
         this.prix = prix;
         this.stock = stock;
     }*/
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;

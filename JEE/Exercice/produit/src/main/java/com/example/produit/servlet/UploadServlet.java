@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import org.eclipse.tags.shaded.org.apache.xpath.res.XPATHErrorResources_tr;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -35,18 +35,19 @@ public class UploadServlet  extends HttpServlet {
 
 
         image.write( uploadPath + File.separator + fileName );
-        try (PrintWriter out = resp.getWriter()){
+        try {
+            PrintWriter out = resp.getWriter();
             out.print("<img src='images/" + fileName + "' width='100' height='100'>");
-
-
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
-/*String fullname = req.getParameter("fullename");
+
+
+
 //get file upload by name field
-        try {
-            Part part = req.getPart("photo");
+      /*  try {
+            Part part = req.getPart("image");
             String reelPath = req.getServletContext().getRealPath("/images");
             String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
             if (!Files.exists(Path.of(reelPath))){
@@ -58,8 +59,8 @@ public class UploadServlet  extends HttpServlet {
             System.out.println(e.getMessage());
         }
 
-
-req.getRequestDispatcher("uploadfile.jsp").forward(req,resp);*/
+*/
+req.getRequestDispatcher("uploadfile.jsp").forward(req,resp);
 
     }
 }

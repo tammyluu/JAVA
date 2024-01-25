@@ -60,17 +60,15 @@ public class ProduitService extends BaseService implements Repository<Produit> {
     @Override
     public List<Produit> findAll() {
         List<Produit> produitList;
-        try {
-            session = sessionFactory.openSession();
+        try (Session session = sessionFactory.openSession()) {
             Query<Produit> produitQuery = session.createQuery("from Produit");
             produitList = produitQuery.list();
-            session.close();
-            return produitList;
-        }catch (Exception e){
-            throw e;
+        } catch (Exception e) {
+             throw e;
         }
-
+        return produitList;
     }
+
 
     public List<Produit> filterByPrice(double min) throws Exception {
         if (min >= 0) {
@@ -84,7 +82,7 @@ public class ProduitService extends BaseService implements Repository<Produit> {
         throw new Exception("erreur valeur");
     }
 
-    /*public List<Produit> filterByDate(Date min, Date max) throws Exception {
+    public List<Produit> filterByDate(Date min, Date max) throws Exception {
         if (min.before(max)) {
             session = sessionFactory.openSession();
             Query<Produit> produitQuery = session.createQuery("from Produit where dateAchat >= :min and dateAchat <= :max ");
@@ -95,7 +93,7 @@ public class ProduitService extends BaseService implements Repository<Produit> {
             return produitList;
         }
         throw new Exception("erreur date");
-    }*/
+    }
 
     public List<Produit> filterByStockMax(int max) throws Exception {
         if (max >= 0) {

@@ -17,7 +17,7 @@
 <div class="container">
     <h2>Formulaire de création d'un produit</h2>
 
-    <form action="produit" method="post">
+    <form action="produit" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="marque" class="form-label">Marque : </label>
             <input type="text" class="form-control" id="marque" name="marque"></div>
@@ -34,6 +34,11 @@
             <label for="stock" class="form-label">Stock :</label>
             <input type="number" class="form-control" id="stock" name="stock">
         </div>
+        <div class="mb-3">
+            Select : <input type="file" name="image" size="60" /><br /><br />
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+
         <button type="submit" class="btn btn-primary">Créer</button><br>
 
         <a href="produit">Liste de produits</a>
