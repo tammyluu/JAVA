@@ -89,14 +89,14 @@ public class ProduitServlet extends HttpServlet {
                             String ext = originalFileName.substring(index + 1);
                             String fileName = System.currentTimeMillis() + "." + ext;
                             // Vérifier l'existence du répertoire
-                            File dir = new File(Constant.DIR);
+                           /* File dir = new File(Constant.DIR);
                             if (!dir.exists()) {
                                 dir.mkdirs(); // Créer le répertoire s'il n'existe pas
                             }
                             //File file = new File(Constant.DIR + "/" + fileName);
                             File file = new File(dir, fileName);
                             item.write(file);
-                            produit.setImage(fileName);
+                            produit.setImage(fileName);*/
                         } else {
                             produit.setImage(image1);
                         }

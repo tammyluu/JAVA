@@ -55,17 +55,7 @@ public class LoginServlet extends HttpServlet {
 
 
 
-        User theLastestUser = (User) req.getSession(false).getAttribute("theLastestUser");
 
-        if(theLastestUser != null && email.equalsIgnoreCase(theLastestUser.getEmail()) && password.equals(theLastestUser.getPassword())) {
-            //login succes
-            resp.sendRedirect("welcome");
-        } else {
-            //login failed
-            req.setAttribute("msg", "Infos non exact!");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
-            dispatcher.forward(req, resp);
-        }
 
 
     }
