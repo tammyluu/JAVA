@@ -38,18 +38,11 @@
                     <label for="dateOfBirth">Date Of Birth</label>
                     <input type="text" class="form-control" id="dateOfBirth" placeholder="12" name="dateOfBirth" value="${patient.getDateOfBirth()}">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputAddress2">Stock</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="50" name="stock" value="${patient.getStock()}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputAddress3">Stock</label>
-                    <input type="date" class="form-control" id="inputAddress3" placeholder="50" name="dateAchat" value="${patient.getDateAchat()}">
-                </div>
+
             </div>
             <div class="form-row">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Image</label>
+                    <label for="formFile" class="form-label">Photo</label>
                     <input class="form-control" type="file" id="formFile" name="image" accept=".png" >
                 </div>
             </div>
