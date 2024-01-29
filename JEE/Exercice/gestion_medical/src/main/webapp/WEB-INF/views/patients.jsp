@@ -19,7 +19,7 @@
 
     <center>
         <table border="1" cellpadding="5" class="table table-dark text-center" >
-            <caption><h2>List of Product</h2></caption>
+
             <tr>
                 <th>Id</th>
                 <th>Photo</th>

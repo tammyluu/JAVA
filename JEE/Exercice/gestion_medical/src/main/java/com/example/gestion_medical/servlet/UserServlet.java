@@ -38,6 +38,7 @@ public class UserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
+        String remember = req.getParameter("remember-me");
 
         if(email != null && password != null && name != null){
             User user1 = new User(email,name,password);
@@ -51,12 +52,15 @@ public class UserServlet extends HttpServlet {
             User user2 = new User(email,password);
             User user3 =  userService.getByEmailPassword(user2);
             if(user3 != null){
+                // save session
                 HttpSession session = req.getSession();
                 session.setAttribute("isLogged", true);
                 session.setAttribute("name",user3.getName());
+                //redirect => list
                 resp.sendRedirect("list");
 
             }else{
+                // user incorrect
                 HttpSession session = req.getSession();
                 session.setAttribute("loginError", "Identifiants invalides.");
                 resp.sendRedirect("login.jsp");

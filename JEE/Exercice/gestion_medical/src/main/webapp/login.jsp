@@ -26,8 +26,11 @@
             <label for="password" class="form-label">password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
+        <div class="form-group">
+            <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
         <div id="register-link" class="text-right">
             <a href="register.jsp" class="text-info">Register here</a>
         </div>

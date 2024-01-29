@@ -2,6 +2,7 @@ package com.example.gestion_medical.services;
 
 import com.example.gestion_medical.entities.Patient;
 import com.example.gestion_medical.interfaces.Repository;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -47,6 +48,11 @@ public class PatientService extends BaseService implements Repository<Patient> {
 
     @Override
     public List<Patient> findAll() {
-        return null;
+        List<Patient> patientList = null;
+        session = sessionFactory.openSession();
+        Query<Patient> produitQuery = session.createQuery("from Patient ");
+        patientList = produitQuery.list();
+        session.close();
+        return patientList;
     }
 }

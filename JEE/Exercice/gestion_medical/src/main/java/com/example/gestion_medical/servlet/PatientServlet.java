@@ -81,14 +81,31 @@ public class PatientServlet  extends HttpServlet {
     }
 
     private void updatePatient(HttpServletRequest req, HttpServletResponse resp)   throws ServletException, IOException{
+    
     }
 
     private void showPatient(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher(Definition.VIEW_PATH+"form-patient.jsp");
-        dispatcher.forward(req, resp);
+        if(req.getParameter("id") != null) {
+            int id = Integer.parseInt((req.getParameter("id")));
+            Patient patient = patientService.findById(id);
+            req.setAttribute("patient", patient);
+            req.getRequestDispatcher(Definition.VIEW_PATH+"patient.jsp").forward(req,resp);
+            System.out.println(patient);
+        }
+        else {
+            req.setAttribute("patients", patientService.findAll());
+            req.getRequestDispatcher(Definition.VIEW_PATH+"patients.jsp").forward(req,resp);
+        }
     }
 
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Patient existingPatient = patientService.findById(id);
+        System.out.println(patientService.findById(id).getLastName());
+        RequestDispatcher dispatcher = req.getRequestDispatcher(Definition.VIEW_PATH+"form-patient.jsp");
+        req.setAttribute("patient", existingPatient);
+        System.out.println(existingPatient);
+        dispatcher.forward(req, resp);
     }
 
 
