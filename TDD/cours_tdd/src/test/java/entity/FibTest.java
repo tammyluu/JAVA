@@ -4,13 +4,13 @@ import org.example.entity.Fib;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FibTest {
 
-    //Le résultat n’est pas vide
-    //Le résultat correspond à une liste qui contient {0}
     @Test
     void testFibWithRang1IsNotEmpty(){
         // Arrange
@@ -21,7 +21,7 @@ public class FibTest {
 
         // Assert
         Assertions.assertFalse(result.isEmpty(), "Le résultat ne doit pas vide");
-       // Assertions.assertEquals(List.of(0), result, "Le résultat devrait contenir la liste {0}");
+
     }
     @Test
     void testFibWithRang1containList(){
@@ -32,7 +32,8 @@ public class FibTest {
         List<Integer> result = fib.getFibSeries();
 
         // Assert
-         Assertions.assertEquals(List.of(0), result, "Le résultat devrait contenir la liste {0}");
+        Assertions.assertEquals(Arrays.asList(0),result);
+       // Assertions.assertEquals(List.of(0), result, "Le résultat devrait contenir la liste {0}");
     }
 
 @Test
@@ -47,49 +48,43 @@ void testFibWithRang6ContainNumber3() {
     Assertions.assertTrue(result.contains(3) );
 }
     @Test
-    void testFibWithRang6Contain6Number() {
-        // Arrange
-        Fib fib = new Fib(6);
+    void testFibWithRang6ContainNumber6() {
+       Fib fib = new Fib(6);
 
-        // Act
-        List<Integer> result = fib.getFibSeries();
+       List<Integer> result = fib.getFibSeries();
 
-        // Assert
         Assertions.assertEquals(6,result.size() );
     }
 
     @Test
     void testFibWithRang6NotWithinNumber4() {
-        // Arrange
+
         Fib fib = new Fib(6);
 
-        // Act
         List<Integer> result = fib.getFibSeries();
 
-        // Assert
         Assertions.assertFalse(result.contains(4) );
     }
     @Test
     void testFibWithRang6ContainAList() {
-        // Arrange
         Fib fib = new Fib(6);
 
-        // Act
-        List<Integer> result = fib.getFibSeries();
+       List<Integer> result = fib.getFibSeries();
 
-        // Assert
-        Assertions.assertEquals(List.of(0,1,1,2,3,5), result);
+       // Assertions.assertEquals(List.of(0,1,1,2,3,5), result);
+        Assertions.assertTrue(result.containsAll(Arrays.asList(1,1,2,3,5,0)));
     }
     @Test
     void testFibWithRang6OderByAsc() {
-        // Arrange
+
         Fib fib = new Fib(6);
 
-        // Act
         List<Integer> result = fib.getFibSeries();
+        List<Integer> expected  = List.of(0, 1, 1, 2, 3, 5);
 
-        // Assert
-        Assertions.assertIterableEquals(List.of(0, 1, 1, 2, 3, 5), result);
+        Assertions.assertIterableEquals(expected, result);
+       /* System.out.println(result);
+        System.out.println(List.of(0, 1, 1, 2, 3, 5));*/
     }
 
 

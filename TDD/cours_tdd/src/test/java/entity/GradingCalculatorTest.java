@@ -8,7 +8,7 @@ public class GradingCalculatorTest {
 
     // Score: 95%, Présence: 90 => Note: A
     @Test
-    void testGrading1() {
+    void testGradingWithScore95andAttendancePercentage90() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(95,90);
@@ -17,7 +17,7 @@ public class GradingCalculatorTest {
 
     // Score: 85%, Présence: 90 => Note: B
     @Test
-    void testGrading2() {
+    void testGradingWithScore85andAttendancePercentage90() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(85, 90);
@@ -26,7 +26,7 @@ public class GradingCalculatorTest {
 
     // Score: 65%, Présence: 90 => Note: C
     @Test
-    void testGrading3() {
+    void testGradingWithScore65andAttendancePercentage90() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(65, 90);
@@ -35,7 +35,7 @@ public class GradingCalculatorTest {
 
     // Score: 95%, Présence: 65 => Note: B
     @Test
-    void testGrading4() {
+    void testGradingWithScore95andAttendancePercentage65() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(95, 65);
@@ -44,7 +44,7 @@ public class GradingCalculatorTest {
 
     // Score: 95%, Présence: 55 => Note: F
     @Test
-    void testGrading5() {
+    void testGradingWithScore95andAttendancePercentage55() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(95, 55);
@@ -53,7 +53,7 @@ public class GradingCalculatorTest {
 
     // Score: 65%, Présence: 55 => Note: F
     @Test
-    void testGrading6() {
+    void testGradingWithScore65andAttendancePercentage55() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(65, 55);
@@ -62,7 +62,7 @@ public class GradingCalculatorTest {
 
     // Score: 50%, Présence: 90 => Note: F
     @Test
-    void testGrading7() {
+    void ttestGradingWithScore50andAttendancePercentage90() {
         GradingCalculator gradingCalculator = new GradingCalculator();
 
         char actual = gradingCalculator.getGrade(50, 90);
