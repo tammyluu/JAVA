@@ -4,6 +4,7 @@ import com.example.gestion_medical.entities.Patient;
 import com.example.gestion_medical.services.PatientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @WebServlet("/imageServlet")
-public class ImageServlet {
+public class ImageServlet extends HttpServlet {
 
     private PatientService service;
 

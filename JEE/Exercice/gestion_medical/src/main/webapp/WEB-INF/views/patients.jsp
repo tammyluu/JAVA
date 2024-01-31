@@ -33,7 +33,7 @@
                     <c:forEach items="${patients}" var="patient">
                         <tr>
                             <td>${patient.getId()}</td>
-                            <td> <img src="${pageContext.request.contextPath}/imageServlet?id=${patient.getId()}" class="img-thumbnail" style="width: 50px;height: 50px;" alt="Image du Patient"></td>
+                            <td> <img src="${pageContext.request.contextPath}/imageServlet?id=${patient.getId()}" class="img-thumbnail" style="width: 50px;height: 50px;" alt="Image"></td>
                             <td>${patient.getLastName()}</td>
                             <td>${patient.getFirstName()}</td>
                             <td>${patient.getDateOfBirth()} </td>

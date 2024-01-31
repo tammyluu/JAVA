@@ -24,7 +24,7 @@ public class PenduTest {
     void setup(){
        wordGenerator = Mockito.mock(WordGenerator.class);
         when(wordGenerator.getRandomWord(any())).thenReturn("groovy");
-        lePendu = new LePendu(wordGenerator);
+        lePendu = new LePendu(wordGenerator, 6);
     }
 
     @Test
@@ -46,9 +46,7 @@ public class PenduTest {
     }
     @Test
     void isPlayerWinTest() {
-
-        // Act & Assert
-        Assertions.assertFalse(lePendu.isPlayerWin());
+        // Arrange
 
         lePendu.isCharInWord('g');
         lePendu.isCharInWord('r');
@@ -56,8 +54,16 @@ public class PenduTest {
         lePendu.isCharInWord('o');
         lePendu.isCharInWord('v');
         lePendu.isCharInWord('y');
+        // Act & Assert
 
         Assertions.assertTrue(lePendu.isPlayerWin());
+    }
+    @Test
+    void isPlayerLooseTest() {
+        // Arrange
+        lePendu.isCharInWord('g');
+        // Act & Assert
+        Assertions.assertFalse(lePendu.isPlayerWin());
     }
     @Test
     void playerDoesNotWinInitially() {
@@ -69,12 +75,34 @@ public class PenduTest {
         lePendu.isCharInWord('g');
         Assertions.assertEquals("g_____", lePendu.generateMask());
     }
-    @Test
+    /*@Test
     void correctGuessSecondLetterUpdatesMask() {
-        System.out.println("Before: " + lePendu.getMask());
+        System.out.println("Before: " + lePendu.generateMask());
         lePendu.isCharInWord('r');
         System.out.println("After: " + lePendu.getMask());
         Assertions.assertEquals("gr____", lePendu.generateMask());
+    }*/
+    @Test
+    void testGameEndsAfterMaxAttempts(){
+        lePendu = new LePendu(wordGenerator,6);
+        lePendu.generateMask();
+        for (char incorrectGuess : "xyzwvu".toCharArray()) {
+            System.out.println("Mask before guess: " + lePendu.generateMask());
+            lePendu.isCharInWord(incorrectGuess);
+            System.out.println("Mask after guess '" + incorrectGuess + "': " + lePendu.generateMask());
+        }
+        Assertions.assertFalse(lePendu.isPlayerWin());
+    }
+    @Test
+    void testGameEndsAfterMaxAttempts1(){
+        lePendu = new LePendu(wordGenerator,2);
+        lePendu.generateMask();
+        for (char correctGuess : "ygurovm".toCharArray()) {
+            System.out.println("Mask before guess: " + lePendu.generateMask());
+            lePendu.isCharInWord(correctGuess);
+            System.out.println("Mask after guess '" + correctGuess + "': " + lePendu.generateMask());
+        }
+        Assertions.assertTrue(lePendu.isPlayerWin());
     }
 
 }

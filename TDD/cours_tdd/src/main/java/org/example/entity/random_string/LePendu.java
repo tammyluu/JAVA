@@ -12,7 +12,7 @@ public class LePendu {
     private StringBuilder mask;
     private Set<Character> guessedLetters;
 
-    public LePendu(WordGenerator wordGenerator) {
+    public LePendu(WordGenerator wordGenerator, int i) {
         this.wordGenerator = wordGenerator;
         this.wordToGuess = wordGenerator.getRandomWord(new String[]{});
         this.mask = new StringBuilder("_".repeat(wordToGuess.length()));
@@ -40,13 +40,29 @@ public class LePendu {
 
        guessedLetters.add(guessedChar); // Enregistre la lettre devinée
 
+       // Initialize a new mask string
+       StringBuilder newMask = new StringBuilder(mask);
+
+       boolean charInWord = false;
        for (int i = 0; i < wordToGuess.length(); i++) {
            if (wordToGuess.charAt(i) == guessedChar) {
-               mask.setCharAt(i, guessedChar);
+               newMask.setCharAt(i, guessedChar);
+               charInWord = true;
            }
        }
-       return false;
+
+       // Update the mask
+       mask = newMask;
+
+       // Check if the player has won
+       if (!mask.toString().contains("_")) {
+           System.out.println("Le joueur a gagné !");
+           return true;
+       }
+
+       return charInWord;
    }
+
 
    /* private void updateMask(char guess) {
         for (int i = 0; i < wordToGuess.length(); i++) {
