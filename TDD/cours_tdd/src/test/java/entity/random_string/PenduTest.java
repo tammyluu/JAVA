@@ -22,7 +22,9 @@ public class PenduTest {
     private WordGenerator wordGenerator;
     @BeforeEach
     void setup(){
+        //create a fake object
        wordGenerator = Mockito.mock(WordGenerator.class);
+       //config fake behavior
         when(wordGenerator.getRandomWord(any())).thenReturn("groovy");
         lePendu = new LePendu(wordGenerator, 6);
     }
