@@ -1,14 +1,13 @@
 package org.example.port;
 
-import org.example.entity.Room;
-
 import java.util.List;
 
-public interface IBaseRepository {
-    void create(Room room);
-    void delete(Room room);
-    Room findById(int id);
-    List<Room> findAll(String search);
+public interface IBaseRepository<T> {
+    void create(T element);
+    void delete(T element);
+    <T> void findById(int id);
+    List<T> findAll(String search);
+    void update(T element);
 
-    void update(Room room);
+
 }

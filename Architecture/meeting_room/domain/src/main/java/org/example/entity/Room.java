@@ -54,16 +54,13 @@ public class Room {
     public Room(Builder builder) {
         this.setId(builder.id);
         this.setName(builder.name);
-        this.setDate(builder.date);
-        this.setHours(builder.hours);
         this.setCapacity(builder.capacity);
 
     }
     public static class Builder {
         private int id;
         private String name;
-        private LocalDate date;
-        private LocalTime hours;
+
         private  int capacity;
 
         public Builder id(int id) {
@@ -76,14 +73,7 @@ public class Room {
             return this;
         }
 
-        public Builder date(LocalDate date) {
-            this.date = date;
-            return this;
-        }
-        public Builder hours(LocalTime hours) {
-            this.hours = hours;
-            return this;
-        }
+
         public Builder capacity(int capacity) {
             this.capacity = capacity;
             return this;
