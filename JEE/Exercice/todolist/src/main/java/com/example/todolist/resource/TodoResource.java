@@ -2,6 +2,7 @@ package com.example.todolist.resource;
 
 
 import com.example.todolist.dto.TodoDto;
+import com.example.todolist.entity.Todo;
 import com.example.todolist.service.TodoService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -20,14 +21,13 @@ public class TodoResource {
     }
 
     @GET
-    public List<TodoDto> getAll() {
-       List<TodoDto> todoDtoList = todoService.getAllTodos();
-       return todoDtoList;
+    public List<Todo> getAll() {
+        return todoService.getAllTodos();
     }
 
     @GET
     @Path("{id}")
-    public TodoDto getById(@PathParam("id") Long id) {
+    public Todo getById(@PathParam("id") Long id) {
         return todoService.getTodoById(id);
     }
 
@@ -39,9 +39,9 @@ public class TodoResource {
     }
 
     @PATCH
-    @Path("{id}")
-    public String pathStatus(@PathParam("id")Long id) {
-        return todoService.updateStatus(id);
+    @Path("update/{id}")
+    public Todo pathStatus(@PathParam("id")Long id, @FormParam("status") boolean status) {
+        return todoService.updateStatus(id, status);
     }
 
     @DELETE

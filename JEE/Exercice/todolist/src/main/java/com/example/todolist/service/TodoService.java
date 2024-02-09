@@ -3,6 +3,7 @@ package com.example.todolist.service;
 
 import com.example.todolist.dto.TodoDto;
 import com.example.todolist.entity.Todo;
+import com.example.todolist.exception.RepositoryException;
 import com.example.todolist.repository.TodoRepository;
 import com.example.todolist.util.HibernateSession;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -11,7 +12,6 @@ import jakarta.ws.rs.NotFoundException;
 import org.hibernate.Session;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class TodoService {
@@ -39,35 +39,24 @@ public class TodoService {
             session.close();
         }
     }
-    public TodoDto getTodoById(Long id) {
+    public Todo getTodoById(Long id) {
+        Session session = HibernateSession.getSessionFactory().openSession();
+        todoRepository.setSession(session);
+        session.beginTransaction();
         try {
             Todo todo = todoRepository.findById(id);
-            if (todo == null) {
-                throw new NotFoundException("Todo with ID " + id + " not found");
-            }
-            return todo.toDto();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            throw ex;
+            session.getTransaction().commit();
+            return todo;
+        }catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw new RepositoryException();
+        }finally {
+            session.close();
         }
     }
 
-    public String updateStatus(Long id) {
-        try {
-            Todo todo = todoRepository.findById(id);
-            if (todo == null) {
-                throw new NotFoundException("Todo with ID " + id + " not found");
-            }
-
-            // Update the todo status
-            boolean newStatus = false;
-            todo.setStatus(newStatus);
-            todoRepository.update(todo);
-
-            return "Todo with ID " + id + " updated successfully";
-        } catch (Exception ex) {
-            throw ex;
-        }
+    public Todo updateStatus(Long id, boolean status) {
+        return Todo.builder().status(status).build();
     }
 
     public String delete(Long id) {
@@ -84,10 +73,20 @@ public class TodoService {
         }
     }
 
-    public List<TodoDto> getAllTodos() {
-        List<Todo> todos = todoRepository.findAll();
-        return todos.stream()
-                .map(Todo::toDto)
-                .collect(Collectors.toList());
+    public List<Todo> getAllTodos() throws RepositoryException {
+        Session session = HibernateSession.getSessionFactory().openSession();
+        List<Todo> todos = null;
+        todoRepository.setSession(session);
+        session.beginTransaction();
+        try {
+            todos = todoRepository.findAll();
+            session.getTransaction().commit();
+        }catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw new RepositoryException();
+        }finally {
+            session.close();
+        }
+        return todos;
     }
 }
