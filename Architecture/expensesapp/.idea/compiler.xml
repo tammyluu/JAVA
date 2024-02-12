@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ports" />
-        <module name="adapters_infra" />
         <module name="domain" />
+        <module name="adapters" />
       </profile>
     </annotationProcessing>
   </component>
