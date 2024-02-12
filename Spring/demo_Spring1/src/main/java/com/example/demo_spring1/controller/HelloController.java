@@ -1,6 +1,7 @@
 package com.example.demo_spring1.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +23,17 @@ public List<String> getPersons(){
 @RequestMapping(value = "toto")
 public String showTodo(){
     return "toto";
+}
+@RequestMapping("/home/person")
+public String personName(Model model){
+    model.addAttribute("firstName", "Tammy");
+    model.addAttribute("lastName", "Luu");
+
+    List<String> persons = List.of("John Dupont","Mama Mia", "Lala Lyli");
+    //List<String> persons = List.of();
+    model.addAttribute("persons", persons);
+
+    return "person/details";
 }
 
 }
