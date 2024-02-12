@@ -2,16 +2,22 @@ package com.example.exo_todo.service;
 
 import com.example.exo_todo.models.Todo;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public interface TodoService {
-    List<Todo> getAllTodos();
+public class TodoService {
+    private ArrayList<Todo> todos;
+    public TodoService(){
+        this.todos = new ArrayList<>();
+        this.todos.add( new Todo(10, "Shopping", "description1", true));
+        this.todos.add(new Todo(11, "Gym", "description2", false));
+        this.todos.add(new Todo(12, "Date Mate", "description3", false));
+    }
 
-    Todo getTodoById(int id);
+    public ArrayList<Todo> getTodos() {
+        return todos;
+    }
 
-    Todo createTodo(Todo todo);
-
-    Todo updateTodo(int id, Todo todo);
-
-    void deleteTodoById(int id);
+    public void setTodos(ArrayList<Todo> todos) {
+        this.todos = todos;
+    }
 }
