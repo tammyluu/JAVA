@@ -2,6 +2,10 @@ package com.example.demo_fragment.service;
 
 import com.example.demo_fragment.model.Rabbit;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,5 +51,24 @@ public class RabbitService {
         return rabbits.values().stream().filter(rabbit -> rabbit.getId().equals(id)).findFirst().orElse(null);
       //return  rabbits.get(id);
     }
+    public  boolean addRabbit(Rabbit rabbit){
+//        Rabbit rabbitToAdd = Rabbit.builder()
+//                .id(UUID.randomUUID())
+//                .name(rabbit.getName())
+//                .breed(rabbit.getBreed())
+//                .build();
+
+        if ((rabbit.getId() == null)) {
+            rabbit.setId(UUID.randomUUID());
+            rabbits.put(rabbit.getId(), rabbit);
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public Rabbit getRabbitByName(String name){
+        return rabbits.values().stream().filter(rabbit -> rabbit.getName().equals(name)).findFirst().orElse(null);
+    }
+
 
 }

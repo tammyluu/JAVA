@@ -42,7 +42,7 @@ public class DemoController {
     public  String  allRabbit (Model model){
          List<Rabbit> rabbits = rabbitService.getRabbits();
          model.addAttribute("rabbits", rabbits);
-        return "pagea";
+        return "pageb";
      }
 
 }

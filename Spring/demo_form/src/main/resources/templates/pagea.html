@@ -14,11 +14,16 @@
 <header>
     <h1> Page A</h1>
     <nav>
-        <a th:href="@{/pageb}">Page B</a>
-        <a th:href="@{/all}">List of Rabbit</a>
+        <a th:href="@{/pageb}">Page B</a><br>
+        <a th:href="@{/all}">List of Rabbit</a><br>
+        <a th:href="@{/add}">Formulaire</a><br>
+        <a th:href="@{/look}">Search without data</a><br>
+        <a th:href="@{/look(namerabbit='Moon')}">Search</a>
     </nav>
         <img th:src="@{/images/flower.webp}" alt="flower">
 </header>
+
+
 <!--<p th:if="${rabbits != null}" > Rabbit not found</p>
 <table th:unless="${rabbits == null}" class="table" >
     <thead>
