@@ -16,4 +16,5 @@ public class Student {
     private String lastName;
     private  int age;
     private  String email;
+    private String thumbnail;
 }

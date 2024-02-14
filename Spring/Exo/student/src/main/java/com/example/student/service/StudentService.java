@@ -1,13 +1,14 @@
 package com.example.student.service;
 
 import com.example.student.model.Student;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-public class StudentService  implements IBaseService{
+@Service
+public class StudentService  implements IBaseService <Student>{
     private final Map<UUID, Student> students;
 
     public StudentService() {
@@ -62,7 +63,7 @@ public class StudentService  implements IBaseService{
             students.put(student.getId(),student);
             return true;
         }else {
-            return null;
+            return false;
         }
     }
 
