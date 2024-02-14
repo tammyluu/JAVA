@@ -10,8 +10,10 @@ public interface IBaseService <T>{
     List<T> findAllStudents();
     T findStudentById(UUID id);
     T findStudentByName(String firstName);
+    List<T> searchStudent(String search);
     T updateStudent(UUID id, T element);
     void deleteStudentById(UUID id);
+
 
 
 }

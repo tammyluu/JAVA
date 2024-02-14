@@ -21,12 +21,10 @@
             </form>
 
 
-            <table class="table">
+            <table class="table" th:unless="${students.isEmpty()}">
                 <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Détail</th>
+                    <th>Nom</th><th>Prénom</th><th>Détail</th>
 
                 </tr>
                 </thead>
@@ -34,16 +32,17 @@
                 <tr th:each="s:${students}">
                     <td th:text="${s.lastName}"></td>
                     <td th:text="${s.firstName}"></td>
-                    <td><a th:href="@{/detail/{studentId}(studentId=${s.id})}">Infos</a></td>
-
+                    <td><a th:href="@{/detail/{studentId}(studentId=${s.id})}" class="btn btn-outline-info"><i class="bi-bi-eye"></i></a></td>
+                    <td><a onclick="return confirm('Are you sure to remove this student?')" class="btn btn-danger" th:href="@{delete(id=${s.id})}"></a>Delete</td>
                 </tr>
                </tbody>
 
             </table>
-
+            <p th:if="${students.isEmpty()}">Student not found</p>
         </div>
     </div>
 
 </div>
+<span th:replace="~{home :: footer}"></span>
 </body>
 </html>

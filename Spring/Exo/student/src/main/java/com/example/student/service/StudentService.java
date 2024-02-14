@@ -1,6 +1,8 @@
 package com.example.student.service;
 
 import com.example.student.model.Student;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService  implements IBaseService <Student>{
     private final Map<UUID, Student> students;
 
@@ -86,9 +89,19 @@ public class StudentService  implements IBaseService <Student>{
 
     @Override
     public Student findStudentByName(String keyword) {
-        return students.values().stream().filter(s -> s.getFirstName().equals(keyword)).findFirst().orElse(null);
+        return (Student) students
+                .values()
+                .stream()
+                .filter(s -> s.getFirstName().toLowerCase().contains(keyword.toLowerCase())
+                || s.getLastName().toLowerCase().contains(keyword.toLowerCase()));
 
     }
+
+    @Override
+    public List<Student> searchStudent(String search) {
+        return null;
+    }
+
     public List<Student> findStudentsByFirstName(String keyword) {
         return students.values()
                 .stream()
@@ -98,11 +111,24 @@ public class StudentService  implements IBaseService <Student>{
 
     @Override
     public Student updateStudent(UUID id, Student student) {
-        return null;
+        if (students.containsKey(id)) {
+            Student existingStudent = students.get(id);
+           existingStudent.setFirstName(student.getFirstName());
+            existingStudent.setLastName(student.getLastName());
+            existingStudent.setAge(student.getAge());
+            existingStudent.setEmail(student.getEmail());
+            existingStudent.setThumbnail(student.getThumbnail());
+
+            return existingStudent;
+        } else {
+            System.out.println("Student not found");
+             return null;
+        }
     }
 
     @Override
     public void deleteStudentById(UUID id) {
+        students.remove(id);
 
     }
 }

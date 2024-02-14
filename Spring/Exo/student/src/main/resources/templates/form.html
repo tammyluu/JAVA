@@ -12,7 +12,7 @@
     <div class="Back">
         <i class="fa fa-arrow-left" onclick="Back()"></i>
     </div>
-    <p class="h2 text-center">Form</p>
+    <p class="h2 text-center">Student Infos</p>
     <form action="" method="post">
         <div class="preview text-center">
             <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
@@ -24,22 +24,22 @@
         </div>
         <div class="form-group">
             <label>Nom:</label>
-            <input class="form-control" type="text" name="firstName" />
+            <input   class="form-control" type="text" name="firstName" />
             <span class="Error"></span>
         </div>
         <div class="form-group">
             <label>Prénom:</label>
-            <input class="form-control" type="text" name="lastName" />
+            <input  class="form-control" type="text" name="lastName" />
             <span class="Error"></span>
         </div>
         <div class="form-group">
             <label>Age:</label>
-            <input class="form-control" type="text" name="age" />
+            <input  class="form-control" type="text" name="age" />
             <span class="Error"></span>
         </div>
         <div class="form-group">
             <label>Email:</label>
-            <input class="form-control" type="email" name="email" required placeholder="abc@xxx.xxx"/>
+            <input  class="form-control" type="email" name="email" required placeholder="abc@xxx.xxx"/>
             <span class="Error"></span>
         </div>
 
@@ -47,6 +47,7 @@
             <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
         </div>
     </form>
+    <span th:replace="~{home :: footer}"></span>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

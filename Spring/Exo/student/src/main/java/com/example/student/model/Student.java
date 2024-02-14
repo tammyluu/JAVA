@@ -9,7 +9,8 @@ import java.util.UUID;
 
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     private UUID id;
     private String firstName;
@@ -17,4 +18,6 @@ public class Student {
     private  int age;
     private  String email;
     private String thumbnail;
+
+
 }
