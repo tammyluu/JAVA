@@ -16,9 +16,11 @@
         <div class="card-body">
             <form method="get" th:action="@{list}">
                 <label>Key Word</label>
-                <input type="text" name="keyword" th:value="${keyword}">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <input type="text" name="keyword" th:value="keyword">
+                <button type="submit" class="btn btn-primary" th:href="@{/search(keyword=${keyword})}">Search</button>
             </form>
+
+
             <table class="table">
                 <thead>
                 <tr>
@@ -30,12 +32,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="s:${students}">
-                    <td th:text="${s.firstName}"></td>
                     <td th:text="${s.lastName}"></td>
+                    <td th:text="${s.firstName}"></td>
                     <td><a th:href="@{/detail/{studentId}(studentId=${s.id})}">Infos</a></td>
 
                 </tr>
-                </tbody>
+               </tbody>
 
             </table>
 

@@ -15,7 +15,8 @@
         <div class="row justify-content-center">
 
             <div class="card mt-4" style="width: 18rem;">
-                <img th:src="@{${student.thumbnail}}" alt="photo">
+<!--                <img th:src="@{${student.thumbnail}}" alt="photo">-->
+                <img th:src="${student.thumbnail}" alt="Photo">
                 <div class="card-body text-center">
                     <h5 class="card-title">Student Infos</h5>
                     <hr>
@@ -23,10 +24,11 @@
                     <p>Prénom : <span th:text="${student.lastName}"></span></p>
                     <p>Age : <span th:text="${student.age}"></span></p>
                     <p>Email : <span th:text="${student.email}"></span></p>
+
                 </div>
                 <hr>
                 <div class="card-body">
-                    <a th:href="@{/}" class="card-link">Back</a>
+                    <a th:href="@{/list}" class="card-link">Back</a>
                     <a href="#" class="card-link">Update</a>
                 </div>
             </div>

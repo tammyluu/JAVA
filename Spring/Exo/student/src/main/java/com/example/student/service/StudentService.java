@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Service
 public class StudentService  implements IBaseService <Student>{
     private final Map<UUID, Student> students;
@@ -19,6 +21,7 @@ public class StudentService  implements IBaseService <Student>{
                 .lastName("Lau")
                 .age(23)
                 .email("andy@gmail.com")
+                .thumbnail("/static/images/andy lau.jpg")
                 .build();
         Student student2 = Student.builder()
                 .id(UUID.randomUUID())
@@ -26,6 +29,7 @@ public class StudentService  implements IBaseService <Student>{
                 .lastName("Chan")
                 .age(20)
                 .email("jacky@gmail.com")
+                .thumbnail("/static/images/jacky.jpg")
                 .build();
         Student student3 = Student.builder()
                 .id(UUID.randomUUID())
@@ -33,6 +37,7 @@ public class StudentService  implements IBaseService <Student>{
                 .lastName("Gaga")
                 .age(19)
                 .email("lady@hotmail.com")
+                .thumbnail("/static/images/lady.jpg")
                 .build();
         Student student4 = Student.builder()
                 .id(UUID.randomUUID())
@@ -40,6 +45,7 @@ public class StudentService  implements IBaseService <Student>{
                 .lastName("Cruise")
                 .age(18)
                 .email("tom@yahoo.com")
+                .thumbnail("/static/images/tomcruise.jpg")
                 .build();
         Student student5 = Student.builder()
                 .id(UUID.randomUUID())
@@ -47,6 +53,7 @@ public class StudentService  implements IBaseService <Student>{
                 .lastName("Micheal")
                 .age(24)
                 .email("tommicheal@yahoo.com")
+                .thumbnail("/static/images/huynbin.jpg")
                 .build();
         students.put(student1.getId(),student1);
         students.put(student2.getId(),student2);
@@ -78,8 +85,15 @@ public class StudentService  implements IBaseService <Student>{
     }
 
     @Override
-    public Student findStudentByName(String firstName) {
-        return students.values().stream().filter(s -> s.getFirstName().equals(firstName)).findFirst().orElse(null);
+    public Student findStudentByName(String keyword) {
+        return students.values().stream().filter(s -> s.getFirstName().equals(keyword)).findFirst().orElse(null);
+
+    }
+    public List<Student> findStudentsByFirstName(String keyword) {
+        return students.values()
+                .stream()
+                .filter(s -> s.getFirstName().equals(keyword))
+                .collect(Collectors.toList());
     }
 
     @Override
