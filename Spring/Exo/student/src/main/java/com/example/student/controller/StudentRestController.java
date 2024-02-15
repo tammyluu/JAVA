@@ -24,16 +24,19 @@ public class StudentRestController {
         System.out.println(studentService.findStudentById(id));
         return studentService.findStudentById(id);
     }
-    @DeleteMapping("/delete/{id}")
+    @PostMapping
+    public Student createStudent(@RequestBody Student student){
+        studentService.createStudent(student);
+        return student;
+    }
+    @DeleteMapping("/{id}")
     public void deletedStudentByID(@PathVariable("id") UUID id){
          studentService.deleteStudentById(id);
         System.out.println("delete student successful");
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public void updateStudentByID(@PathVariable("id")UUID id, Student student){
         studentService.updateStudent(id, student);
         System.out.println("student update successful");
     }
-
-
 }

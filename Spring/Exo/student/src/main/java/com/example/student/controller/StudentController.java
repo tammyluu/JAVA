@@ -78,8 +78,7 @@ public class StudentController {
     @GetMapping("/delete/{id}")
     public  String deleteStudent (UUID id){
         studentService.deleteStudentById(id);
-        System.out.println("delete");
-        System.out.println(id);
+        System.out.println("delete successful");
         return "redirect:/list";
     }
     @PostMapping ("/update/{id}")
