@@ -14,10 +14,10 @@
     <div class="card">
         <div class="card-header"> List of Student</div>
         <div class="card-body">
-            <form method="get" th:action="@{list}">
-                <label>Key Word</label>
+            <form method="get" th:action="@{/list}">
+
                 <input type="text" name="keyword" th:value="keyword">
-                <button type="submit" class="btn btn-primary" th:href="@{/search(keyword=${keyword})}">Search</button>
+                <button type="submit" class="btn btn-primary" >Search</button>
             </form>
 
 
@@ -33,7 +33,7 @@
                     <td th:text="${s.lastName}"></td>
                     <td th:text="${s.firstName}"></td>
                     <td><a th:href="@{/detail/{studentId}(studentId=${s.id})}" class="btn btn-outline-info"><i class="bi-bi-eye"></i></a></td>
-                    <td><a onclick="return confirm('Are you sure to remove this student?')" class="btn btn-danger" th:href="@{delete(id=${s.id})}"></a>Delete</td>
+                    <td><a onclick="return confirm('Are you sure to remove this student?')" class="btn btn-danger" th:href="@{/delete/{id}(id=${s.id})}"></a>Delete</td>
                 </tr>
                </tbody>
 

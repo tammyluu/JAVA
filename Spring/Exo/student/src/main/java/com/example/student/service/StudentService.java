@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class StudentService  implements IBaseService <Student>{
+public class StudentService  implements IBaseService {
     private final Map<UUID, Student> students;
 
     public StudentService() {
@@ -97,9 +97,18 @@ public class StudentService  implements IBaseService <Student>{
 
     }
 
+
     @Override
-    public List<Student> searchStudent(String search) {
-        return null;
+    public List<Student> searchStudents(String search) {
+        String searchLower = search.toLowerCase();
+
+        return students
+                .values()
+                .stream()
+                .filter(student ->
+                        student.getLastName().toLowerCase().contains(searchLower) ||
+                                student.getFirstName().toLowerCase().contains(searchLower))
+                .toList();
     }
 
     public List<Student> findStudentsByFirstName(String keyword) {
@@ -118,8 +127,9 @@ public class StudentService  implements IBaseService <Student>{
             existingStudent.setAge(student.getAge());
             existingStudent.setEmail(student.getEmail());
             existingStudent.setThumbnail(student.getThumbnail());
-
+            System.out.println("update student");
             return existingStudent;
+
         } else {
             System.out.println("Student not found");
              return null;
@@ -128,7 +138,11 @@ public class StudentService  implements IBaseService <Student>{
 
     @Override
     public void deleteStudentById(UUID id) {
-        students.remove(id);
-
+        if(id != null && students.containsKey(id)) {
+            students.remove(id);
+            System.out.println("student removed successful");
+        } else {
+            System.out.println("student not found");
+        }
     }
 }

@@ -43,7 +43,7 @@ public class StudentController {
         if(keyword ==null){
             model.addAttribute("students", studentService.findAllStudents());
         }else {
-            model.addAttribute("students", studentService.searchStudent(keyword));
+            model.addAttribute("students", studentService.searchStudents(keyword));
 
         }
         return "students";
@@ -75,12 +75,18 @@ public class StudentController {
             return "error";
     }*/
 
-    @GetMapping("/delete")
-    public  String delete (UUID id){
+    @GetMapping("/delete/{id}")
+    public  String deleteStudent (UUID id){
         studentService.deleteStudentById(id);
         System.out.println("delete");
         System.out.println(id);
-        return "redirect:/students";
+        return "redirect:/list";
+    }
+    @PostMapping ("/update/{id}")
+    public  String updateStudent(@PathVariable("id") UUID id, @ModelAttribute("student")Student student){
+        studentService.updateStudent(id,student);
+        System.out.println("update student");
+        return "redirect:/list";
     }
 
 
