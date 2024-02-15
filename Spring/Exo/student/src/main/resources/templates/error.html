@@ -2,15 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <title>Error</title>
+    <title>Oups</title>
 </head>
 <body>
-<header>
-    <span th:replace="~{home :: navBar}"></span>
-</header>
-<h1>Error</h1>
-<p>There was an error processing your request.</p>
-<span th:replace="~{home :: footer}"></span>
+<h1>Error !!!</h1>
+<p> Your Path :  <span th:text="${path}"></span></p>
+<p> Web Status : <span th:text="${status}"></span> </p>
+<p>Code error : <span th:text="${error}"></span> </p>
+<p> message : <span th:text="${message}"></span> </p>
 </body>
 </html>

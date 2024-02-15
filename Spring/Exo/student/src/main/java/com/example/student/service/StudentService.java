@@ -122,7 +122,7 @@ public class StudentService  implements IBaseService {
     public Student updateStudent(UUID id, Student student) {
         if (students.containsKey(id)) {
             Student existingStudent = students.get(id);
-           existingStudent.setFirstName(student.getFirstName());
+            existingStudent.setFirstName(student.getFirstName());
             existingStudent.setLastName(student.getLastName());
             existingStudent.setAge(student.getAge());
             existingStudent.setEmail(student.getEmail());
@@ -138,6 +138,7 @@ public class StudentService  implements IBaseService {
 
     @Override
     public void deleteStudentById(UUID id) {
+
         if(id != null && students.containsKey(id)) {
             students.remove(id);
             System.out.println("student removed successful");
