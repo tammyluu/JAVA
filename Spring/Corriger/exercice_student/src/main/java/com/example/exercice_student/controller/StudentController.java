@@ -2,12 +2,14 @@ package com.example.exercice_student.controller;
 
 import com.example.exercice_student.model.Student;
 import com.example.exercice_student.service.IStudentService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -58,12 +60,17 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    public String addStudent(@ModelAttribute("student") Student student){
-       if (student.getId() != null){
-           studentService.updateStudent(student.getId(),student);
+    public String addStudent(@Valid @ModelAttribute("student") Student student, BindingResult result){
+       if (result.hasErrors()){
+           return "form";
        }else {
-           studentService.createStudent(student);
+           if (student.getId() != null){
+               studentService.updateStudent(student.getId(),student);
+           }else {
+               studentService.createStudent(student);
+           }
        }
+
 
         return "redirect:/students";
 
