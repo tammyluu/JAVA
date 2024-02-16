@@ -1,8 +1,9 @@
 package com.example.student.service;
 
 import com.example.student.model.Student;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -119,31 +120,20 @@ public class StudentService  implements IBaseService {
     }
 
     @Override
-    public Student updateStudent(UUID id, Student student) {
-        if (students.containsKey(id)) {
-            Student existingStudent = students.get(id);
-            existingStudent.setFirstName(student.getFirstName());
-            existingStudent.setLastName(student.getLastName());
-            existingStudent.setAge(student.getAge());
-            existingStudent.setEmail(student.getEmail());
-            existingStudent.setThumbnail(student.getThumbnail());
-            System.out.println("update student");
-            return existingStudent;
-
-        } else {
-            System.out.println("Student not found");
-             return null;
+    public Student updateStudent(UUID id, Student updateStudent) {
+        Student studentExist = findStudentById(id);
+        if ( studentExist != null){
+            studentExist.setFirstName(updateStudent.getFirstName());
+            studentExist.setLastName(updateStudent.getLastName());
+            studentExist.setAge(updateStudent.getAge());
+            studentExist.setEmail(updateStudent.getEmail());
+            studentExist.setThumbnail(updateStudent.getThumbnail());
         }
+        return studentExist;
     }
 
     @Override
     public void deleteStudentById(UUID id) {
-
-        if(id != null && students.containsKey(id)) {
-            students.remove(id);
-            System.out.println("student removed successful");
-        } else {
-            System.out.println("student not found");
-        }
+        students.remove(id);
     }
 }

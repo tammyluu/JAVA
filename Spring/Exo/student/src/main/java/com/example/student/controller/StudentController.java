@@ -22,7 +22,7 @@ public class StudentController {
     @Value("M2i")
     private String academyName;
 
-    @Value("toto@m2i.fr")
+    @Value("formation@m2i.fr")
     private String academycontact;
 
     public StudentController(IBaseService studentService) {
@@ -80,15 +80,16 @@ public class StudentController {
             return "error";
     }*/
 
-    @GetMapping("/delete/{id}")
-    public  String deleteStudent (UUID id){
+    @GetMapping("/delete")
+    public  String deleteStudent (@RequestParam("studentId")UUID id){
         studentService.deleteStudentById(id);
         System.out.println("delete successful");
         return "redirect:/list";
     }
-    @PostMapping ("/update/{id}")
-    public  String updateStudent(@PathVariable("id") UUID id, @ModelAttribute("student")Student student){
-        studentService.updateStudent(id,student);
+    @PostMapping ("/update")
+    public  String updateStudent(@RequestParam("studentId") UUID id,Model model){
+        Student student = studentService.findStudentById(id);
+        model.addAttribute("student", student);
         System.out.println("update student");
         return "redirect:/list";
     }

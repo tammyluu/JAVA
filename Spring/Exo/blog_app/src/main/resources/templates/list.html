@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+<span th:replace="~{home :: navbar}"></span>
+<h1>All of posts</h1>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header"> List of Posts</div>
+        <div class="card-body">
+            <form method="get" th:action="@{/posts}">
+                <input type="text" name="keyword" th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <table class="table" th:unless="${posts.isEmpty()}">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p:${posts}">
+                    <td th:text="${p.title}"></td>
+                    <td th:text="${p.description}"></td>
+                    <td th:text="${p.content}"></td>
+                    <td><a th:href="@{/detail/{postId}(postId=${p.id})}" class="btn btn-outline-info"><i class="bi-bi-eye"></i></a></td>
+                    <td><a onclick="return confirm('Are you sure to remove this post?')" class="btn btn-danger" th:href="@{/delete/{id}(id=${p.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <p th:if="${posts.isEmpty()}">No posts found</p>
+        </div>
+    </div>
+</div>
+<span th:replace="~{home :: footer}"></span>
+</body>
+</html>
