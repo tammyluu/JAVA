@@ -36,20 +36,21 @@ public class PostController {
         System.out.println(postService.getAll());
         return "list";
     }
-    @GetMapping("/post/{id}")  // http://localhost:8080/post/x
+    @GetMapping("/post/{postId}")  // http://localhost:8080/post/x
     public String showPost(@PathVariable("postId") UUID id, Model model){
         model.addAttribute("post",postService.getById(id));
+        System.out.println(postService.getById(id));
         return "detail";
     }
     @GetMapping("/form") // http://localhost:8080/form
     public String formAddPost(Model model){
         model.addAttribute("post",new Post());
-        return "form";
+        return "post-form";
     }
-    @PostMapping("/post")
+    @PostMapping(value = "/add")
     public String addStudent(@Valid @ModelAttribute("post") Post post, BindingResult result) {
         if (result.hasErrors()) {
-            return "form";
+            return "post-form";
         } else {
             if (post.getId() != null) {
                 postService.update(post.getId(), post);
@@ -65,11 +66,11 @@ public class PostController {
         postService.deleteById(id);
         return "redirect:/posts";
     }
-    @GetMapping("/update")
+    @GetMapping("/update/{postId}")
     public String formUpdateStudent(@RequestParam("postId") UUID id,Model model){
         Post post = postService.getById(id);
         model.addAttribute("post",post);
-        return "form";
+        return "post-form";
     }
 
 }

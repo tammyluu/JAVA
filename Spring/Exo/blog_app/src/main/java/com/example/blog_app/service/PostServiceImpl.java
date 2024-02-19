@@ -1,5 +1,6 @@
 package com.example.blog_app.service;
 
+import com.example.blog_app.model.Comment;
 import com.example.blog_app.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,31 +13,36 @@ public class PostServiceImpl implements IBlogServcie<Post> {
     private final Map<UUID, Post> posts;
 
     public PostServiceImpl() {
-      posts = new HashMap<>();
-      Post post1 = Post.builder()
-              .title("Python")
+        posts = new HashMap<>();
+        Post post1 = Post.builder()
+              .id(UUID.randomUUID())
+              .title("Cobol")
               .description("programming")
               .content("Step by step")
               .comments(new ArrayList<>())
               .build();
-      Post post2 = Post.builder()
+         Post post2 = Post.builder()
+                .id(UUID.randomUUID())
                 .title("Python")
                 .description("Data Science")
-                .content("New")
+                .content("News")
                 .comments(new ArrayList<>())
                 .build();
         Post post3 = Post.builder()
+                .id(UUID.randomUUID())
                 .title("Java")
-                .description("programming")
-                .content("Introduction")
+                .description("Application web, API Rest")
+                .content(" Backend with Framework Spring MVC")
                 .comments(new ArrayList<>())
                 .build();
         Post post4 = Post.builder()
+                .id(UUID.randomUUID())
                 .title("C++")
                 .description("Game programming")
                 .content("Workshop")
                 .comments(new ArrayList<>())
                 .build();
+
         posts.put(post1.getId(),post1);
         posts.put(post2.getId(),post2);
         posts.put(post3.getId(),post3);
@@ -48,7 +54,8 @@ public class PostServiceImpl implements IBlogServcie<Post> {
 
     @Override
     public List<Post> getAll() {
-        return posts.values().stream().toList();
+       return posts.values().stream().toList();
+
     }
 
     @Override
@@ -77,6 +84,18 @@ public class PostServiceImpl implements IBlogServcie<Post> {
 
     @Override
     public Post update(UUID id, Post element) {
-        return null;
+        Post postExist = getById(id);
+        if (postExist != null) {
+            postExist.setTitle(element.getTitle());
+            postExist.setDescription(element.getDescription());
+
+        }
+
+        return postExist;
+    }
+    public boolean addComment(Post post, Comment comment) {
+        List<Comment> comments = post.getComments();
+        comments.add(comment);
+        return true;
     }
 }
