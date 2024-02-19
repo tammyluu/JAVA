@@ -30,33 +30,24 @@ public class PersonRestController {
                 .email("toto@tata.com")
                 .build());
     }
-    @GetMapping("/person/{id}")
+    @PostMapping("/add")
+    public Person addPerson(@RequestBody Person person){
+        System.out.println("ajouté");
+        return personService.save(person);
+    }
+
+    @GetMapping("/{id}")
     public Person getPersonById(@PathVariable("id") int id){
         return personService.findById(id);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Person> updatePerson(@PathVariable int id, @RequestBody Person updatedPerson){
-        Person existingPerson = personService.findById(id);
-        if(existingPerson == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        existingPerson.setFirstName(updatedPerson.getFirstName());
-        existingPerson.setLastName(updatedPerson.getLastName());
-        existingPerson.setEmail(updatedPerson.getEmail());
-
-        personService.update(id, existingPerson);
-
-        return new ResponseEntity<>(existingPerson, HttpStatus.OK);
+    @PutMapping("/update/")
+    public void updatePerson( @RequestBody Person person){
+        personService.update(person);
+        System.out.println("update");
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePerson(@PathVariable int id) {
-        Person existingPerson = personService.findById(id);
-        if(existingPerson == null) {
-            return new ResponseEntity<>("Person with id " + id + " not found", HttpStatus.NOT_FOUND);
-        }
-        personService.deleteById(id);
-        return new ResponseEntity<>("Person with id " + id + " deleted successfully", HttpStatus.OK);
+    public void deletePerson(@PathVariable int id) {
+        personService.deleteById(personService.findById(id));
     }
 
 

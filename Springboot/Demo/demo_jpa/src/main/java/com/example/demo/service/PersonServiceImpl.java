@@ -26,30 +26,31 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Person findById(int id) {
-        return personRepository.getReferenceById(id);
+       // return personRepository.findByIdIs(id);
+        Optional<Person> result = personRepository.findById(id);
+        /*if (result.isPresent()){
+            return result.get();
+        }*/
+        return  result.orElse(null);
     }
 
     @Override
-    public void save(Person person) {
+    public Person save(Person person) {
         personRepository.save(person);
+        return  person;
     }
 
     @Override
-    public void update(int id, Person updatedPerson) {
-        Person existingPerson = personRepository.findById(id).orElse(null);
-        if (existingPerson != null) {
-            existingPerson.setFirstName(updatedPerson.getFirstName());
-            existingPerson.setLastName(updatedPerson.getLastName());
-            existingPerson.setEmail(updatedPerson.getEmail());
-            personRepository.save(existingPerson);
-        }
-        System.out.println("update");
+    public Person update( Person updatedPerson) {
+        personRepository.save(updatedPerson);
+        return updatedPerson;
+
     }
 
     @Override
-    public Boolean deleteById(int id) {
-        personRepository.deleteById(id);
+    public void deleteById(Person person) {
+        personRepository.deleteById(person.getId());
         System.out.println("delete");
-        return true;
+
     }
 }

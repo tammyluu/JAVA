@@ -9,7 +9,7 @@ public interface PersonService {
 
     Person findById(int id);
 
-    void save(Person person);
-    void  update(int id, Person person);
-    Boolean deleteById(int id);
+    Person save(Person person);
+    Person  update(Person person);
+    void deleteById(Person person);
 }

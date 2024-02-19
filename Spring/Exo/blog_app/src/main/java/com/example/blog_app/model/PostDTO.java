@@ -1,4 +1,4 @@
-package com.example.blog_app.model;
+package com.example.blog_app.entities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
