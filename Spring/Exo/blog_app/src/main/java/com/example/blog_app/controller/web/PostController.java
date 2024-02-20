@@ -48,7 +48,7 @@ public class PostController {
         return "post-form";
     }
     @PostMapping(value = "/add")
-    public String addStudent(@Valid @ModelAttribute("post") Post post, BindingResult result) {
+    public String addPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
         if (result.hasErrors()) {
             return "post-form";
         } else {
@@ -67,7 +67,7 @@ public class PostController {
         return "redirect:/posts";
     }
     @GetMapping("/update/{postId}")
-    public String formUpdateStudent(@RequestParam("postId") UUID id,Model model){
+    public String formUpdatePost(@RequestParam("postId") UUID id,Model model){
         Post post = postService.getById(id);
         model.addAttribute("post",post);
         return "post-form";

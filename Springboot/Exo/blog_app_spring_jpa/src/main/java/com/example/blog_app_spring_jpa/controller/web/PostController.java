@@ -33,10 +33,11 @@ public class PostController {
     @GetMapping("/posts")
     public String getListPost(Model model){
         List<PostDTO> postDtos = postService.getAll();
-        model.addAttribute("posts");
+        model.addAttribute("posts", postDtos);
+
         return "list";
     }
-    @GetMapping(value = "/detail/{postId}")
+    @GetMapping(value = "/post/{postId}")
     public String showDetail(@PathVariable("postId") int id, Model model) {
        PostDTO postDto = postService.getById(id);
         model.addAttribute("post", postDto);
@@ -59,15 +60,17 @@ public class PostController {
                 postService.update(postDto);
             } else {
                 postService.add(postDto);
+                System.out.println("save");
             }
-            return "redirect:/list";
+            return "redirect:/posts";
         }
     }
 
     @GetMapping("/delete/{postId}")
     public String delete(@RequestParam("postId") int id) {
         postService.delete(id);
-        return "redirect:/list";
+        System.out.println("delete");
+        return "redirect:/posts";
     }
 
     @GetMapping("/update/{postId}")

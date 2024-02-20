@@ -43,7 +43,7 @@ public class CommentController {
                 commentService.addCommentToPost(postDto, commentDto);
                 return "redirect:/";
             }
-            return "commentForm";
+            return "comment-form";
         }
     }
 

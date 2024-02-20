@@ -21,6 +21,7 @@
                         <p th:text="${post.description}" class="mb-1"></p>
                         <p th:text="${post.content}" class="mb-1"></p>
                         <a th:href="@{/post/{postId}(postId=${post.id})}" class="btn btn-primary">View Details</a>
+                        <a onclick="return confirm('Are you sure to remove this post?')" class="btn btn-danger" th:href="@{/delete/{postId}(postId=${post.id})}">Delete</a>
                     </li>
                 </ul>
             </div>

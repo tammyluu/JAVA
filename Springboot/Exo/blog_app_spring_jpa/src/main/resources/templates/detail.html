@@ -21,6 +21,7 @@
         <hr>
 
         <div class="card-header"> The Comments of Post</div>
+
     <div class="card-body">
         <form method="get" th:action="@{/posts}">
             <input type="text" name="keyword" th:value="${keyword}">
@@ -38,8 +39,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="comment, index : ${post.comments}">
-                <td class="text-center" th:text="${index + 1}"></td>
+            <div th:text="${post}"></div>
+            <tr th:each="comment: ${post.comments}">
+                <td class="text-center" th:text="${comment.id}"></td>
                 <td class="text-center" th:text="${comment.fullName}"></td>
                 <td class="text-center" th:text="${comment.email}"></td>
                 <td class="text-center" th:text="${comment.content}"></td>

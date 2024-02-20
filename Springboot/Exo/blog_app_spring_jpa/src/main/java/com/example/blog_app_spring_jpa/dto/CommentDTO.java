@@ -16,6 +16,9 @@ public class CommentDTO {
     public CommentDTO() {
     }
 
+    public CommentDTO(int id, String fullName, String email, String content) {
+    }
+
     public int getId() {
         return id;
     }

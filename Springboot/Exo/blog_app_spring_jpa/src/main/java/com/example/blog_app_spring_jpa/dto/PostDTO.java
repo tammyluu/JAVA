@@ -2,6 +2,7 @@ package com.example.blog_app_spring_jpa.dto;
 
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 public class PostDTO {
@@ -11,13 +12,21 @@ public class PostDTO {
     private String content;
 
     private String description;
-    private List<CommentDTO> comments;
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public PostDTO() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     public void setId(int id) {
@@ -48,11 +57,5 @@ public class PostDTO {
         this.description = description;
     }
 
-    public List<CommentDTO> getComments() {
-        return comments;
-    }
 
-    public void setComments(List<CommentDTO> comments) {
-        this.comments = comments;
-    }
 }
