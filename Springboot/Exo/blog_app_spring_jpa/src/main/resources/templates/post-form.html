@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Form</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+<span th:replace="~{home :: navBar}"></span>
+<h1>Form</h1>
+<main class="container">
+    <div class="row">
+        <form  th:action="@{/add}" th:object="${post}" method="post"role="form" class="col-md-9 go-right">
+            <h2>Form To Post</h2>
+            <p>To see how it works, you clink in a input field.</p>
+
+            <div class="form-group">
+                <label for="title">Your Title</label>
+                <input th:field="*{title}" id="title" name="title" type="text" class="form-control" required>
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class=" text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input th:field="*{description}" id="description" name="description" type="text" class="form-control" required>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class=" text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" class="form-control" required></textarea>
+                <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class=" text text-danger"></span>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" type="submit"><i class="bi bi-patch-plus"> Add</i>
+                </button>
+            </div>
+            <input type="hidden" th:field="*{id}">
+        </form>
+
+    </div>
+</main>
+
+<span th:replace="~{home :: footer}"></span>
+</body>
+</html>

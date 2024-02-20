@@ -5,6 +5,7 @@ import com.example.blog_app_spring_jpa.entities.PostEntity;
 import com.example.blog_app_spring_jpa.service.PostServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,15 +16,25 @@ import java.util.List;
 @Controller
 public class PostController {
     private final PostServiceImpl postService;
+    @Value("IT-Edu")
+    private String blogName;
+    @Value("it_edu@edublog.edu")
+    private String blogContact;
     @Autowired
     public PostController(PostServiceImpl postService) {
         this.postService = postService;
     }
-    @GetMapping
-    public String home(Model model) {
+    @GetMapping("/")  // http://localhost:8080
+    public String home(Model model){
+        model.addAttribute("name",blogName);
+        model.addAttribute("contact",blogContact);
+        return "home";
+    }
+    @GetMapping("/posts")
+    public String getListPost(Model model){
         List<PostDTO> postDtos = postService.getAll();
         model.addAttribute("posts");
-        return "home";
+        return "list";
     }
     @GetMapping(value = "/detail/{postId}")
     public String showDetail(@PathVariable("postId") int id, Model model) {
@@ -33,7 +44,7 @@ public class PostController {
 
     }
 
-    @GetMapping("/add")
+    @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("post", new PostEntity());
         return "post-form";
@@ -42,7 +53,7 @@ public class PostController {
     @PostMapping(value = "/add")
     public String addPost(@Valid @ModelAttribute("post")PostDTO postDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "postForm";
+            return "post-form";
         } else {
             if (postDto.getId() != 0) {
                 postService.update(postDto);
@@ -53,7 +64,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/delete/{postId}")
     public String delete(@RequestParam("postId") int id) {
         postService.delete(id);
         return "redirect:/list";

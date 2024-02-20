@@ -1,4 +1,4 @@
-package com.example.blog_app_spring_jpa.entities;
+package com.example.app_blog.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

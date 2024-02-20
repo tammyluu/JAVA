@@ -17,7 +17,7 @@ public class PostServiceImpl implements IBlogServcie<Post> {
         Post post1 = Post.builder()
               .id(UUID.randomUUID())
               .title("Cobol")
-              .description("programming")
+              .description("Bank and Assurance")
               .content("Step by step")
               .comments(new ArrayList<>())
               .build();

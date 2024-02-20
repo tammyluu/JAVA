@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1/posts")
+@RequestMapping("/api/v1/blog")
 public class PostRestController {
     public final PostServiceImpl postService;
     private final CommentServiceImpl commentService;
@@ -19,6 +21,10 @@ public class PostRestController {
     public PostRestController(PostServiceImpl postService, CommentServiceImpl commentService) {
         this.postService = postService;
         this.commentService = commentService;
+    }
+    @GetMapping("/posts")
+    public List<PostDTO> getAllPosts(){
+        return  postService.getAll();
     }
     @GetMapping("/post/{id}") // http://localhost:8080/api/blog/post/x
     public PostDTO getPostById(@PathVariable("id") int id){
