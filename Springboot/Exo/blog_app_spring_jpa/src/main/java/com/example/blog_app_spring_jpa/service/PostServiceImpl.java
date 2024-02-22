@@ -5,6 +5,7 @@ import com.example.blog_app_spring_jpa.dao.IPostRepository;
 import com.example.blog_app_spring_jpa.dto.PostDTO;
 import com.example.blog_app_spring_jpa.entities.PostEntity;
 import com.example.blog_app_spring_jpa.mapper.IPostMapper;
+import com.example.blog_app_spring_jpa.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class PostServiceImpl implements IBlogService <PostDTO>{
     public final IPostRepository postRepository;
-    public final IPostMapper postMapper;
+    public final PostMapper postMapper;
     @Autowired
-    public PostServiceImpl(IPostRepository postRepository, IPostMapper postMapper) {
+    public PostServiceImpl(IPostRepository postRepository, PostMapper postMapper) {
         this.postRepository = postRepository;
         this.postMapper = postMapper;
     }

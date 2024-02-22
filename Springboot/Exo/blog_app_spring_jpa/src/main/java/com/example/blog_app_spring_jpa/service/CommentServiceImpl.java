@@ -5,8 +5,9 @@ import com.example.blog_app_spring_jpa.dao.IPostRepository;
 import com.example.blog_app_spring_jpa.dto.CommentDTO;
 import com.example.blog_app_spring_jpa.dto.PostDTO;
 import com.example.blog_app_spring_jpa.entities.CommentEntity;
-import com.example.blog_app_spring_jpa.mapper.ICommentMapper;
-import com.example.blog_app_spring_jpa.mapper.IPostMapper;
+import com.example.blog_app_spring_jpa.mapper.CommentMapper;
+
+import com.example.blog_app_spring_jpa.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,10 @@ public class CommentServiceImpl  implements IBlogService<CommentDTO> {
     private final ICommentRepository commentRepository;
 
     private final IPostRepository postRepository;
-    private final ICommentMapper commentMapper;
-    private final IPostMapper postMapper;
+    private final CommentMapper commentMapper;
+    private final PostMapper postMapper;
     @Autowired
-    public CommentServiceImpl(ICommentRepository commentRepository, IPostRepository postRepository, ICommentMapper commentMapper, IPostMapper postMapper) {
+    public CommentServiceImpl(ICommentRepository commentRepository, IPostRepository postRepository, CommentMapper commentMapper, PostMapper postMapper) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
         this.commentMapper = commentMapper;
