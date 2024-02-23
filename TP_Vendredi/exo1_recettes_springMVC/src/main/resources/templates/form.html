@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de soumission de recette</title>
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+<span th:replace="~{home :: navBar}"></span>
+<div class="container">
+    <h1 class="mt-4">Formule</h1>
+    <form action="/add" method="post" th:object="${recipe}">
+        <div class="form-group">
+            <label for="name">Title:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nom de la recette">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+        </div>
+        <div class="form-group">
+            <label for="ingredients">Ingrédients:</label>
+            <textarea class="form-control" id="ingredients" th:field="*{ingredients}" placeholder="Ingrédients"></textarea>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></small>
+        </div>
+        <div class="form-group">
+            <label for="instructions">Instructions:</label>
+            <textarea class="form-control" id="instructions" th:field="*{instructions}" placeholder="Instructions"></textarea>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+<span th:replace="~{home :: footer}"></span>
+</body>
+</html>

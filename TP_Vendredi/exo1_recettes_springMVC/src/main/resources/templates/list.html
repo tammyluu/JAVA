@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des recettes</title>
+    <!-- Inclure les fichiers CSS de Bootstrap pour la mise en forme -->
+    <span th:replace="~{home :: bootstrapImports}"></span>
+</head>
+<body>
+<!-- Inclure la barre de navigation -->
+<span th:replace="~{home :: navBar}"></span>
+
+<div class="container">
+    <h1 class="mt-4">Liste of recipe</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Ingredients</th>
+            <th scope="col">Instruction</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.name}"></td>
+            <td>
+                <!-- Boucle à travers la liste des ingrédients -->
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}"></li>
+                </ul>
+            </td>
+            <td th:text="${recipe.instructions}"></td>
+            <td>
+
+                <a th:href="@{/recipes/{id}(id=${recipe.id})}">Detail</a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+    <!-- Lien pour ajouter une nouvelle recette -->
+    <a href="/form" class="btn btn-primary">Add new recipe</a>
+</div>
+
+<!-- Inclure le pied de page -->
+<span th:replace="~{home :: footer}"></span>
+</body>
+</html>
