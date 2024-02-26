@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en temps réel</title>
+</head>
+<body>
+<div id="messages-container"></div>
+
+<script>
+    const eventSource = new EventSource('/messages/stream');
+
+    eventSource.onmessage = function(event) {
+        const message = JSON.parse(event.data);
+        const messagesContainer = document.getElementById('messages-container');
+        const formattedDate = new Date(message.timestamp).toLocaleString();
+        messagesContainer.innerHTML += `<p>${formattedDate} - ${message.sender}: ${message.content}</p>`;
+    };
+
+    eventSource.onerror = function(error) {
+        console.error('Erreur de flux de messages:', error);
+    };
+</script>
+</body>
+</html>
