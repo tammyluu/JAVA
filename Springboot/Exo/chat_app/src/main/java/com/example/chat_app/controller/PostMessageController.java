@@ -1,8 +1,9 @@
 package com.example.chat_app.controller;
 
+import com.example.chat_app.dao.MessageDAO;
 import com.example.chat_app.entity.Message;
+import com.example.chat_app.repository.IMessageRepository;
 import com.example.chat_app.service.MessageService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,11 @@ import reactor.core.publisher.Flux;
 @RequestMapping("messages")
 public class PostMessageController {
 
+
     private final MessageService messageService;
 
-    public PostMessageController(MessageService messageService) {
+    public PostMessageController(MessageDAO messageDAO, IMessageRepository messageRepository, MessageService messageService) {
+
         this.messageService = messageService;
     }
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -24,12 +27,32 @@ public class PostMessageController {
     }
 
     @PostMapping
-    public Mono<ResponseEntity<Void>> postMessage(@RequestBody Message message) {
-        try {
-            messageService.postMessage(message);
-            return Mono.just(ResponseEntity.ok().build());
-        } catch (Exception e) {
-            return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
-        }
+    public Mono<Message> postMessage(@RequestBody Message message) {
+            return messageService.postMessage(message);
+
+
     }
+    @GetMapping("/sender/{sender}")
+    public Flux<Message> getMessageBySender(@PathVariable("sender") String sender){
+        return  messageService.getMessageBySender(sender);
+    }
+    @GetMapping("{id}")
+    public Mono<Message> getMessageById(@PathVariable("id") Long id){
+        return messageService.getMessageById(id);
+    }
+    @DeleteMapping("{id}")
+    public  Mono deleteMessage(@PathVariable("id") Long id){
+        System.out.println("delete");
+        return messageService.deleteMessage(id);
+    }
+    @PutMapping("/update/{id}")
+    public Mono<ResponseEntity<Void>> put(@PathVariable("id") Long id, @RequestBody Message message) {
+        System.out.println("update");
+        return messageService.update(id, message)
+                .flatMap(updatedMessage -> Mono.just(ResponseEntity.ok().<Void>build()))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+
+    }
+
+
 }
