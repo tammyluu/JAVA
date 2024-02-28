@@ -63,19 +63,24 @@ public class TransactionReactiveRestController {
 
     @GetMapping(value = "/streamTransactionsBySociete/{id}",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Transaction> stream(@PathVariable String id){
-        return societeRepository.findById(id)
+        return societeRepository.findById(id) //donne-moi un société
+                //transform résultat dans un FLux. Si map() return un Mono, on veut un Flux -> FlatMapMany
                 .flatMapMany(soc->{
+                    // create a timer ,chaque second on reçu un interval qui génère automatiquement une transaction
             Flux<Long> interval=Flux.interval(Duration.ofMillis(1000));
+            //  créer flux transacion à partir de
             Flux<Transaction> transactionFlux= Flux.fromStream(Stream.generate(()->{
+                //persistence dans DB
                 Transaction transaction=new Transaction();
                 transaction.setInstant(Instant.now());
                 transaction.setSociete(soc);
                 transaction.setPrice(soc.getPrice()*(1+(Math.random()*12-6)/100));
                 return transaction;
             }));
+            // Return Flux de zip de transaction, combiner 2 Flux interval et transaction avec zip
             return Flux.zip(interval,transactionFlux)
                     .map(data->{
-                        return data.getT2();
+                        return data.getT2(); // T2 est transaction ce qui m'intéresse
                     }).share();
         });
     }
