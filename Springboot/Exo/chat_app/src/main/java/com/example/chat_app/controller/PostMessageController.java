@@ -1,6 +1,7 @@
 package com.example.chat_app.controller;
 
-import com.example.chat_app.dao.MessageDAO;
+
+import com.example.chat_app.dto.MessageDTO;
 import com.example.chat_app.entity.Message;
 import com.example.chat_app.repository.IMessageRepository;
 import com.example.chat_app.service.MessageService;
@@ -17,7 +18,7 @@ public class PostMessageController {
 
     private final MessageService messageService;
 
-    public PostMessageController(MessageDAO messageDAO, IMessageRepository messageRepository, MessageService messageService) {
+    public PostMessageController( MessageService messageService) {
 
         this.messageService = messageService;
     }
@@ -27,10 +28,8 @@ public class PostMessageController {
     }
 
     @PostMapping
-    public Mono<Message> postMessage(@RequestBody Message message) {
-            return messageService.postMessage(message);
-
-
+    public void post(@RequestBody MessageDTO messageDTO) {
+        messageService.postMessage(messageDTO.getSender(), messageDTO.getContent());
     }
     @GetMapping("/sender/{sender}")
     public Flux<Message> getMessageBySender(@PathVariable("sender") String sender){
