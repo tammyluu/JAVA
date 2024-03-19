@@ -1,5 +1,6 @@
 package org.example.springsecurity.security.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -23,6 +24,7 @@ public class JwtProvider {
         return Keys.hmacShaKeyFor(keyBytes);
     }
     // Authentification est interface core
+    // this method take param of authentication. It is n!= the method generateToken in UserService
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
         Date currentDate = new Date();
@@ -48,6 +50,16 @@ public class JwtProvider {
         }catch (Exception e){
             throw new AuthenticationCredentialsNotFoundException("JWT expried or incorect");
         }
+    }
+
+    public String getUserNameFromToken(String token){
+        // Claims:where is destination de token
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSigninKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 
 }
