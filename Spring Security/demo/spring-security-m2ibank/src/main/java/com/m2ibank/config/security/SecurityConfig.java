@@ -46,11 +46,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("notices").permitAll()
-                        .requestMatchers("contact").permitAll()
-                        .requestMatchers("myAccount").hasAnyRole("USER","ADMIN")
-                        .requestMatchers("myLoans").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/notices","/contact","/auth/register").permitAll()
+                        .requestMatchers("/myAccount","/myLoans").hasAnyRole("USER")
+                        .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("*").authenticated()
 
                 )
                 .exceptionHandling(exceptions->exceptions.authenticationEntryPoint(jwtAuthentificationEntryPoint))
@@ -82,9 +81,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(Collections.singletonList("*")); // Permettre toutes les origines
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")); // Permettre toutes les méthodes
-        configuration.setAllowedHeaders(Arrays.asList("*")); // Permettre tous les headers
+        configuration.setAllowedHeaders(Arrays.asList("*")); // Permettre tous les headers si non préciser le type de retour de header
         configuration.setAllowCredentials(true); // Important pour les cookies, l'autorisation, etc.
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        // à quel niveau  que j'applique
         source.registerCorsConfiguration("/**", configuration); // Appliquer cette configuration à tous les chemins
         return source;
     }

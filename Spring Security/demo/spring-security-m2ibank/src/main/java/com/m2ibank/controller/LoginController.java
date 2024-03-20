@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class LoginController {
 
-    /*@Autowired
+    @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
@@ -48,13 +49,13 @@ public class LoginController {
 
     @RequestMapping("/user")
     public Customer getUserDetailsAfterLogin(Authentication authentication) {
-        List<Customer> customers = customerRepository.findByEmail(authentication.getName());
-        if (customers.size() > 0) {
-            return customers.get(0);
+        Optional<Customer> customers = customerRepository.findByEmail(authentication.getName());
+        if (!customers.isEmpty()) {
+            return customers.get();
         } else {
             return null;
         }
 
-    }*/
+    }
 
 }
