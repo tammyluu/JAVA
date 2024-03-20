@@ -1,6 +1,10 @@
 create database m2ibank;
 
+
 use m2ibank;
+select * from customer;
+select * from accounts;
+select * from account_transactions;
 
 
 CREATE TABLE `customer` (

@@ -1,6 +1,6 @@
 package com.m2ibank.service;
 
-import com.m2ibank.config.jwt.JwtProvider;
+import com.m2ibank.config.jwt.JwtTokenProvider;
 import com.m2ibank.model.Customer;
 import com.m2ibank.repository.CustomerRepository;
 
@@ -31,7 +31,7 @@ public class CustomerService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtProvider jwtProvider;
+    private JwtTokenProvider jwtProvider;
 
     public boolean createUser(Customer user) {
         user.setPwd(passwordEncoder.encode(user.getPwd()));

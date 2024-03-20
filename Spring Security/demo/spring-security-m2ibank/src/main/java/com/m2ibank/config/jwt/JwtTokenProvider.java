@@ -14,7 +14,7 @@ import java.util.Base64;
 import java.util.Date;
 
 @Component
-public class JwtProvider {
+public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String secret;
 
@@ -41,7 +41,7 @@ public class JwtProvider {
 
     public boolean validateToken(String token) {
         try{
-            Jwts.parserBuilder()
+            Jwts.parser()
                     .setSigningKey(getSignInKey())
                     .build()
                     .parseClaimsJws(token);
@@ -52,7 +52,7 @@ public class JwtProvider {
     }
 
     public String getUserNameFromToken(String token) {
-        Claims claims = Jwts.parserBuilder()
+        Claims claims = Jwts.parser()
                 .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJws(token)
