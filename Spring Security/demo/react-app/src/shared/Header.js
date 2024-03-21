@@ -51,7 +51,6 @@ const isLoggedIn = () => {
     // Fonction de déconnexion
     const handleLogout = () => {
         authService.logout();
-        //localStorage.removeItem('user'); // Supprimer l'utilisateur du localStorage pour "déconnecter"
         navigate('/login'); // Rediriger vers la page de connexion
     };
 

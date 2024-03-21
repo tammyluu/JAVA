@@ -4,7 +4,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ProductList from './components/ProductList';
 import Header from './shared/Header';
-import CreateProduct from './components/CreateProduct';
+import ProductForm from './components/ProductForm';
+
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products" element={<ProductList />} />
-        <Route path="/create-product" element={<CreateProduct />} />
+        <Route path="/create-product" element={<ProductForm/>} />
         <Route path="/" element={<Login />} />
       </Routes>
     </Router>
