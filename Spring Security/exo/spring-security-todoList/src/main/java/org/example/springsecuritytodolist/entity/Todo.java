@@ -17,5 +17,6 @@ public class Todo {
     private boolean isCompleted;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private AppUser user;
+    @JoinColumn(name = "user_id")
+    private User user;
 }

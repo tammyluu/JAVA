@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/todos")
+@RequestMapping("/api/todos")
 public class TodoController {
 
     @Autowired
@@ -22,8 +22,6 @@ public class TodoController {
     private UserService userService;
 
 
-
-
     @GetMapping
     public ResponseEntity<List<Todo>> getAllTodos() {
         List<Todo> todos = todoService.getAllTodos();
@@ -31,19 +29,12 @@ public class TodoController {
     }
 
 
-    @PostMapping
+    @PostMapping("/admin/post")
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo) {
-       /* try {
-            // For clarity, explicitly retrieve user ID from authenticated user (example):
-            Long userId = *//* Get user ID from authenticated context *//*;
-            Todo savedTodo = todoService.saveTodo(userId, todo);
-            return ResponseEntity.ok(savedTodo);
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }*/
+       return ResponseEntity.ok(todoService.save(todo));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/list/{id}")
     public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
         Todo todo = todoService.getTodoById(id);
         if (todo != null) {
@@ -51,6 +42,11 @@ public class TodoController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/list/{userId}")
+    public  List<Todo> getTodosByUser(@PathVariable("userId")Long id){
+        return todoService.getAllTodosByUser(id);
     }
 
 

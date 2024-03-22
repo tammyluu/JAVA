@@ -1,11 +1,13 @@
 package org.example.springsecuritytodolist.dto;
 
+import java.util.Map;
+
 public class BaseResponseDto {
     private Object message;
     private Object data;
-    private Object userId;
+    private Long userId;
 
-    public BaseResponseDto(Object message, Object data, Object userId) {
+    public BaseResponseDto(Object message, Object data, Long userId) {
         this.message = message;
         this.data = data;
         this.userId = userId;
@@ -14,6 +16,9 @@ public class BaseResponseDto {
     public BaseResponseDto(Object message) {
         this.message = message;
     }
+
+
+
 
     public Object getMessage() {
         return message;
@@ -31,11 +36,11 @@ public class BaseResponseDto {
         this.data = data;
     }
 
-    public Object getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Object userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 }
