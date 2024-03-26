@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
-import Cookies from 'js-cookie';
 
 
 function Login() {
@@ -9,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const csrfToken = Cookies.get('XSRF_TOKEN');
+  const csrfToken = Cook
 
   const handleLogin = async (e) => {
     console.log(csrfToken)
